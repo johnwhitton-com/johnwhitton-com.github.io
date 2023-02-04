@@ -24,10 +24,3 @@ Here is a video highlighting the strengths of the Harmony Team that I was fortun
 
 
 **Below are some quotes from some of the greatest people you'll ever get to work with**
-
-<ul>
-
-  {% for colleagues in site.colleagues %}
-      <p>{{ colleagues.content | markdownify }}</p>
-  {% endfor %}
-</ul>

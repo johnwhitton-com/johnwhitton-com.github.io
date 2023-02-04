@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     {% seo %}
-    <link rel="stylesheet"
-        href="{{ '/assets/css/styles.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css?v=' | append: site.github.build_revision | relative_url }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     {% include head-custom.html %}
 </head>
@@ -21,7 +20,7 @@
             <ul>
                 <li><a href="{{ colleagues.url }}">{{ colleagues.title }}</a></li>
             </ul>
-          {% endfor %}
+            {% endfor %}
         </header>
         <section>
             {{ content }}
