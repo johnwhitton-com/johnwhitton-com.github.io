@@ -6,9 +6,7 @@ incremental: false
 highlighter: rouge
 gist:
   noscript: false
-kramdown:
-  math_engine: mathjax
-  syntax_highlighter: rouge
+math_engine: mathjax
 
 theme: jekyll-theme-dinky
 domain: johnwhitton-com.github.io
@@ -22,6 +20,12 @@ collections:
     output: true
   colleagues:
     output: true
+    order:
+      - ganesha.md
+      - yishuang.md
+      - olivier.md
+      - nick.md
+      - matt.md
   references:
     output: true
   research:

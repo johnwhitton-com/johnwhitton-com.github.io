@@ -33,3 +33,6 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 # Push your commit for johnwhitton-com.github.io 
 ```
+
+## Publish using github actions
+We have forked [this repo](https://github.com/johnwhitton-com/jekyll4-deploy-gh-pages) and are following [these instructions](https://github.com/marketplace/actions/jekyll-4-build-deploy)
