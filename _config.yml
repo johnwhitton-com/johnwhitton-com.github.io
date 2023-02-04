@@ -26,6 +26,8 @@ collections:
       - olivier.md
       - nick.md
       - matt.md
+  articles:
+    output: true
   references:
     output: true
   research:
@@ -42,6 +44,11 @@ defaults:
       type: "colleagues"
     values:
       layout: "colleagues"
+  - scope:
+      path: ""
+      type: "articles"
+    values:
+      layout: "articles"
   - scope:
       path: ""
       type: "research"

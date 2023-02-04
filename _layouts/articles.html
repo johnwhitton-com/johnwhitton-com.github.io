@@ -14,11 +14,11 @@
         <header>
             <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
             <ul>
-                <li><a href="/research">John's Research</a></li>
+                <li><a href="/articles">John's Writing</a></li>
             </ul>
-            {% for research in site.research %}
+            {% for articles in site.articles %}
             <ul>
-                <li><a href="{{ research.url }}">{{ research.title }}</a></li>
+                <li><a href="{{ articles.url }}">{{ articles.title }}</a></li>
             </ul>
             {% endfor %}
         </header>
