@@ -1,2 +1,2 @@
-# johnwhitton-com.github.io
-John's website
+# website
+Website
