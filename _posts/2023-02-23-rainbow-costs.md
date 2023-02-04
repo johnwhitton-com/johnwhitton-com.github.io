@@ -65,6 +65,7 @@ From the diagram above you'll notice that there are many actors involved, below 
       4. finish_deposit in contract factory.bridge.near : mint of 10,000 USDT.
 
 **TODO**
+
 - Find and review the source code for the [validator light client approval update](https://nearblocks.io/txns/HnzBR7x5Sxnmcm4MfRt1ghhMjJNspDaygUUKeM9T27Li#execution). *Note: the eth2_client has a [validate_light_client_update](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs#L311) which is [configurable](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs#L42) and is used for debugging purposes.*
 
 ## Bridging Resources Required
