@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+
+<head>
+    <meta charset="utf-8">
+    {% seo %}
+    <link rel="stylesheet"
+        href="{{ '/assets/css/styles.css?v=' | append: site.github.build_revision | relative_url }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    {% include head-custom.html %}
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <!-- <a href="https://delendum.xyz"><img src="https://delendum.xyz/assets/dv-logo-text.svg"></a> -->
+            <ul>
+                <!-- <li><a href="{{ site.github.repository_url }}">View On GitHub</a></li> -->
+                <li><a href="/">Home</a></li>
+                <!-- <li><a href="/panel">ZKP Panel Series</a></li> -->
+            </ul>
+            <hr>
+            <ul>
+                <li>Chains</a>
+                    <ul>
+                        <li>Consensus</a></li>
+                    </ul>
+                    <ul>
+                        <li>Signing</a></li>
+                    </ul>
+                    <ul>
+                        <li>Light Client Support</li>
+
+                        <ul>
+                            <li><a href="/horizon/#ethereum-light-client-on-harmony">Ethereum 1.0 Light Client on
+                                    Harmony</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="/ethereum-near/#near-rainbow-bridge-ethereum-light-client-walkthrough">Near
+                                    Rainbow Bridge Ethereum Light Client Walkthrough</a></li>
+                        </ul>
+                    </ul>
+                </li>
+                <li>Bridges</a>
+                    <ul>
+                        <li><a href="/horizon#design">Horizon Design</a>
+                            <ul>
+                                <li><a href="/horizon/#ethereum-light-client-on-harmony">Ethereum 1.0 Light Client on
+                                        Harmony</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li><a href="/succint#succint-labs-eth-proof-of-consensus-review">Succint proof of consensus
+                                review</a>
+                            <ul>
+                                <li><a href="/succint/#trusted-setup">Trusted setup</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+        </header>
+        <section>
+            {{ content }}
+        </section>
+    </div>
+</body>
+
+</html>
