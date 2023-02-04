@@ -30,6 +30,8 @@ bundle exec jekyll serve
 ## Publish using github pages 
 ```
 JEKYLL_ENV=production bundle exec jekyll build
+cd ../johnwhitton-com.github.io
+cp -rf ../website/_site/* .
 
 # Push your commit for johnwhitton-com.github.io 
 ```
