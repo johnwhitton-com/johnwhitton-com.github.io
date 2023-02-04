@@ -36,3 +36,4 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 ## Publish using github actions
 We have forked [this repo](https://github.com/johnwhitton-com/jekyll4-deploy-gh-pages) and are following [these instructions](https://github.com/marketplace/actions/jekyll-4-build-deploy)
+By committing the `jekyll4` branch it publishes to `gh-pages` which under the repository setting publishes every time.
