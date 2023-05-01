@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Chain Research | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Chain Research" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/chains/intro.html" />
+<meta property="og:url" content="http://localhost:4000/research/chains/intro.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Chain Research" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Overview","headline":"Chain Research","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/chains/intro.html"},"url":"http://localhost:4000/research/chains/intro.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Chain Research</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<p>Here we do a deep dive on individual chains with a focus on the following areas</p>
+
+<ul>
+  <li>Consensus Mechanism</li>
+  <li>Signing Algorithms Supported</li>
+  <li>Light Client Support</li>
+  <li>Gas Costs</li>
+  <li>Settlement Time</li>
+  <li>Codebases</li>
+</ul>
+
+<h2 id="chain-economics">Chain Economics</h2>
+
+<p>Following is an overview of the economics of sample chains. These chains are early candidates for the design and implementation of trustless bridging that we have been doing.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Chain</th>
+      <th>Token</th>
+      <th>Token Price</th>
+      <th>Market Capitalization</th>
+      <th>Total Value Locked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Avalanche</td>
+      <td><a href="https://www.coingecko.com/en/coins/avalanche">AVAX</a></td>
+      <td>$17.83</td>
+      <td>$5,619,898,947</td>
+      <td><a href="https://defillama.com/chain/Avalanche">$912,440,000</a></td>
+    </tr>
+    <tr>
+      <td>BSC</td>
+      <td><a href="https://www.coingecko.com/en/coins/bnb">BNB</a></td>
+      <td>$308.08</td>
+      <td>$48,646,681,885</td>
+      <td><a href="https://defillama.com/chain/BSC">$4,840,000,000</a></td>
+    </tr>
+    <tr>
+      <td>Cosmos</td>
+      <td><a href="https://www.coingecko.com/en/coins/cosmos-hub">ATOM</a></td>
+      <td>$13.53</td>
+      <td>$3,959,718,206</td>
+      <td><a href="https://defillama.com/chains/Cosmos">$1,218,000,000</a>  +++</td>
+    </tr>
+    <tr>
+      <td>Ethereum</td>
+      <td><a href="https://www.coingecko.com/en/coins/ethereum">ETH</a></td>
+      <td>$1,519.29</td>
+      <td>$183,069,985,916</td>
+      <td><a href="https://defillama.com/chain/Ethereum">$27,850,000,000</a></td>
+    </tr>
+    <tr>
+      <td>Harmony</td>
+      <td><a href="https://www.coingecko.com/en/coins/harmony">ONE</a></td>
+      <td>$0.0244</td>
+      <td>$299,878,381</td>
+      <td><a href="https://defillama.com/chain/Harmony">$6,958,436</a></td>
+    </tr>
+    <tr>
+      <td>Polygon</td>
+      <td><a href="https://www.coingecko.com/en/coins/polygon">MATIC</a></td>
+      <td>$1.24</td>
+      <td>$11,171,619,834</td>
+      <td><a href="https://defillama.com/chain/Polygon">$1,170,000,000</a></td>
+    </tr>
+    <tr>
+      <td>Pokadot</td>
+      <td><a href="https://www.coingecko.com/en/coins/polkadot">DOT</a></td>
+      <td>$6.22</td>
+      <td>$7,475,485,172</td>
+      <td><a href="https://defillama.com/chains/Parachain">$278,000,000</a>  ++</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>The above data is from Feburary 11th, 2023. Links are provided to get current information.</em></p>
+
+<p><em>++ Polkadot TVL includes all parachains</em></p>
+
+<p><em>+++ Cosmos TVL include all cosmos based networks</em></p>
+
+<h2 id="chain-technology">Chain Technology</h2>
+
+<p>Following is an overview of the consensus, signing and staking mechanisms for sample chains. These chains are early candidates for the design and implementation of trustless bridging that we have been doing.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Chain</th>
+      <th>Consensus</th>
+      <th>Signing</th>
+      <th>Staking</th>
+      <th>Validators</th>
+      <th>Subnets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Avalanche</td>
+      <td><a href="https://docs.avax.network/overview/getting-started/avalanche-consensus">Snowball</a><br /> <a href="https://assets.website-files.com/5d80307810123f5ffbb34d6e/6009805681b416f34dcae012_Avalanche%20Consensus%20Whitepaper.pdf">White Paper</a></td>
+      <td><a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)">rsa</a></td>
+      <td><a href="https://docs.avax.network/nodes/validate/staking#staking-parameters-on-avalanche">Avalanche Staking</a></td>
+      <td><a href="https://subnets.avax.network/validators">1215</a></td>
+      <td><a href="https://subnets.avax.network/subnets">45</a> <a href="https://docs.avax.network/subnets">subnets</a></td>
+    </tr>
+    <tr>
+      <td>BSC</td>
+      <td><a href="https://docs.bnbchain.org/docs/learn/consensus/#consensus-protocol">Parlia</a></td>
+      <td><a href="https://docs.bnbchain.org/docs/beaconchain/learn/accounts/#signature">secp256k1</a></td>
+      <td><a href="https://docs.bnbchain.org/docs/stake/Staking/">PoSA</a></td>
+      <td><a href="https://www.bnbchain.org/en/staking">50</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Cosmos Hub</td>
+      <td><a href="https://docs.tendermint.com/v0.34/introduction/what-is-tendermint.html">Tendermint</a></td>
+      <td><a href="https://ed25519.cr.yp.to/">ed25519</a> <a href="https://docs.tendermint.com/v0.34/tendermint-core/validators.html#validator-keys">Validator Keys</a></td>
+      <td><a href="https://docs.cosmos.network/v0.46/modules/staking/">Cosmos Staking</a></td>
+      <td><a href="https://www.mintscan.io/cosmos/validators">504</a></td>
+      <td><a href="https://defillama.com/chains/Cosmos">21</a> <a href="https://docs.cosmos.network/main/intro/why-app-specific">Chains</a></td>
+    </tr>
+    <tr>
+      <td>Ethereum</td>
+      <td><a href="https://arxiv.org/pdf/2003.03052.pdf">Gasper</a></td>
+      <td>BLS</td>
+      <td><a href="https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/">PoS</a></td>
+      <td><a href="https://ethereum.org/en/staking/">16,477,159</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Harmony</td>
+      <td><a href="https://docs.harmony.one/home/general/technology/consensus">FBFT</a></td>
+      <td><a href="https://medium.com/@caseyga/exploring-bls-keys-on-the-harmony-protocol-understanding-generation-management-and-use-cases-b8722f7219fc">BLS</a></td>
+      <td><a href="https://docs.harmony.one/home/general/technology/effective-proof-of-stake">EPoS</a></td>
+      <td><a href="https://staking.harmony.one/validators/mainnet">299</a></td>
+      <td><a href="https://explorer.harmony.one/">4</a> <a href="https://docs.harmony.one/home/general/technology/sharding">shards</a></td>
+    </tr>
+    <tr>
+      <td>Polygon</td>
+      <td><a href="https://wiki.polygon.technology/docs/pos/peppermint/">Peppermint</a><br /><a href="https://polygon.technology/blog/heimdall-and-bor">Heimdall and Bor</a><br /><em><a href="https://wiki.polygon.technology/docs/pos/heimdall/overview/">Heimdall</a><br /></em> <a href="https://wiki.polygon.technology/docs/pos/bor/consensus/">BOR</a></td>
+      <td>secp256k1</td>
+      <td><a href="https://wiki.polygon.technology/docs/pos/heimdall/modules/staking/">Heimdall Staking</a></td>
+      <td><a href="https://staking.polygon.technology/">100</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Polkadot</td>
+      <td><a href="https://wiki.polkadot.network/docs/learn-consensus">NPoS</a></td>
+      <td><a href="https://wiki.polkadot.network/docs/learn-cryptography#what-is-sr25519-and-where-did-it-come-from">Sr25519</a></td>
+      <td><a href="https://wiki.polkadot.network/docs/learn-staking">Nominated Pools</a></td>
+      <td><a href="https://staking.polkadot.network/?utm_source=polkadot.network#/validators">1200</a></td>
+      <td><a href="https://polkadot.subscan.io/parachain">36</a> <a href="https://wiki.polkadot.network/docs/learn-parachains">parachains</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>The above  data is from Feburary 11th, 2023. Links are provided to get current information.</em></p>
+
+<h2 id="consensus-implementations">Consensus Implementations</h2>
+
+<h3 id="consensus">Consensus</h3>
+
+<ul>
+  <li><a href="https://github.com/ava-labs/avalanchego/blob/master/snow/README.md">avalanche</a> (go)
+    <ul>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/snow/consensus/avalanche">avalanche</a>: a general avalanche instance that can be used directly to process a series of partially ordered elements.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/snow/consensus/snowball">snowball</a>: a general snow instance that can be used directly to process the results of network queries.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/snow/consensus/snowman">snowman</a>: a general snowman instance that can be used directly to process a series of dependent operations.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/snow/consensus/snowstorm">snowstorm</a>: a snowball instance deciding between an unbounded number of non-transitive conflicts. After performing a network sample of k nodes, you should call collect with the responses.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/proposervm/README.md">Snowman++: congestion control for Snowman VMs</a>: Snowman++ introduces a soft proposer mechanism which attempts to select a single proposer with the power to issue a block, but opens up block production to every validator if sufficient time has passed without blocks being generated.</li>
+      <li><a href="https://medium.com/avalancheavax/avalanche-warp-messaging-awm-launches-with-the-first-native-subnet-to-subnet-message-on-avalanche-c0ceec32144a">Avalanche Warp Messaging (AWM)</a>: AWM enables Subnet Validators to collectively produce a BLS Multi-Signature that attests to the validity of an arbitrary message (e.g., transfer, contract data, etc.) that can be verified by any other Subnet.</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/bnb-chain/bsc/tree/master/consensus">bsc</a> (go)
+    <ul>
+      <li><a href="https://github.com/bnb-chain/bsc/blob/master/consensus/beacon/consensus.go">beacon</a>: Beacon is a consensus engine that combines the eth1 consensus and proof-of-stake algorithm. There is a special flag inside to decide whether to use legacy consensus rules or new rules. The transition rule is described in the eth1/2 merge spec <a href="https://eips.ethereum.org/EIPS/eip-3675">eip-3675</a>. The beacon here is a half-functional consensus engine with partial functions which is only used for necessary consensus checks. The legacy consensus engine can be any engine implements the consensus interface (except the beacon itself).</li>
+      <li><a href="https://github.com/bnb-chain/bsc/blob/master/consensus/clique/clique.go">clique</a>: Clique is the proof-of-authority consensus engine proposed to support the Ethereum testnet following the Ropsten attacks.</li>
+      <li><a href="https://github.com/bnb-chain/bsc/blob/master/consensus/ethash/consensus.go">ethash</a>: Ethash proof-of-work protocol (obsolete).</li>
+      <li><a href="https://github.com/bnb-chain/bsc/tree/master/consensus/misc">misc</a>: includes code for <a href="https://eips.ethereum.org/EIPS/eip-1559">eip-1559</a>, DAO hard-fork extension to the header validity, VerifyForkHashes verifies that blocks conforming to network hard-forks do have the correct hashes and erifyGaslimit verifies the header gas limit according increase/decrease in relation to the parent gas limit.</li>
+      <li><a href="https://github.com/bnb-chain/bsc/blob/master/consensus/parlia/parlia.go">parlia</a>: Parlia is the consensus engine of BSC</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/ethereum/consensus-specs">ethereum</a>
+    <ul>
+      <li><a href="https://github.com/ethereum/consensus-specs/blob/v0.12.1/specs/phase0/fork-choice.md">Ethreum 2.0 Fork Choice</a></li>
+      <li><a href="https://notes.ethereum.org/@vbuterin/single_slot_finality">Paths toward single-slot finality</a>: A look at how to improve Ethereum’s LMD GHOST + Casper FFG consensus.
+        <ul>
+          <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/fork_choice">lighthouse</a> (rust): stores the actual block DAG in <code class="language-plaintext highlighter-rouge">ProtoArrayForkChoice</code>. - <code class="language-plaintext highlighter-rouge">time</code> is represented using <code class="language-plaintext highlighter-rouge">Slot</code> instead of UNIX epoch <code class="language-plaintext highlighter-rouge">u64</code>.</li>
+        </ul>
+      </li>
+      <li>[proto_array]
+        <ul>
+          <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/proto_array">lighthouse proto_array</a> (rust): ProtoArray iterates backwards through the array, touching all nodes and their parents and potentially the best-child of each parent. The structure of the <code class="language-plaintext highlighter-rouge">self.nodes</code> array ensures that the child of each node is always touched before its parent.</li>
+        </ul>
+      </li>
+      <li><a href="https://en.wikipedia.org/wiki/SerDes">SerDes</a>: Serializer/Deserializer
+        <ul>
+          <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/serde_utils">lighthouse serde_utils</a> (rust)</li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/ethereum/eth2.0-specs/blob/v0.12.1/ssz/simple-serialize.md">simple serialize</a>
+        <ul>
+          <li><a href="https://github.com/sigp/lighthouse/blob/stable/consensus/ssz/src/lib.rs">lighthouse ssz</a> (rust): Provides encoding (serialization) and decoding(deserialization) in the SimpleSerialize (SSZ) format designed for use in Ethereum 2.0.</li>
+          <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/ssz_derive">lighthouse ssz_derive</a> (rust): Provides procedural derive macros for the <code class="language-plaintext highlighter-rouge">Encode</code> and <code class="language-plaintext highlighter-rouge">Decode</code> traits of the <code class="language-plaintext highlighter-rouge">eth2_ssz</code> crate.</li>
+          <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/ssz_types">lighthouse ssz_types</a> (rust): Provides types with unique properties required for SSZ serialization and Merklization</li>
+          <li><a href="https://github.com/prysmaticlabs/prysm/blob/a7010d817dc839b0a46742dc286402357482da46/tools/ssz.bzl#L70">prysm ssz.bzl</a> (bazel): A rule that uses the generated pb.go files from a go_proto_library target to generate SSZ marshal and unmarshal functions as pointer receivers on the specified objects.</li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/ethereum/consensus-specs/blob/dev/specs/bellatrix/beacon-chain.md#beacon-chain-state-transition-function">state_processing</a>
+        <ul>
+          <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/state_processing">lighthouse state_procesing</a> (rust): State processing functions including block, slot and epoch functions.</li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/ethereum/consensus-specs/blob/v0.12.1/specs/phase0/beacon-chain.md#compute_shuffled_index">compute_shuffled_index</a>
+        <ul>
+          <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/swap_or_not_shuffle">lighthouse swap_or_not_shuffle</a> (rust): Provides list-shuffling functions matching the Ethereum 2.0 specification.</li>
+        </ul>
+      </li>
+      <li>[types]
+        <ul>
+          <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/types">lighthouse types</a> (rust): Includes type definitions used in consensus including <code class="language-plaintext highlighter-rouge">beacon_block_header</code>, <code class="language-plaintext highlighter-rouge">beacon_comittee</code>, ,<code class="language-plaintext highlighter-rouge">beacon_state</code>, <code class="language-plaintext highlighter-rouge">sync_comitte</code> and more.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/harmony-one/harmony/blob/main/consensus/README.md">harmony</a> (go)
+    <ul>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/consensus">harmony consensus</a></li>
+    </ul>
+  </li>
+  <li><a href="https://nomicon.io/ChainSpec/Consensus">near</a> (rust)
+    <ul>
+      <li><a href="https://github.com/near/nearcore/tree/master/nearcore">near nearcore</a></li>
+    </ul>
+  </li>
+  <li><a href="https://wiki.polkadot.network/docs/learn-consensus">polkadot</a> (rust): <a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus">code</a>
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus/aura">aura</a></li>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus/babe">babe</a></li>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus/beefy">beefy</a></li>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus/grandpa">grandpa</a></li>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus/pow">pow</a></li>
+      <li>additional primitives
+        <ul>
+          <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus/common">common</a>: Common utilities for building and using consensus engines in substrate.</li>
+          <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus/slots">slots</a>: Primitives for slots-based consensus engines.</li>
+          <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus/vrf">vrf</a>: Primitives for VRF-based consensus engines. Schnorrkel-based VRF.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="">polygon heimdall</a> (go): Validator node for Matic Network. It uses peppermint, customized Tendermint. Here is where it sends validator updates to <a href="https://github.com/maticnetwork/heimdall/blob/develop/app/app.go#L625">peppermint</a>
+    <ul>
+      <li><a href="https://github.com/maticnetwork/tendermint/tree/peppermint/consensus">polygon peppermint</a>(go): Peppermint is a modified Tendermint. It is changed to make it compatible with Ethereum addresses and verifiable on Ethereum chain. (docs are <a href="https://wiki.polygon.technology/docs/pos/peppermint/">here</a>)</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/consensus">tendermint tendermint</a> (go)</li>
+</ul>
+
+        </section>
+    </div>
+</body>
+
+</html>

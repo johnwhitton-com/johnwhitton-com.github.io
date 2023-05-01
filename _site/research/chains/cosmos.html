@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Cosmos | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Cosmos" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/chains/cosmos.html" />
+<meta property="og:url" content="http://localhost:4000/research/chains/cosmos.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Cosmos" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Overview","headline":"Cosmos","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/chains/cosmos.html"},"url":"http://localhost:4000/research/chains/cosmos.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Cosmos</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<p>Cosmos is the hub to almost 50 blockchains based on the Tendermint consensus engine and Inter-Blockchain Communication (IBC) protocol. It is also one of the earliest proponents for cross-chain communication and defined the first set of communication specificiations<sup><a href="#f24">24</a></sup>. From a purely technical point of view, the signature scheme for signing blocks, Ed25519, is also often used in many other protocols, such as NEAR.</p>
+
+<p>Cosmos Hub itself has 175 validators<sup><a href="#f25">25</a></sup> and is built upon Tendermint, in which validators sign blocks using EdDSA on Curve25519 (i.e., Ed25519)<sup><a href="#f26">26</a></sup>.</p>
+
+<h2 id="consensus-mechanism">Consensus Mechanism</h2>
+
+<p>For a deep dive on Tendemints Consensus, please read <a href="https://arxiv.org/pdf/1807.04938.pdf">The latest gossip on BFT consensus</a>: The paper presents Tendermint, a new protocol for ordering events in a distributed network under adversarial conditions.</p>
+
+<p>Following is an excerpt from <a href="https://github.com/tendermint/tendermint/blob/main/docs/introduction/what-is-tendermint.md">What is Tendermint</a></p>
+
+<blockquote>
+  <p>Tendermint is an easy-to-understand, mostly asynchronous, BFT consensus protocol. The protocol follows a simple state machine that looks like this:</p>
+</blockquote>
+
+<p><img src="/assets/research/tendermint_consensus_logic.png" alt="consensus-logic" /></p>
+
+<blockquote>
+  <p>Participants in the protocol are called <strong>validators</strong>; they take turns proposing blocks of transactions and voting on them. Blocks are committed in a chain, with one block at each <strong>height</strong>. A block may fail to be committed, in which case the protocol moves to the next <strong>round</strong>, and a new validator gets to propose a block for that height. Two stages of voting are required to successfully commit a block; we call them <strong>pre-vote</strong> and <strong>pre-commit</strong>. A block is committed when more than 2/3 of validators pre-commit for the same block in the same round.</p>
+</blockquote>
+
+<blockquote>
+  <p>There is a picture of a couple doing the polka because validators are doing something like a polka dance. When more than two-thirds of the validators pre-vote for the same block, we call that a <strong>polka</strong>. Every pre-commit must be justified by a polka in the same round.</p>
+</blockquote>
+
+<blockquote>
+  <p>Validators may fail to commit a block for a number of reasons; the current proposer may be offline, or the network may be slow. Tendermint allows them to establish that a validator should be skipped. Validators wait a small amount of time to receive a complete proposal block from the proposer before voting to move to the next round. This reliance on a timeout is what makes Tendermint a weakly synchronous protocol, rather than an asynchronous one. However, the rest of the protocol is asynchronous, and validators only make progress after hearing from more than two-thirds of the validator set. A simplifying element of Tendermint is that it uses the same mechanism to commit a block as it does to skip to the next round.</p>
+</blockquote>
+
+<blockquote>
+  <p>Assuming less than one-third of the validators are Byzantine, Tendermint guarantees that safety will never be violated - that is, validators will never commit conflicting blocks at the same height. To do this it introduces a few <strong>locking</strong> rules which modulate which paths can be followed in the flow diagram. Once a validator precommits a block, it is locked on that block. Then,</p>
+</blockquote>
+
+<blockquote>
+  <ol>
+    <li>it must prevote for the block it is locked on</li>
+    <li>it can only unlock, and precommit for a new block, if there is a polka for that block in a later round</li>
+  </ol>
+</blockquote>
+
+<h2 id="signing-mechanism">Signing Mechanism</h2>
+
+<p>Below is an excerpt from <a href="https://github.com/tendermint/tendermint/blob/main/spec/core/encoding.md#public-key-cryptography">Tendermint Specification</a></p>
+
+<blockquote>
+  <p>Tendermint uses Protobuf <a href="https://protobuf.dev/programming-guides/proto3/#oneof">Oneof</a> to distinguish between different types public keys, and signatures. Additionally, for each public key, Tendermint defines an Address function that can be used as a more compact identifier in place of the public key.</p>
+
+  <h3 id="key-types">Key Types</h3>
+
+  <p>Each type specifies it’s own pubkey, address, and signature format.</p>
+
+  <h4 id="ed25519">Ed25519</h4>
+
+  <p>The address is the first 20-bytes of the SHA256 hash of the raw 32-byte public key:</p>
+
+  <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">address</span> <span class="o">=</span> <span class="n">SHA256</span><span class="p">(</span><span class="n">pubkey</span><span class="p">)[</span><span class="o">:</span><span class="m">20</span><span class="p">]</span>
+</code></pre></div>  </div>
+
+  <p>The signature is the raw 64-byte ED25519 signature.</p>
+
+  <p>Tendermint adopted <a href="https://zips.z.cash/zip-0215">zip215</a> for verification of ed25519 signatures.</p>
+
+  <p>Note: This change will be released in the next major release of Tendermint-Go (0.35).</p>
+</blockquote>
+
+<h4 id="secp256k1">Secp256k1</h4>
+
+<p>The address is the first 20-bytes of the SHA256 hash of the raw 32-byte public key:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">address</span> <span class="o">=</span> <span class="n">SHA256</span><span class="p">(</span><span class="n">pubkey</span><span class="p">)[</span><span class="o">:</span><span class="m">20</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Following is an excerpt from <a href="https://docs.tendermint.com/v0.34/tendermint-core/validators.html#">Tendermint docs: Validator Keys</a></p>
+
+<blockquote>
+  <p>Currently Tendermint uses Ed25519 (opens new window)keys which are widely supported across the security sector and HSMs.</p>
+</blockquote>
+
+<h2 id="code-review">Code Review</h2>
+
+<h3 id="signing">Signing</h3>
+
+<ul>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto/ed25519">ed25519</a>: Sign produces a signature on the provided message. This assumes the privkey is wellformed in the golang format. The first 32 bytes should be random, corresponding to the normal ed25519 private key. The latter 32 bytes should be the compressed public key. If these conditions aren’t met, Sign will panic or produce an incorrect signature.</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto/secp256k1">secp256k1</a></li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto/sr25519">sr25519</a></li>
+  <li><a href="https://github.com/tendermint/tendermint/blob/main/crypto/encoding/codec.go">codec.go</a>: Tranforms protobuf publick key to crypto public keys and vice versa. Support secp256k1 and edd25519.</li>
+</ul>
+
+<h3 id="consensus">Consensus</h3>
+
+<ul>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/consensus">consensus</a>
+    <ul>
+      <li><a href="https://github.com/tendermint/tendermint/blob/main/consensus/state.go">state</a>: State handles execution of the consensus algorithm. It processes votes and proposals, and upon reaching agreement, commits blocks to the chain and executes them against the application. The internal state machine receives input from peers, the internal validator, and from a timer.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="cryptographic-primitives">Cryptographic Primitives</h3>
+
+<p><strong>general primitives</strong></p>
+
+<ul>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/bits">bits</a>: BitArray is a thread-safe implementation of a bit array.</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/bytes">bytes</a>: Byte functions including marshalling and unmarshalling into JSON as well as fingerprint which returns the first 6 bytes of a byte slice.</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/clist">clist</a>: provide a goroutine-safe linked-list. This list can be traversed concurrently by any number of goroutines. However, removed CElements cannot be added back.</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/cmap">cmap</a>: a goroutine-safe map</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/flowrate">flowrate</a>: provides the tools for monitoring and limiting the flow rate of an arbitrary data stream.</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/json">json</a>: provides functions for marshaling and unmarshaling JSON in a format that is backwards-compatible with Amino JSON encoding. This mostly differs from encoding/json in encoding of integers (64-bit integers are encoded as strings, not numbers), and handling of interfaces (wrapped in an interface object with type/value keys).</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/math">math</a>: math functions including fractions and safemath.</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/pubsub">pubsub</a>: implements a pub-sub model with a single publisher (Server) and multiple subscribers (clients).</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/strings">strings</a>: string manipulation functions.</li>
+</ul>
+
+<p><strong>hash functions</strong></p>
+
+<ul>
+  <li><a href="https://github.com/tendermint/tendermint/blob/main/crypto/tmhash/hash.go">tmhash</a>: Tendermint implementation of SHA256 hash.</li>
+  <li><a href="https://github.com/tendermint/tendermint/blob/main/crypto/hash.go">hash</a>: included in tmhash.</li>
+</ul>
+
+<p><strong>encryption</strong></p>
+
+<ul>
+  <li><a href="https://github.com/tendermint/tendermint/blob/main/crypto/armor/armor.go">armor</a>: implementation of <a href="https://www.rfc-editor.org/rfc/rfc4880.html">OpenPGP ASCII Armor</a>.</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto/xchacha20poly1305">xchacha20poly1305</a>: Tendermint implementation of <a href="https://en.wikipedia.org/wiki/ChaCha20-Poly1305">ChaCha20-Poly1305</a> an authenticated encryption with additional data (AEAD) algorithm, that combines the ChaCha20 stream cipher with the Poly1305 message authentication code.</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto/xsalsa20symmetric">xsalsa20symmetric</a>: Tendermint implementation of <a href="https://en.wikipedia.org/wiki/Salsa20">Salsa20</a>.</li>
+</ul>
+
+<p><strong>random number generators</strong></p>
+
+<ul>
+  <li><a href="https://github.com/tendermint/tendermint/blob/main/crypto/random.go">random.go</a>: only uses the OS’s randomness. CRandHex returns a hex encoded string that’s floor(numDigits/2) <em>2 long.</em>Note: CRandHex(24) gives 96 bits of randomness that are usually strong enough for most purposes.*</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/libs/rand">rand</a>: prng, that is seeded with OS randomness. The OS randomness is obtained from crypto/rand, however none of the provided methods are suitable for cryptographic usage. They all utilize math/rand’s prng internally. All of the methods here are suitable for concurrent use. This is achieved by using a mutex lock on all of the provided methods.</li>
+</ul>
+
+<p><strong>serilization/deserialization</strong></p>
+
+<h2 id="references">References</h2>
+
+<p><strong>Consensus</strong></p>
+
+<ul>
+  <li><a href="https://github.com/tendermint/tendermint/blob/main/spec/consensus/consensus.md">Tendermint Byzantine Consensus Algorithm Specification</a>: Specification for Tendermints Consensus including state machine, background gossip (messaging) and proofs.</li>
+  <li><a href="https://docs.tendermint.com/v0.34/introduction/what-is-tendermint.html#consensus-overview">Tendermint Consensus Overview</a>: Tendermint Consensus Overview Documentation.</li>
+  <li><a href="https://github.com/tendermint/tendermint/blob/main/spec/consensus/proposer-selection.md">Proposer Selection Procedure Specification</a>: Specifies the Proposer Selection Procedure that is used in Tendermint to choose a round proposer for its “leader-based-protocol”.</li>
+</ul>
+
+<p><strong>Signing</strong></p>
+
+<ul>
+  <li><a href="https://ed25519.cr.yp.to/">Ed25519: high-speed high-security signatures</a>: Ed25519 Signature Information
+    <ul>
+      <li><a href="https://ed25519.cr.yp.to/ed25519-20110926.pdf">High-speed high-security signatures</a>: Paper introducing Ed25519 signatures</li>
+    </ul>
+  </li>
+  <li><a href="https://docs.tendermint.com/v0.34/tendermint-core/validators.html">Tendermint Validator Keys</a>: Tendermint Documentation  highlighting the use of Ed25519 keys for validators.</li>
+  <li><a href="https://github.com/tendermint/tendermint/blob/main/spec/core/encoding.md#public-key-cryptography">Tendermint Public Key Cryptography</a>: Documenation on Tendermints Public Key Cryptography.</li>
+  <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto">Tendermint Crypto Code Base</a>: crypto is the cryptographic package adapted for Tendermint’s uses (go)
+    <ul>
+      <li><a href="https://github.com/tendermint/tendermint/blob/main/p2p/key.go#L50">key.go</a>: Tendermint Validator Key Management(go). <em>LoadOrGenNodeKey attempts to load the NodeKey from the given filePath. If the file does not exist, it generates and saves a new NodeKey.</em></li>
+      <li><a href="https://github.com/maticnetwork/tendermint/blob/peppermint/crypto/ed25519/ed25519.go">ed25519.go</a>: Used for signing messages with an ed25519 private key.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Light Client</strong></p>
+
+<ul>
+  <li><a href="https://docs.tendermint.com/v0.34/tendermint-core/light-client.html">Light Client</a>: he objective of the light client protocol is to get a commit for a recent block hash where the commit includes a majority of signatures from the last known validator set. From there, all the application state is verifiable with <a href="https://github.com/tendermint/spec/blob/master/spec/core/encoding.md#iavl-tree">merkle proofs</a>.</li>
+  <li><a href="https://pkg.go.dev/github.com/tendermint/tendermint/light">tendermint light package</a>(go): Tendermint light clients allow bandwidth &amp; compute-constrained devices, such as smartphones, low-power embedded chips, or other blockchains to efficiently verify the consensus of a Tendermint blockchain. This forms the basis of safe and efficient state synchronization for new network nodes and inter-blockchain communication (where a light client of one Tendermint instance runs in another chain’s state machine). (<a href="https://github.com/tendermint/tendermint/tree/main/light">tendermint light source code</a>(go)).</li>
+</ul>
+
+<p><strong>Serialization/DeSerialization</strong></p>
+
+<ul>
+  <li><a href="https://github.com/tendermint/tendermint/issues/608">Tendermint has four serialization protocols</a></li>
+</ul>
+
+<p><strong>Staking</strong></p>
+
+<p><strong>Additional</strong></p>
+
+<p><a name="f24">[24]</a> See <a href="https://tutorials.cosmos.network/academy/3-ibc/1-what-is-ibc.html">Cosmos IBC documentation</a></p>
+
+<p><a name="f25">[25]</a> See <a href="https://hub.cosmos.network/main/validators/overview.html">Cosmos Hub overview</a></p>
+
+<p><a name="f26">[26]</a> See <a href="https://docs.tendermint.com/v0.34/tendermint-core/validators.html#validator-keys">Tendermint Core documentation</a></p>
+
+        </section>
+    </div>
+</body>
+
+</html>

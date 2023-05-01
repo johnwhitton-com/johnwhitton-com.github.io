@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Ethereum 1.0 | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Ethereum 1.0" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/chains/ethereum-1-0.html" />
+<meta property="og:url" content="http://localhost:4000/research/chains/ethereum-1-0.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Ethereum 1.0" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Overview","headline":"Ethereum 1.0","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/chains/ethereum-1-0.html"},"url":"http://localhost:4000/research/chains/ethereum-1-0.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Ethereum 1.0</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<h2 id="consensus-mechanism">Consensus Mechanism</h2>
+
+<h3 id="ethereum-10-proof-of-work">Ethereum 1.0 Proof Of Work</h3>
+
+<blockquote>
+  <p>Existing Blockchain technology is working on the core concept of ‘Proof Of Work’ (POW). A proof-of-work (PoW) is a protocol that is difficult to compute but easy to verify. It can be verified in far less time than it took to compute in first place. The process involves scanning for a value that when hashed, (such as with SHA-256), the hash begins with a number of zero bits. The average work required is exponential in the number of zero bits required and can be verified by executing a single hash. In simple words, Proof of work is an expensive computation done by all miners to compete to find a number that, when added to the block of transactions, causes this block to hash to a code with certain rare properties. Finding such a rare number is hard (based on the cryptographic features of the hash function used in this process), but verifying its validity when it’s found is relatively easy. One can take the challenge, the proof string and hash them together and check if the hash begins with a number of zero bits. This requires to apply the hash function just once and verify the output indeed has requisite numbers of 0’s in front. If so, then the proof of work is considered valid under the application of that cryptographic hash function. Every block in the participating network should contain such rare number.</p>
+</blockquote>
+
+<p><img src="/assets/research/pow.png" alt="Proof Of Work" title="Proof Of Work" /></p>
+
+<p>Block Structure from <a href="https://github.com/ethereum/go-ethereum/blob/release/1.9/consensus/ethash/consensus.go">go-ethereum</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// SealHash returns the hash of a block prior to it being sealed.
+func (ethash *Ethash) SealHash(header *types.Header) (hash common.Hash) {
+ hasher := sha3.NewLegacyKeccak256()
+
+ rlp.Encode(hasher, []interface{}{
+  header.ParentHash,
+  header.UncleHash,
+  header.Coinbase,
+  header.Root,
+  header.TxHash,
+  header.ReceiptHash,
+  header.Bloom,
+  header.Difficulty,
+  header.Number,
+  header.GasLimit,
+  header.GasUsed,
+  header.Time,
+  header.Extra,
+ })
+ hasher.Sum(hash[:0])
+ return hash
+}
+</code></pre></div></div>
+
+<h2 id="signing-mechanism">Signing Mechanism</h2>
+
+<p>Transactions are signed using recoverable ECDSA signatures. This method utilises the SECP-256k1 curve. (see the <a href="https://ethereum.github.io/yellowpaper/paper.pdf">Ethereum Yellow Paper</a> Appendix F. Signing Transactions). go-ethereum utilizes the <a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1">secp256k1</a> package which wraps the bitcoin secp256k1 C library. Signing is handled by the <a href="https://github.com/ethereum/go-ethereum/tree/master/signer">signer</a> receives a request and produces a signature. Note, the produced signature conforms to the secp256k1 curve R, S and V values, where the V value will be 27 or 28 for legacy reasons, if legacyV==true.</p>
+
+<h2 id="code-review">Code Review</h2>
+
+<h3 id="signing">Signing</h3>
+
+<ul>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/bls12381">bls12381</a>: BLS12-381 is a pairing-friendly elliptic curve.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/bn256">bn256</a>: Package bn256 implements the Optimal Ate pairing over a 256-bit Barreto-Naehrig curve. (<a href="https://moderncrypto.org/mail-archive/curves/2016/000740.html">insecure</a>)</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1">secp256k1</a>: Package secp256k1 wraps the bitcoin secp256k1 C library.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/signer">signer</a>: sign receives a request and produces a signature. Note, the produced signature conforms to the secp256k1 curve R, S and V values, where the V value will be 27 or 28 for legacy reasons, if legacyV==true.</li>
+</ul>
+
+<h3 id="consensus">Consensus</h3>
+
+<ul>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/consensus">consensus</a>
+    <ul>
+      <li><a href="https://github.com/ethereum/go-ethereum/blob/master/consensus/ethash/algorithm.go">algorithm</a>: hashimoto aggregates data from the full dataset in order to produce our final value for a particular header hash and nonce.</li>
+      <li><a href="https://github.com/ethereum/go-ethereum/blob/master/consensus/ethash/api.go">api</a>: API’s include GetWork, SubmitWork, SubmitHashRate and GetHashRate.</li>
+      <li><a href="https://github.com/ethereum/go-ethereum/tree/master/consensus">ethhash</a>: Package ethash implements the ethash proof-of-work consensus engine.</li>
+      <li><a href="https://github.com/ethereum/go-ethereum/blob/master/consensus/ethash/sealer.go">sealer</a>: Seal implements consensus.Engine, attempting to find a nonce that satisfies the block’s difficulty requirements.</li>
+    </ul>
+  </li>
+  <li>Additional Consensus Engines
+    <ul>
+      <li><a href="https://github.com/ethereum/go-ethereum/tree/master/consensus/beacon">beacon</a>: Beacon is a consensus engine that combines the eth1 consensus and proof-of-stake algorithm. There is a special flag inside to decide whether to use legacy consensus rules or new rules. The transition rule is described in the eth1/2 merge spec<a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-3675.md">EIP-3675</a>.  The beacon here is a half-functional consensus engine with partial functions which is only used for necessary consensus checks. The legacy consensus engine can be any engine implements the consensus interface (except the beacon itself).</li>
+      <li><a href="https://github.com/ethereum/go-ethereum/blob/master/consensus/clique/clique.go">clique</a>: Package clique implements the proof-of-authority consensus engine.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="cryptographic-primitives">Cryptographic Primitives</h3>
+
+<p><strong>general primitives</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/core/asm">asm</a>: Package asm provides support for dealing with EVM assembly instructions (e.g., disassembling them).</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/common/bitutil">bitutil</a>: Package bitutil implements fast bitwise operations.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/core/bloombits">bloombits</a>: Package bloombits implements bloom filtering on batches of data.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/core/forkid">forkid</a>: Package forkid implements <a href="https://eips.ethereum.org/EIPS/eip-2124">EIP-2124</a>.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/common/hexutil">hexutil</a>: Package hexutil implements hex encoding with 0x prefix. This encoding is used by the Ethereum RPC API to transport binary data in JSON payloads.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/common/lru">lru</a>: Package lru implements generically-typed Least Recently Used(LRU) caches.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/common/math">math</a>: Package math provides integer math utilities.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/common/mclock">mclock</a>: Package mclock is a wrapper for a monotonic clock source</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/common/prque">prque</a>:Package prque implements a priority queue data structure supporting arbitrary value types and int64 priorities.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/trie">trie</a>: Package trie implements Merkle Patricia Tries.</li>
+</ul>
+
+<p><strong>hash functions</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/blake2b">blake2b</a> (go): Package blake2b implements the BLAKE2b hash algorithm defined by RFC 7693 and the extendable output function (XOF) BLAKE2Xb.</li>
+</ul>
+
+<p><strong>encryption</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/signify">signify</a>: signFile reads the contents of an input file and signs it (in armored format) with the key provided, placing the signature into the output file.<a href="https://www.rfc-editor.org/rfc/pdfrfc/rfc4880.txt.pdf">ascii armored encryption</a></li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/ecies">ecies</a>: a hybrid encryption scheme</li>
+</ul>
+
+<p><strong>random number generators</strong></p>
+
+<p><strong>serilization/deserialization</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/rlp">RLP</a>: Package rlp implements the RLP serialization format.(<a href="https://github.com/ethereum/go-ethereum/blob/master/rlp/doc.go">doc</a>) The purpose of RLP (Recursive Linear Prefix) is to encode arbitrarily nested arrays of binary data, and RLP is the main encoding method used to serialize objects in Ethereum.
+The only purpose of RLP is to encode structure; encoding specific atomic data types (eg.
+strings, ints, floats) is left up to higher-order protocols. In Ethereum integers must be
+represented in big endian binary form with no leading zeroes (thus making the integer
+value zero equivalent to the empty string). RLP values are distinguished by a type tag. The type tag precedes the value in the input stream and defines the size and kind of the bytes that follow.</li>
+</ul>
+
+<p><strong>threading</strong></p>
+
+<p><strong>virtual machine</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/core/vm">vm</a> : Package vm implements the Ethereum Virtual Machine. The vm package implements one EVM, a byte code VM. The BC (Byte Code) VM loops over a set of bytes and executes them according to the set of rules defined in the Ethereum yellow paper.</li>
+</ul>
+
+<p><strong>compiler</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/common/compiler">compiler</a>: Package compiler wraps the ABI compilation outputs. ParseCombinedJSON takes the direct output of a solc –combined-output run and parses it into a map of string contract name to Contract structs. The provided source, language and compiler version, and compiler options are all passed through into the Contract structs. The solc output is expected to contain ABI, source mapping, user docs, and dev docs. Returns an error if the JSON is malformed or missing data, or if the JSON embedded within the JSON is malformed.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<p><strong>Consensus</strong></p>
+
+<ul>
+  <li><a href="https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/">Proof of Work (POW), Ethereum Org, 2022</a>: Ethereum Proof of Work Documentation.</li>
+  <li><a href="https://etherworld.co/2017/04/16/proof-of-work-pow/">Proof Of Work (POW), EtherWorld 2017</a>: Etherworld Proof of Work Guide.</li>
+  <li>
+    <p><a href="https://eips.ethereum.org/EIPS/eip-1057">EIP-1057: ProgPoW, a Programmatic Proof-of-Work</a>: ProgPoW is a proof-of-work algorithm designed to close the efficiency gap available to specialized ASICs.</p>
+  </li>
+  <li><a href="https://github.com/ethereum/go-ethereum/blob/release/1.9/consensus/consensus.go">consensus go-ethereum: release 1.9 (codebase)</a>: Engine is an algorithm agnostic consensus engine. (go)</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/blob/release/1.9/consensus/ethash/ethash.go">ethash.go, go-ethereum release 1.9 (codebase)</a>: Package ethash implements the ethash proof-of-work consensus engine. (go)</li>
+  <li><a href="https://github.com/johnwhitton/horizon/blob/refactorV2/contracts/ethash/ethash.sol">ethash.sol, horizon (codebase)</a>: Solidity implementation enableing the verification of ethhash (solidity)</li>
+  <li><a href="https://github.com/openethereum/parity-ethereum/blob/v2.7.2-stable/ethash/src/lib.rs">ethash.rs, parity-ethereum (codebase)</a>: EthashManager implementation by parity (rust).</li>
+  <li><a href="https://github.com/openethereum/parity-ethereum/blob/v2.7.2-stable/ethash/src/progpow.rs">progpow.ps, parity-ethereum (codebase)</a>: EthHash implementation by parity for ASICs (rust). <em>ProgPoW (Programmatic Proof-of-Work) is the Ethereum network’s proposed new Application-Specific Integrated Circuit (ASIC) resistant Proof-of-Work mining algorithm.</em></li>
+</ul>
+
+<p><strong>Staking</strong></p>
+
+<p><strong>Additional</strong></p>
+
+<ul>
+  <li><a href="https://ethereum.github.io/yellowpaper/paper.pdf">Ethereum Yellow Paper</a>:</li>
+  <li><a href="https://takenobu-hs.github.io/downloads/ethereum_evm_illustrated.pdf">Ethereum EVM illustrated</a>: A technical overview of Ethereum including state, accounts, transactions and messages as well as the EVM. <a href="#appendix-e-data-structures">Appendix E</a> has links to type definitions for blocks, transactions, state etc in geth.</li>
+</ul>
+
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+# remote_theme: pages-themes/dinky@v0.2.0
+lsi: false
+safe: true
+source: .
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine:         katex
+  math_engine_opts:    {}
+
+
+theme: jekyll-theme-dinky
+domain: johnwhitton-com.github.io
+url: https://johnwhitton-com.github.io
+title: John Whitton's Site
+repository: johnwhitton-com/johnwhitton-com.github.io
+github: [metadata]
+
+collections:
+  work:
+    output: true
+  colleagues:
+    output: true
+    order:
+      - ganesha.md
+      - yishuang.md
+      - olivier.md
+      - nick.md
+      - matt.md
+  posts:
+    output: true
+  references:
+    output: true
+  research:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "work"
+    values:
+      layout: "work"
+  - scope:
+      path: ""
+      type: "colleagues"
+    values:
+      layout: "colleague"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "research"
+    values:
+      layout: "research"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+  
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-remote-theme 
