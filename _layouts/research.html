@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+
+<head>
+    <meta charset="utf-8">
+    {% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css?v=' | append: site.github.build_revision | relative_url }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    {% include head-custom.html %}
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    {% assign chains = site.research | where:"category", "chain" %}
+                    {% for chain in chains %}
+                    <li><a href="{{ chain.url }}">{{ chain.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </header>
+        <section>
+            {% include navigation.html fixed=true %}
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>{{ page.title }}</h1>
+            <!-- <h6>{{ page.excerpt }}</h6> -->
+            <!-- <div>{{ page.date | date_to_string: "ordinal", "US" }}</div>
+            <div>{{ page.author }}</div>
+            <div><i>{{ page.contributors }}</i></div> --->
+            {{ content }}
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Avalanche | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Avalanche" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/chains/avalanche.html" />
+<meta property="og:url" content="http://localhost:4000/research/chains/avalanche.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Avalanche" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Overview","headline":"Avalanche","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/chains/avalanche.html"},"url":"http://localhost:4000/research/chains/avalanche.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Avalanche</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<p>Avalanche is good candidate because it samples from a large number of validators to produce blocks, uses generic methods for signing blocks (RSA on a X.509 certificate), is moving to transition to BLS signatures for validators, and has numerous subnets.</p>
+
+<p>In Avalanche, there are two types of consensus mechanisms (Avalanche, partially ordered, and Snowman, linearly ordered similar to other blockchains). Users can create arbitrary subnets in Avalanche, and any validator is free to participate the consensus for any subnet<sup id="fnref:ov-1" role="doc-noteref"><a href="#fn:ov-1" class="footnote" rel="footnote">1</a></sup>, besides the mandatory participation of the special subnet - the Primary Network. Each subnet has three types of chains, each with different roles and runs different consensus mechanism and process different transaction types: (1) P-Chain, which defines validator sets and process validator related transactions; (2) X-Chain, for exchanging assets, where blocks are partially ordered; (3) C-Chain, which runs an EVM and handles smart contract interactions <sup id="fnref:ov-2" role="doc-noteref"><a href="#fn:ov-2" class="footnote" rel="footnote">2</a></sup>.</p>
+
+<p><em>Note: On march 23rd, 2023 Avalanche published an article<sup id="fnref:ov-18" role="doc-noteref"><a href="#fn:ov-18" class="footnote" rel="footnote">3</a></sup> giving an overviow of the Cortina release, it’s move to linearize the X-chain to enable support for WARP messaging.</em></p>
+
+<p>We limit our scope to only the <strong>Primary Network</strong>, since any bridging implementation is likely replicable in subnets, and subnets are likely to be interoperable soon. For trustless bridging, only events from <strong>C-Chain</strong> are relevant, since the bridge must be a smart contract and all cross-chain operations can be conveniently wrapped inside contract interactions.</p>
+
+<p>The active Avalanche validator set is unrestricted and permissionless, and has more than 1000 members at this time <sup id="fnref:ov-3" role="doc-noteref"><a href="#fn:ov-3" class="footnote" rel="footnote">4</a></sup>. Block proposers are randomly sampled from the active validator set, therefore any validator could potentially sign a block <sup id="fnref:ov-4" role="doc-noteref"><a href="#fn:ov-4" class="footnote" rel="footnote">5</a></sup>. The validators use X.509 (TLS)certificate to sign and verify blocks <sup id="fnref:ov-5" role="doc-noteref"><a href="#fn:ov-5" class="footnote" rel="footnote">6</a></sup>, and the block headers contain both the certificate and the signature <sup id="fnref:ov-6" role="doc-noteref"><a href="#fn:ov-6" class="footnote" rel="footnote">7</a></sup>. Neither Avalanche documentation or code specifies the key and signing algorithms for the X.509 certificate, but the certificate auto-generated by the code (invoked via validator command-line tools) creates 4096-bit RSA key by default <sup id="fnref:ov-7" role="doc-noteref"><a href="#fn:ov-7" class="footnote" rel="footnote">8</a></sup>.</p>
+
+<p>In recent releases<sup id="fnref:ov-8" role="doc-noteref"><a href="#fn:ov-8" class="footnote" rel="footnote">9</a></sup> <sup id="fnref:ov-9" role="doc-noteref"><a href="#fn:ov-9" class="footnote" rel="footnote">10</a></sup> <sup id="fnref:ov-10" role="doc-noteref"><a href="#fn:ov-10" class="footnote" rel="footnote">11</a></sup> <sup id="fnref:ov-11" role="doc-noteref"><a href="#fn:ov-11" class="footnote" rel="footnote">12</a></sup> <sup id="fnref:ov-12" role="doc-noteref"><a href="#fn:ov-12" class="footnote" rel="footnote">13</a></sup> <sup id="fnref:ov-13" role="doc-noteref"><a href="#fn:ov-13" class="footnote" rel="footnote">14</a></sup> of Avalanche, validators may also load or generate an optional BLS key. This is to support Avalanche Warp Messaging (AWM) <sup id="fnref:ov-14" role="doc-noteref"><a href="#fn:ov-14" class="footnote" rel="footnote">15</a></sup> <sup id="fnref:ov-15" role="doc-noteref"><a href="#fn:ov-15" class="footnote" rel="footnote">16</a></sup> supporting inter-subnet messaging. This suggests the protocol may replace its signature scheme from RSA to BLS in the near future.</p>
+
+<p><em>Note that RSA signature can be cheaply verified on-chain, per EIP-198 <sup id="fnref:ov-16" role="doc-noteref"><a href="#fn:ov-16" class="footnote" rel="footnote">17</a></sup> . Solidity libraries <sup id="fnref:ov-17" role="doc-noteref"><a href="#fn:ov-17" class="footnote" rel="footnote">18</a></sup> are also available for RSA signature verification. In the worst case, even if any validator chooses to use a non-RSA custom-made certificate, most of the signing algorithms (ECDSA, EDDSA) supported by chosen crypto library in Go can also be verified on-chain.</em></p>
+
+<h2 id="consensus-mechanisms">Consensus Mechanisms</h2>
+
+<p>There are two main consensus algorithms: Avalanche and Snowman. As stated above our focus is bridging from the <strong>C-Chain</strong> (contract(C) Chain) which uses <a href="#snowman-consensus">Snowman Consensus</a>.</p>
+
+<h3 id="avalanche-primary-network">Avalanche Primary Network</h3>
+
+<p>Avalanche is a network of blockchains<sup id="fnref:con-1" role="doc-noteref"><a href="#fn:con-1" class="footnote" rel="footnote">19</a></sup>, this diagram gives an overview of the avalanche primiary network.</p>
+
+<p><img src="/assets/research/avalanche-primary-network.png" alt="Avalanche Primary Network" title="Avalanche Primary Network" /></p>
+
+<h3 id="avalanche-consensus">Avalanche Consensus</h3>
+
+<p>Following is an excerpt from the Avalanche Consensus Whitepaper <sup id="fnref:con-2" role="doc-noteref"><a href="#fn:con-2" class="footnote" rel="footnote">20</a></sup>, it is also recommended reviewing Avalanche Blockchain Consensus Documentation <sup id="fnref:con-3" role="doc-noteref"><a href="#fn:con-3" class="footnote" rel="footnote">21</a></sup>.</p>
+
+<blockquote>
+  <p>This paper introduces a family of leaderless Byzantine fault tolerance protocols, built around a metastable mechanism via network subsampling. These protocols provide a strong probabilistic safety guarantee in the presence of Byzantine adversaries while their concurrent and leaderless nature enables them to achieve high throughput and scalability. Unlike blockchains that rely on proof-of-work, they are quiescent and green. Unlike traditional consensus protocols where one or more nodes typically process linear bits in the number of total nodes per decision, no node processes more than logarithmic bits. It does not require accurate knowledge of all participants and exposes new possible tradeoffs and improvements in safety and liveness for building consensus protocols.</p>
+
+  <p>The paper describes the Snow protocol family, analyzes its guarantees, and describes how it can be used to construct the core of an internet-scale electronic payment system called Avalanche, which is evaluated in a large scale deployment. Experiments demonstrate that the system can achieve high throughput (3400 tps), provide low confirmation latency (1.35 sec), and scale well compared to existing systems that deliver similar functionality. For our implementation and setup, the bottleneck of the system is in transaction verification.</p>
+</blockquote>
+
+<p><img src="/assets/research/avalanche-consensus.png" alt="Avalanche Consensus" title="Avalanche Consensus" /></p>
+
+<h3 id="snowman-consensus">Snowman Consensus</h3>
+
+<p>Snowman consensus is one of the consensus mechanisms for single blockchains supported by snow <sup id="fnref:con-4" role="doc-noteref"><a href="#fn:con-4" class="footnote" rel="footnote">22</a></sup>, the following excerp and diagram give an overview of how a blockchain (in our case the C-chain) can leverage one of snows mulitple conensus mechanisms (in our case snowman).</p>
+
+<blockquote>
+  <p>Each blockchain on Avalanche has several components: the virtual machine, database, consensus engine, sender, and handler. These components help the chain run smoothly. Blockchains also interact with the P2P layer and the chain router to send and receive messages.</p>
+</blockquote>
+
+<p><img src="/assets/research/avalanche-flow.png" alt="Avalanche flow of a single blockchain" title="Avalanche Flow of a single blockchain" /></p>
+
+<p>In the case of the C-Chain, avalanche uses coreth<sup id="fnref:con-5" role="doc-noteref"><a href="#fn:con-5" class="footnote" rel="footnote">23</a></sup> a modified version of geth, as it’s vm to provide EVM support.  It also uses Snowman++ <sup id="fnref:con-7" role="doc-noteref"><a href="#fn:con-7" class="footnote" rel="footnote">24</a></sup> as a congestion controle mechanism, effectively pre-selecting a set of proposers and giving them a submission window to submit blocks. If they fail to submit  within their WindowDuration then any other validator can issue the block.</p>
+
+<p>Below is an excerpt of how Snowman vms <sup id="fnref:con-6" role="doc-noteref"><a href="#fn:con-6" class="footnote" rel="footnote">25</a></sup> and the consensus engine work.</p>
+
+<blockquote>
+  <p><strong>Implementing the Snowman VM Block</strong>
+From the perspective of the consensus engine, the state of the VM can be defined as a linear chain starting from the genesis block through to the last accepted block.</p>
+
+  <p>Following the last accepted block, the consensus engine may have any number of different blocks that are processing. The configuration of the processing set can be defined as a tree with the last accepted block as the root.</p>
+
+  <p>In practice, this looks like the following:</p>
+
+  <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   G
+   |
+   .
+   .
+   .
+   |
+   L
+   |
+   A
+ /   \
+B     C
+</code></pre></div>  </div>
+</blockquote>
+
+<h2 id="signing-mechanisms">Signing Mechanisms</h2>
+
+<h3 id="consensus-signing-mechanism">Consensus Signing Mechanism</h3>
+
+<p>Avalanche is not prescriptive about addressing schemes, choosing to instead leave addressing up to each blockchain <sup id="fnref:sig-1" role="doc-noteref"><a href="#fn:sig-1" class="footnote" rel="footnote">26</a></sup>.</p>
+
+<p>Avalanche uses Transport Layer Security, TLS, to protect node-to-node communications from eavesdroppers. TLS combines the practicality of public-key cryptography with the efficiency of symmetric-key cryptography.</p>
+
+<h3 id="inter-subnet-message-signing-mechanism">Inter-Subnet Message Signing Mechanism</h3>
+
+<p>Avalanche Warp Messaging (AWM)<sup id="fnref:ov-14:1" role="doc-noteref"><a href="#fn:ov-14" class="footnote" rel="footnote">15</a></sup> <sup id="fnref:ov-15:1" role="doc-noteref"><a href="#fn:ov-15" class="footnote" rel="footnote">16</a></sup>  enables Subnet Validators to collectively produce a BLS Multi-Signature that attests to the validity of an arbitrary message (e.g., transfer, contract data, etc.) that can be verified by any other Subnet.</p>
+
+<h3 id="transaction-signing-mechanism">Transaction Signing Mechanism</h3>
+
+<p>The addressing scheme of the X-Chain and the P-Chain relies on secp256k1. Avalanche follows a similar approach as Bitcoin and hashes the ECDSA public key. The 33-byte compressed representation of the public key is hashed with sha256 once. The result is then hashed with ripemd160 to yield a 20-byte address.</p>
+
+<p>The Avalanche virtual machine uses elliptic curve cryptography, specifically secp256k1, for its signatures on the blockchain.</p>
+
+<h2 id="verification-walkthrough">Verification Walkthrough</h2>
+
+<ol>
+  <li>Transactions are gossiped via P2P mechanisms in coreth</li>
+</ol>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Block represents an entire block in the Ethereum blockchain.</span>
+<span class="k">type</span> <span class="n">Block</span> <span class="k">struct</span> <span class="p">{</span>
+ <span class="n">header</span>       <span class="o">*</span><span class="n">Header</span>
+ <span class="n">uncles</span>       <span class="p">[]</span><span class="o">*</span><span class="n">Header</span>
+ <span class="n">transactions</span> <span class="n">Transactions</span>
+
+ <span class="c">// Coreth specific data structures to support atomic transactions</span>
+ <span class="n">version</span> <span class="kt">uint32</span>
+ <span class="n">extdata</span> <span class="o">*</span><span class="p">[]</span><span class="kt">byte</span>
+
+ <span class="c">// caches</span>
+ <span class="n">hash</span> <span class="n">atomic</span><span class="o">.</span><span class="n">Value</span>
+ <span class="n">size</span> <span class="n">atomic</span><span class="o">.</span><span class="n">Value</span>
+<span class="p">}</span>
+
+<span class="c">// Header represents a block header in the Ethereum blockchain.</span>
+<span class="k">type</span> <span class="n">Header</span> <span class="k">struct</span> <span class="p">{</span>
+ <span class="n">ParentHash</span>  <span class="n">common</span><span class="o">.</span><span class="n">Hash</span>    <span class="s">`json:"parentHash"       gencodec:"required"`</span>
+ <span class="n">UncleHash</span>   <span class="n">common</span><span class="o">.</span><span class="n">Hash</span>    <span class="s">`json:"sha3Uncles"       gencodec:"required"`</span>
+ <span class="n">Coinbase</span>    <span class="n">common</span><span class="o">.</span><span class="n">Address</span> <span class="s">`json:"miner"            gencodec:"required"`</span>
+ <span class="n">Root</span>        <span class="n">common</span><span class="o">.</span><span class="n">Hash</span>    <span class="s">`json:"stateRoot"        gencodec:"required"`</span>
+ <span class="n">TxHash</span>      <span class="n">common</span><span class="o">.</span><span class="n">Hash</span>    <span class="s">`json:"transactionsRoot" gencodec:"required"`</span>
+ <span class="n">ReceiptHash</span> <span class="n">common</span><span class="o">.</span><span class="n">Hash</span>    <span class="s">`json:"receiptsRoot"     gencodec:"required"`</span>
+ <span class="n">Bloom</span>       <span class="n">Bloom</span>          <span class="s">`json:"logsBloom"        gencodec:"required"`</span>
+ <span class="n">Difficulty</span>  <span class="o">*</span><span class="n">big</span><span class="o">.</span><span class="n">Int</span>       <span class="s">`json:"difficulty"       gencodec:"required"`</span>
+ <span class="n">Number</span>      <span class="o">*</span><span class="n">big</span><span class="o">.</span><span class="n">Int</span>       <span class="s">`json:"number"           gencodec:"required"`</span>
+ <span class="n">GasLimit</span>    <span class="kt">uint64</span>         <span class="s">`json:"gasLimit"         gencodec:"required"`</span>
+ <span class="n">GasUsed</span>     <span class="kt">uint64</span>         <span class="s">`json:"gasUsed"          gencodec:"required"`</span>
+ <span class="n">Time</span>        <span class="kt">uint64</span>         <span class="s">`json:"timestamp"        gencodec:"required"`</span>
+ <span class="n">Extra</span>       <span class="p">[]</span><span class="kt">byte</span>         <span class="s">`json:"extraData"        gencodec:"required"`</span>
+ <span class="n">MixDigest</span>   <span class="n">common</span><span class="o">.</span><span class="n">Hash</span>    <span class="s">`json:"mixHash"`</span>
+ <span class="n">Nonce</span>       <span class="n">BlockNonce</span>     <span class="s">`json:"nonce"`</span>
+ <span class="n">ExtDataHash</span> <span class="n">common</span><span class="o">.</span><span class="n">Hash</span>    <span class="s">`json:"extDataHash"      gencodec:"required"`</span>
+
+ <span class="c">// BaseFee was added by EIP-1559 and is ignored in legacy headers.</span>
+ <span class="n">BaseFee</span> <span class="o">*</span><span class="n">big</span><span class="o">.</span><span class="n">Int</span> <span class="s">`json:"baseFeePerGas" rlp:"optional"`</span>
+
+ <span class="c">// ExtDataGasUsed was added by Apricot Phase 4 and is ignored in legacy</span>
+ <span class="c">// headers.</span>
+ <span class="c">//</span>
+ <span class="c">// It is not a uint64 like GasLimit or GasUsed because it is not possible to</span>
+ <span class="c">// correctly encode this field optionally with uint64.</span>
+ <span class="n">ExtDataGasUsed</span> <span class="o">*</span><span class="n">big</span><span class="o">.</span><span class="n">Int</span> <span class="s">`json:"extDataGasUsed" rlp:"optional"`</span>
+
+ <span class="c">// BlockGasCost was added by Apricot Phase 4 and is ignored in legacy</span>
+ <span class="c">// headers.</span>
+ <span class="n">BlockGasCost</span> <span class="o">*</span><span class="n">big</span><span class="o">.</span><span class="n">Int</span> <span class="s">`json:"blockGasCost" rlp:"optional"`</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ol>
+  <li>The block is then wrapped into an <code class="language-plaintext highlighter-rouge">innerBlock</code> by <a href="https://github.com/ava-labs/avalanchego/blob/master/vms/README.md">snowman++</a> and has the following interfaces</li>
+</ol>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">Block</span> <span class="k">interface</span> <span class="p">{</span>
+ <span class="n">ID</span><span class="p">()</span> <span class="n">ids</span><span class="o">.</span><span class="n">ID</span>
+ <span class="n">ParentID</span><span class="p">()</span> <span class="n">ids</span><span class="o">.</span><span class="n">ID</span>
+ <span class="n">Block</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span>
+ <span class="n">Bytes</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span>
+
+ <span class="n">initialize</span><span class="p">(</span><span class="n">bytes</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">error</span>
+<span class="p">}</span>
+
+<span class="k">type</span> <span class="n">SignedBlock</span> <span class="k">interface</span> <span class="p">{</span>
+ <span class="n">Block</span>
+
+ <span class="n">PChainHeight</span><span class="p">()</span> <span class="kt">uint64</span>
+ <span class="n">Timestamp</span><span class="p">()</span> <span class="n">time</span><span class="o">.</span><span class="n">Time</span>
+ <span class="n">Proposer</span><span class="p">()</span> <span class="n">ids</span><span class="o">.</span><span class="n">NodeID</span>
+
+ <span class="n">Verify</span><span class="p">(</span><span class="n">shouldHaveProposer</span> <span class="kt">bool</span><span class="p">,</span> <span class="n">chainID</span> <span class="n">ids</span><span class="o">.</span><span class="n">ID</span><span class="p">)</span> <span class="kt">error</span>
+<span class="p">}</span>
+
+<span class="k">type</span> <span class="n">statelessUnsignedBlock</span> <span class="k">struct</span> <span class="p">{</span>
+ <span class="n">ParentID</span>     <span class="n">ids</span><span class="o">.</span><span class="n">ID</span> <span class="s">`serialize:"true"`</span>
+ <span class="n">Timestamp</span>    <span class="kt">int64</span>  <span class="s">`serialize:"true"`</span>
+ <span class="n">PChainHeight</span> <span class="kt">uint64</span> <span class="s">`serialize:"true"`</span>
+ <span class="n">Certificate</span>  <span class="p">[]</span><span class="kt">byte</span> <span class="s">`serialize:"true"`</span>
+ <span class="n">Block</span>        <span class="p">[]</span><span class="kt">byte</span> <span class="s">`serialize:"true"`</span>
+<span class="p">}</span>
+
+<span class="k">type</span> <span class="n">statelessBlock</span> <span class="k">struct</span> <span class="p">{</span>
+ <span class="n">StatelessBlock</span> <span class="n">statelessUnsignedBlock</span> <span class="s">`serialize:"true"`</span>
+ <span class="n">Signature</span>      <span class="p">[]</span><span class="kt">byte</span>                 <span class="s">`serialize:"true"`</span>
+
+ <span class="n">id</span>        <span class="n">ids</span><span class="o">.</span><span class="n">ID</span>
+ <span class="n">timestamp</span> <span class="n">time</span><span class="o">.</span><span class="n">Time</span>
+ <span class="n">cert</span>      <span class="o">*</span><span class="n">x509</span><span class="o">.</span><span class="n">Certificate</span>
+ <span class="n">proposer</span>  <span class="n">ids</span><span class="o">.</span><span class="n">NodeID</span>
+ <span class="n">bytes</span>     <span class="p">[]</span><span class="kt">byte</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The block is initialized using <a href="https://github.com/ava-labs/avalanchego/blob/master/vms/proposervm/block.go#L231">block.Build</a> which currently uses <code class="language-plaintext highlighter-rouge">StakingCertLeaf</code> not <code class="language-plaintext highlighter-rouge">StakingBLSKey</code></p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">statelessChild</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">Build</span><span class="p">(</span>
+  <span class="n">parentID</span><span class="p">,</span>
+  <span class="n">newTimestamp</span><span class="p">,</span>
+  <span class="n">pChainHeight</span><span class="p">,</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">StakingCertLeaf</span><span class="p">,</span>
+  <span class="n">innerBlock</span><span class="o">.</span><span class="n">Bytes</span><span class="p">(),</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">ChainID</span><span class="p">,</span>
+  <span class="n">p</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">StakingLeafSigner</span><span class="p">,</span>
+ <span class="p">)</span>
+</code></pre></div></div>
+
+<p>The <a href="https://github.com/ava-labs/avalanchego/blob/master/vms/proposervm/block/build.go#L41">Build</a> function takes the <code class="language-plaintext highlighter-rouge">StakingCertLeaf</code> as input for  <code class="language-plaintext highlighter-rouge">cert *x509.Certificate</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>func Build(
+ parentID ids.ID,
+ timestamp time.Time,
+ pChainHeight uint64,
+ cert *x509.Certificate,
+ blockBytes []byte,
+ chainID ids.ID,
+ key crypto.Signer,
+)
+</code></pre></div></div>
+
+<p>Signatures are verified using <a href="https://github.com/ava-labs/avalanchego/blob/master/vms/proposervm/block/block.go#L119">Verify</a> which checks the signature as follows</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="n">cert</span><span class="o">.</span><span class="n">CheckSignature</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">cert</span><span class="o">.</span><span class="n">SignatureAlgorithm</span><span class="p">,</span> <span class="n">headerBytes</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">Signature</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="code-review">Code Review</h2>
+
+<p>Folllowing is a review of . Avalanche also has a <a href="https://github.com/ava-labs/coreth">coreth codebase</a> which was inspired by <a href="https://github.com/ethereum/go-ethereum">geth</a>. Please see <a href="./ethereum-1-0.md">here</a> for a code review of geth. Following is an excerpt from <a href="https://github.com/ava-labs/coreth/blob/master/README.md">coreth README.md</a>.</p>
+
+<blockquote>
+  <p>Coreth (from core Ethereum) is the Virtual Machine (VM) that defines the Contract Chain (C-Chain). This chain implements the Ethereum Virtual Machine and supports Solidity smart contracts as well as most other Ethereum client functionality.</p>
+</blockquote>
+
+<h3 id="signing">Signing</h3>
+
+<ul>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/crypto">Avalanche Signing Codebase</a>
+    <ul>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/config/config.go#L688">getStakingSigner</a>: Configuration retrieving validators BLS key. (go)</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/platformvm/signer/signer.go">Signer Interface</a>: returns the public BLS key if it exists. (go)</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/utils/crypto/bls/signature.go">bls signature</a>: Includes functions <code class="language-plaintext highlighter-rouge">SignatureToBytes</code>, <code class="language-plaintext highlighter-rouge">SignatureFromBytes</code> and <code class="language-plaintext highlighter-rouge">AggregateSignatures</code> aggregates a non-zero number of signatures into a single aggregated signature.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/utils/crypto/secp256k1r.go">secp256kr1</a>: Avalanches implementation of the ECSDA secp256k1r curve (go)</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/platformvm/txs/tx.go#L38">tx.go</a>: Includes function for signing transactions using a Secp256k1r private key.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="consensus">Consensus</h3>
+
+<ul>
+  <li><a href="https://github.com/ava-labs/avalanchego/blob/master/snow/context.go#L63">Avalanche ConsensusContext Codebase</a>: Context is information about the current executio including <code class="language-plaintext highlighter-rouge">NetworkID</code> is the ID of the network this context exists within. <code class="language-plaintext highlighter-rouge">ChainID</code> is the ID of the chain this context exists within. <code class="language-plaintext highlighter-rouge">NodeID</code> is the ID of this node. (go)</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/snow/consensus">Avalanche Consensus CodeBase</a>: Contains consenus engines snowball, snowman, snowstorm and avalanche (go)
+    <ul>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/snow/README.md">Avalanche snow README.md</a>: Documentation of the folow of a Single Blockchain.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/snow/consensus/avalanche/consensus.go">consensus.go</a>: Consensus code (go). <em>Consensus represents a general avalanche instance that can be used directly to process a series of partially ordered elements.</em></li>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/snow/consensus/avalanche/poll">avalanche poll</a>: Avalanches Polling (validator voting) mechanism (go).</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/snow/consensus/snowman/consensus.go">snowman consensus.go</a>: Snowman consenus code (go). <em>represents a general snowman instance that can be used directly to process a series of dependent operations.</em></li>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/snow/consensus/snowman/poll">avalanche snowman poll</a>: Snowman Polling (validator voting) mechanism (go).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="cryptographic-primitives">Cryptographic Primitives</h3>
+
+<p><strong>general primitives</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/bag">bag</a>: Mulitset with the ability to set thresholds add elements, compare against other bags, filter, split and return all elements which have been added a number of times.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/beacon">beacon</a>: Beacons are a structure contiaining the NodeId and IPPort.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/bloom">bloom</a>: Avalanches implementation of BloomFilteres</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/buffer">bufer</a>: Buffer with queuing mechanisms including an unbounded deque <a href="https://en.wikipedia.org/wiki/Double-ended_queue">double-ended queue</a>. Not safe for concurrent access.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/cb58">cb58</a>: <a href="https://support.avax.network/en/articles/4587395-what-is-cb58">CB58</a> is a format used to represent keys, addresses, and other binary values in web wallets and APIs. CB58 is the concatenation of the data bytes and a checksum. The checksum is created by taking the last four bytes of the SHA256 hash of the data bytes.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/compare">compare</a>: Compares slices and returns true iff the slices have the same elements, regardless of order.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/compression">compression</a>: compresss and decompresses messages using gzip compression.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/constants">constants</a>: Constants for avalanche including aliases, applications, network_ids, network constantns and vm_ids.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/crypto">crypto</a>
+    <ul>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/crypto/bls">bls</a>: Provides the interface to the <a href="https://github.com/supranational/blst/">blst</a> BLS12-381 signature library.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/crypto/keychain">keychain</a>: implements functions for a keychain to return its main address and to sign a hash.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/crypto/ledger">ledger</a>: Ledger is a wrapper around the low-level Ledger Device interface that provides Avalanche-specific access.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/crypto/secp256k1">secp256k1</a>: Avalanche implementation of <a href="https://arxiv.org/pdf/1808.02988.pdf">secp256k1</a></li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/dynamicip">dynamicip</a>: Updates and resolves public IP’s using <a href="https://en.wikipedia.org/wiki/Ifconfig">ifconfig’s</a> format.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/filesystem">filesystem</a>: Reads and renames files.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/formatting">formatting</a>: Formats addresses. Parse takes in an address string and splits returns the corresponding parts. This returns the chain ID alias, bech32 HRP, address bytes, and an error if it occurs.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/hashing">hashing</a>: see hash functions below.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/ips">ips</a>: ip utlitilties including claim (A self contained proof that a peer is claiming ownership of an IPPort at a given time.) and lookup (Lookup attempts to resolve a hostname to a single IP. If multiple IPs are found.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/json">json</a>; utilities for marshalling and unmarshalling json.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/linkedhashmap">linkedhashmap</a>: is a hashmap that keeps track of the oldest pairing and the newest pairing. hashmap provides an O(1) mapping from a <a href="https://go.dev/ref/spec#Comparison_operators">comparable</a> key to any value.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/math">math</a>: mathematic functions</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/metric">metric</a>: Provide metrics by integrating with <a href="https://prometheus.io/">Prometheus</a>.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/password">password</a>: Implements password Hashing using <a href="https://pkg.go.dev/golang.org/x/crypto/argon2">Argon2</a></li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/perms">perms</a>: provides the ability to modify file permissions.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/profiler">profiler</a>: Profiler provides helper methods for measuring the current performance of processes/</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/resource">resource</a>: provides resource usage information including active cpu and disk usage.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/rpc">rpc</a>: Manages requests for avalanche rpc endpoints.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/sampler">sampler</a>: sample a specified valued based on a provided weighted distribution. Sampling is performed by executing a modified binary search over the provided elements. Rather than cutting the remaining dataset in half, the algorithm attempt to just in to where it think the value will be assuming a linear distribution of the element weights.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/set">set</a>: Return a new set with initial capacity [size]. More or less than [size] elements can be added to this set. Using NewSet() rather than Set[T]{} is just an optimization that can be used if you know how many elements will be put in this set.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/storage">storage</a>: File system storage</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/timer">timer</a>: Timer wraps a timer object. This allows a user to specify a handler. Once specifying the handler, the dispatch thread can be called. The dispatcher will only return after calling Stop. SetTimeoutIn will result in calling the handler in the specified amount of time.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/ulimit">ulimit</a>: Manages resource limits.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/units">units</a>: Unit Constants (e.g. <code class="language-plaintext highlighter-rouge">Avax      uint64 = 1000 * MilliAvax</code> )</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/window">window</a>: an interface which represents a sliding window of elements.</li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/wrappers">wrappers</a>: Wrappers for packing and unpacking data.</li>
+</ul>
+
+<p><strong>hash functions</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/hashing">hashing</a>
+    <ul>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/utils/hashing/hashing.go#L7">sha256</a>: Implements <a href="https://en.wikipedia.org/wiki/SHA-2">SHA256</a> hashing.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/utils/hashing/hashing.go#LL11C2-L11C2">ripmed160</a>: Implements <a href="https://en.wikipedia.org/wiki/RIPEMD">RIPEMD</a> (RIPE Message Digest), a family of cryptographic hash functions developed in 1992 (the original RIPEMD) and 1996 (other variants). There are five functions in the family: RIPEMD, RIPEMD-128, RIPEMD-160, RIPEMD-256, and RIPEMD-320, of which RIPEMD-160 is the most common.</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/blob/master/utils/hashing/consistent/ring.go">ring</a>: Ring is an interface for a consistent <a href="https://en.wikipedia.org/wiki/Consistent_hashing">hashing ring</a>.</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/utils/password">Argon2 password hashing</a>: Implements password Hashing using <a href="https://pkg.go.dev/golang.org/x/crypto/argon2">Argon2</a></li>
+</ul>
+
+<p><strong>encryption</strong></p>
+
+<p><strong>random number generators</strong></p>
+
+<p><strong>serilization</strong></p>
+
+<p><strong>virtual machines</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ava-labs/avalanchego/tree/master/vms">vms</a>: Avalanche Virtual Machines</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<p><strong>Consensus</strong></p>
+
+<ul>
+  <li><a href="https://assets.website-files.com/5d80307810123f5ffbb34d6e/6009805681b416f34dcae012_Avalanche%20Consensus%20Whitepaper.pdf">Scalable and Probabilistic Leaderless BFT Consensus through Metastability</a>: This paper introduces a family of leaderless Byzantine fault tolerance protocols, built around a metastable mechanism via network subsampling.</li>
+  <li><a href="https://docs.avax.network/overview/getting-started/avalanche-consensus">Avalanche Blockchain Consensus Documentation</a>: Overive of the Snowball Algorithm used for Avalanche Consenus and it’s use of Directed Acyclic Graphs (DAGs).</li>
+  <li><a href="https://docs.avax.network/subnets">Avalanche Subnet Overview Documentation</a>: Overview of Avalanches Subnets and their use of Avalanche’s 3 built-in blockchains: Platform Chain (P-Chain), Contract Chain (C-Chain) and Exchange Chain (X-Chain).</li>
+  <li><a href="https://docs.avax.network/apis/avalanchego/apis/p-chain#platformgetcurrentvalidators">Avalanche Get Current Validator Documentation</a>: List the current validators of the given Subnet. Signer is the node’s BLS public key and proof of possession.</li>
+  <li><a href="https://docs.avax.network/apis/avalanchego/apis/info#infogetnodeid">Avalanche Get Node Id Documentation</a>: Get the ID of this node. nodePOP is this node’s BLS key and proof of possession.</li>
+  <li>
+    <p><a href="https://docs.avax.network/specs/platform-transaction-serialization">Avalanche Platform Transaction Format Documentation</a>: Documenation on how transactions are serialized and the use of the primitive serialization format for packing and secp256k1 for cryptographic user identification.</p>
+  </li>
+  <li><a href="https://stats.avax.network/dashboard/network-status/">Avalanche Network Status Dashboard</a>:</li>
+</ul>
+
+<p><strong>Signing</strong></p>
+
+<ul>
+  <li><a href="https://docs.avax.network/specs/cryptographic-primitives">Avalanche Cryptographic Primitive Documentation</a>: Overview of Avalanches cryptographic primitives focusing on it’s use of TLS AND Secp256k1.</li>
+  <li>Avalanche BLS Support Release Documentation
+    <ul>
+      <li><a href="https://github.com/ava-labs/avalanchego/releases/tag/v1.8.6">Release v1.8.6: Apricot Phase 6</a>: Adds BLS key file and exposes blos proof of posession</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/releases/tag/v1.9.1">Release v1.9.1: Banff.1</a>: Added BLS signer to the snow.Context</li>
+      <li><a href="https://github.com/ava-labs/avalanchego/releases/tag/v1.9.2">Release v1.9.2: Banff.2 - Additional BLS Support</a>: Added bls proof of possession to <code class="language-plaintext highlighter-rouge">platform.getCurrentValidators</code> and <code class="language-plaintext highlighter-rouge">platform.getPendingValidators</code>. Added bls public key to in-memory staker objects. Improved memory clearing of bls secret keys.</li>
+    </ul>
+  </li>
+  <li>Avalanch BLS Relevant Commits
+    <ul>
+      <li><a href="https://github.com/ava-labs/avalanchego/commit/fb6bb81f499b4b8c0f903c8745f5b7fbd8d97668">Add BLS key to AddPermissionlessValidatorTx for the Primary Network (#1987)</a></li>
+      <li><a href="https://github.com/ava-labs/avalanchego/commit/5176495568e512b2ebbfb1102dfd59541ccaa578">Add BLS signer to snow.Context (#2069)</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Staking</strong></p>
+
+<ul>
+  <li><a href="https://docs.avax.network/nodes/validate/staking#staking-parameters-on-avalanche">Avalanche Staking Documentation</a>: Staking Parameters on Avalanche</li>
+</ul>
+
+<p><strong>Additional</strong></p>
+
+<ul>
+  <li><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/platformvm/utxo/handler.go">UTXO Codebase</a>: Unsigned Transaction Output Handling.</li>
+  <li><a href="https://github.com/ava-labs/xsvm">xsvm</a>: Cross Subnet Asset Transfers README Overview</li>
+</ul>
+
+<h2 id="footnotes">Footnotes</h2>
+
+<!-- Overview -->
+
+<!-- Avalanche BLS Support Release Documentation -->
+
+<!-- * Avalanch BLS Relevant Commits -->
+
+<!-- Warp Messaging -->
+
+<!-- RSA Support -->
+
+<!-- consensus -->
+
+<!-- signing -->
+
+<!-- verification -->
+
+<!-- code -->
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:ov-1" role="doc-endnote">
+      <p><a href="https://docs.avax.network/overview/getting-started/avalanche-platform">Avalanche introductory documentation</a>: Avalanche is a heterogeneous network of blockchains allowing separate chains to be created for different applications. <a href="#fnref:ov-1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-2" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/README.md">Snowman VM</a>: To the consensus engine, the Snowman VM is a black box that handles all block building, parsing, and storage and provides a simple block interface for the consensus engine to call as it decides blocks. <a href="#fnref:ov-2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-18" role="doc-endnote">
+      <p><a href="https://medium.com/avalancheavax/cortina-x-chain-linearization-a1d9305553f6">Cortina: X-Chain Linearization</a>: This upgrade linearizes the X-chain, introduces delegation batching to the P-chain, and increases the maximum block size on the C-chain. (Release notes are <a href="https://github.com/ava-labs/avalanchego/releases">here</a> and changelog is <a href="https://github.com/ava-labs/avalanchego/compare/v1.9.16...v1.10.0">here</a>) <a href="#fnref:ov-18" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-3" role="doc-endnote">
+      <p><a href="https://subnets.avax.network/">Avalanche explorer</a>: Block Explorere showing subnets, totoal blockchains, total validators and totals stake amount. <a href="#fnref:ov-3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-4" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/proposervm/README.md">Snowman++</a>: a congestion control mechanism available for snowman VMs. <a href="#fnref:ov-4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-5" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/proposervm/block/block.go#L119">block verify function</a>: statelessBlock Verify function in proposervm. <a href="#fnref:ov-5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-6" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/proposervm/block/block.go#L51">block structure</a>: statelessBlock structure in proposervm. <a href="#fnref:ov-6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-7" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/blob/master/staking/tls.go#L120">NewCertAndKeyBytes</a>: Creates a new staking private key / staking certificate pair. Returns the PEM byte representations of both. <a href="#fnref:ov-7" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-8" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/releases/tag/v1.9.2">release notes on GitHub</a> and <a href="https://github.com/ava-labs/avalanchego/search?q=bls&amp;type=commits">code commit search result</a> <a href="#fnref:ov-8" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-9" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/releases/tag/v1.8.6">Release v1.8.6: Apricot Phase 6</a>: Adds BLS key file and exposes blos proof of posession <a href="#fnref:ov-9" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-10" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/releases/tag/v1.9.1">Release v1.9.1: Banff.1</a>: Added BLS signer to the snow.Context <a href="#fnref:ov-10" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-11" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/releases/tag/v1.9.2">Release v1.9.2: Banff.2 - Additional BLS Support</a>: Added bls proof of possession to <code class="language-plaintext highlighter-rouge">platform.getCurrentValidators</code> and <code class="language-plaintext highlighter-rouge">platform.getPendingValidators</code>. Added bls public key to in-memory staker objects. Improved memory clearing of bls secret keys. <a href="#fnref:ov-11" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-12" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/commit/fb6bb81f499b4b8c0f903c8745f5b7fbd8d97668">Add BLS key to AddPermissionlessValidatorTx for the Primary Network (#1987)</a> <a href="#fnref:ov-12" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-13" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/commit/5176495568e512b2ebbfb1102dfd59541ccaa578">Add BLS signer to snow.Context (#2069)</a> <a href="#fnref:ov-13" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-14" role="doc-endnote">
+      <p><a href="https://medium.com/avalancheavax/avalanche-warp-messaging-awm-launches-with-the-first-native-subnet-to-subnet-message-on-avalanche-c0ceec32144a">Avalanche Warp Messaging (AWM)</a>: AWM enables Subnet Validators to collectively produce a BLS Multi-Signature that attests to the validity of an arbitrary message (e.g., transfer, contract data, etc.) that can be verified by any other Subnet. <a href="#fnref:ov-14" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:ov-14:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:ov-15" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/tree/master/vms/platformvm/warp">avalanchego warp codebase</a>: Codebase supporting bls signing of inter-subnet messages. <a href="#fnref:ov-15" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:ov-15:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:ov-16" role="doc-endnote">
+      <p><a href="https://github.com/ethereum/EIPs/blob/f2db669da93ca4ce1605866e147bfa4f56303fc6/EIPS/eip-198.md">EIP-198</a>: Big integer modular exponentiation. Pre-compile for Ethereum which allows for efficient RSA verification inside of the EVM, as well as other forms of number theory-based cryptography. <a href="#fnref:ov-16" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-17" role="doc-endnote">
+      <p><a href="https://github.com/adria0/SolRsaVerify">SolRsaVerify</a>: Solidity Library which allows verification of RSA Sha256 Pkcs1.5 Signatures <a href="#fnref:ov-17" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:con-1" role="doc-endnote">
+      <p><a href="https://docs.avax.network/overview/getting-started/avalanche-platform">Avalanche Platform</a>: Avalanche is a heterogeneous network of blockchains. The Primary Network is a special Subnet that contains all validators (including validators of any custom Subnets). <a href="#fnref:con-1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:con-2" role="doc-endnote">
+      <p><a href="https://assets.website-files.com/5d80307810123f5ffbb34d6e/6009805681b416f34dcae012_Avalanche%20Consensus%20Whitepaper.pdf">Avalanche Consensus Whitepaper</a>: Scalable and Probabilistic Leaderless BFT Consensus through Metastability. This paper introduces a family of leaderless Byzantine fault tolerance protocols, built around a metastable mechanism via network subsampling. <a href="#fnref:con-2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:con-3" role="doc-endnote">
+      <p><a href="https://docs.avax.network/overview/getting-started/avalanche-consensus">Avalanche Docs: Consensus</a>: a consensus protocol that is scalable, robust, and decentralized. It has low latency and high throughput. It is energy efficient and does not require special computer hardware. <a href="#fnref:con-3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:con-4" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/blob/master/snow/README.md">Snow README.md</a>: Each blockchain on Avalanche has several components: the virtual machine, database, consensus engine, sender, and handler. These components help the chain run smoothly. Blockchains also interact with the P2P layer and the chain router to send and receive messages. <a href="#fnref:con-4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:con-5" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/coreth/tree/master#readme">Coreth and the C-Chain</a>: Coreth is a dependency of AvalancheGo which is used to implement the EVM based Virtual Machine for the Avalanche C-Chain. <a href="#fnref:con-5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:con-7" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/proposervm/README.md">Snowman++: congestion control for Snowman VMs</a>: Snowman++ introduces a soft proposer mechanism which attempts to select a single proposer with the power to issue a block, but opens up block production to every validator if sufficient time has passed without blocks being generated. <a href="#fnref:con-7" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:con-6" role="doc-endnote">
+      <p><a href="https://github.com/ava-labs/avalanchego/blob/master/vms/README.md">Snowman VM’s</a>: To the consensus engine, the Snowman VM is a black box that handles all block building, parsing, and storage and provides a simple block interface for the consensus engine to call as it decides blocks. <a href="#fnref:con-6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:sig-1" role="doc-endnote">
+      <p><a href="https://docs.avax.network/specs/cryptographic-primitives">Avalanche Cryptographic Primitive Documentation</a>: Overview of Avalanches cryptographic primitives focusing on it’s use of TLS AND Secp256k1. <a href="#fnref:sig-1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+
+<head>
+    <meta charset="utf-8">
+    {% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css?v=' | append: site.github.build_revision | relative_url }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    {% include head-custom.html %}
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/posts">John's Writing</a></li>
+            </ul>
+            {% for posts in site.posts reversed %}
+            <ul>
+                <li><a href="{{ posts.url }}">{{ posts.title }}</a></li>
+            </ul>
+            {% endfor %}
+        </header>
+        <section>
+            <style>
+            sup {
+                font-size: 0.8rem;
+                position: relative;
+                top: -0.5rem;
+            }
+             </style>
+            {% include navigation.html fixed=true %}
+            <h2>{{ page.title }}</h2>
+            <h6>{{ page.excerpt }}</h6>
+            <div>{{ page.date | date_to_string: "ordinal", "US" }}</div>
+            <div>{{ page.author }}</div>
+            <div><i>{{ page.contributors }}</i></div>
+            {{ content | markdownify }}
+        </section>
+    </div>
+</body>
+
+</html>

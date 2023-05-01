@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Binance Smart Chain | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Binance Smart Chain" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/chains/binance.html" />
+<meta property="og:url" content="http://localhost:4000/research/chains/binance.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Binance Smart Chain" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Overview","headline":"Binance Smart Chain","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/chains/binance.html"},"url":"http://localhost:4000/research/chains/binance.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Binance Smart Chain</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<p>Binanace Smart Chain (BSC) has similar signature schemes to Polygon but with a much smaller set of validators and some degree of random (yet predictable and deterministic) perturbation to the active validator set.</p>
+
+<p>The consensus protocol is based on Parlia<sup><a href="#f19">19</a></sup>, a variation that adds staking, validators, and elections to the proof-of-authority consensus protocol Clique, initially proposed in the Ethereum community. The protocol uses 21 validators for producing and signing blocks, with 19 of them picked from stakers with top voting power and 2 randomly chosen every 200 blocks <sup><a href="#f20">20</a></sup>. Blocks are signed using ECDSA on secp256k1 curves, and block headers can be verified following the standard signature verification process<sup><a href="#f21">21</a></sup>.</p>
+
+<h2 id="consensus-mechanism">Consensus Mechanism</h2>
+
+<p>Following is an excerpt from <a href="https://github.com/bnb-chain/bnb-chain.github.io/blob/master/docs/learn/consensus.md">Binance Consensus Engine documentation</a></p>
+
+<blockquote>
+  <p>Although Proof-of-Work (PoW) has been recognized as a practical mechanism to implement a decentralized network, it is not friendly to the environment and also requires a large size of participants to maintain the security.</p>
+
+  <p>Ethereum and some other blockchain networks, such as <a href="https://github.com/maticnetwork/bor">MATIC Bor</a>, <a href="https://tomochain.com/">TOMOChain</a>, <a href="https://gochain.io/">GoChain</a>, <a href="https://xdai.io/">xDAI</a>, do use <a href="https://en.wikipedia.org/wiki/Proof_of_authority">Proof-of-Authority(PoA)</a> or its variants in different scenarios, including both testnet and mainnet. PoA provides some defense to 51% attack, with improved efficiency and tolerance to certain levels of Byzantine players (malicious or hacked). It serves as an easy choice to pick as the fundamentals.</p>
+
+  <p>Meanwhile, the PoA protocol is most criticized for being not as decentralized as PoW, as the validators, i.e. the nodes that take turns to produce blocks, have all the authorities and are prone to corruption and security attacks. Other blockchains, such as EOS and Lisk both, introduce different types of <a href="https://en.bitcoinwiki.org/wiki/DPoS">Delegated Proof of Stake (DPoS)</a> to allow the token holders to vote and elect the validator set. It increases the decentralization and favors community governance.</p>
+
+  <p>BSC here proposes to combine DPoS and PoA for consensus, so that:</p>
+
+  <ol>
+    <li>Blocks are produced by a limited set of validators</li>
+    <li>Validators take turns to produce blocks in a PoA manner, similar to <a href="https://eips.ethereum.org/EIPS/eip-225">Ethereum’s Clique</a> consensus design</li>
+    <li>Validator set are elected in and out based on a staking based governance</li>
+  </ol>
+
+  <p>The consensus protocol of BSC fulfills the following goals:</p>
+
+  <ol>
+    <li>Short Blocking time, 3 seconds on mainnet.</li>
+    <li>It requires limited time to confirm the finality of transactions, around 45s for mainnet.</li>
+    <li>There is no inflation of native token: BNB, the block reward is collected from transaction fees, and it will be paid in BNB.</li>
+    <li>It is 100% compatible with Ethereum system .</li>
+    <li>It allows modern proof-of-stake blockchain network governance.</li>
+  </ol>
+</blockquote>
+
+<h2 id="signing-mechanism">Signing Mechanism</h2>
+
+<p>BSC uses the same signing mechanism as Ethereum 1.0.</p>
+
+<p>Transactions are signed using recoverable ECDSA signatures. This method utilises the SECP-256k1 curve. (see the <a href="https://ethereum.github.io/yellowpaper/paper.pdf">Ethereum Yellow Paper</a> Appendix F. Signing Transactions). go-ethereum utilizes the <a href="https://github.com/bnb-chain/bsc/tree/master/crypto/secp256k1">secp256k1</a> package which wraps the bitcoin secp256k1 C library. Signing is handled by the <a href="https://github.com/bnb-chain/bsc/tree/master/signer">signer</a> receives a request and produces a signature. Note, the produced signature conforms to the secp256k1 curve R, S and V values, where the V value will be 27 or 28 for legacy reasons, if legacyV==true.</p>
+
+<p><strong>Signing</strong></p>
+
+<ul>
+  <li><a href="https://docs.bnbchain.org/docs/beaconchain/learn/signature/">Signature Documentation</a>: Binance overview of how transactions are signed using ECDSA curve Secp256k1.</li>
+  <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1">secp256k1 codebase</a>: Binance secp256k1 crytpographic library (go)</li>
+  <li><a href="https://github.com/bnb-chain/bsc/blob/03ff2992ab4674c1df8f568ee9a31596f3503c26/crypto/signature_cgo.go#L32">secp256k1 Public Key</a>: Binance codebase(go) recovering the uncompressed secp256k1 key that created a given signature.</li>
+</ul>
+
+<h2 id="code-review">Code Review</h2>
+
+<p>The Binance Smart chain is cloned from <a href="./ethereum-1-0.md">Ethereum 1.0</a> and thus the majority of code incuding primitives, signing are similar. The key addtions are</p>
+
+<ul>
+  <li><a href="https://github.com/bnb-chain/bsc/tree/master/consensus/parlia">Consensus - Parlia</a></li>
+  <li><a href="https://github.com/bnb-chain/bsc/tree/master/core/systemcontracts">systemcontracts</a></li>
+  <li><a href="https://github.com/bnb-chain/bsc/tree/master/mobile">Mobile</a>: Outdated library.</li>
+</ul>
+
+<p>Some ommissions include the majority of work done for Ethereum 2.0 for example BSC has no <a href="https://github.com/ethereum/go-ethereum/tree/master/beacon/engine">beacon/engine</a>.</p>
+
+<h2 id="references">References</h2>
+
+<p><strong>Consensus</strong></p>
+
+<ul>
+  <li><a href="https://docs.bnbchain.org/docs/learn/consensus/#parlia">Parlia Documentation</a>: Binance Consensus Engine Parlia Documentation</li>
+  <li><a href="https://github.com/bnb-chain/bsc/blob/master/consensus/consensus.go">Consenus Engine Codebase</a>: Binance algorithm agnostic consensus engine. (go)</li>
+  <li><a href="https://github.com/bnb-chain/bsc/blob/master/consensus/parlia/parlia.go">Parlia Consensus Codebase</a>: Binance Parlia codebase (go)</li>
+  <li><a href="https://github.com/bnb-chain/bsc/blob/master/consensus/clique/clique.go">Clique Consensus Codebase</a>: Clique implements the proof-of-authority consensus engine (go). It is what Parlia was based of.</li>
+  <li><a href="https://github.com/bnb-chain/bsc/blob/master/consensus/parlia/parlia.go#L546">Parlia Consensus Verify Seal</a>: Binance seal verification codebase (go). <em>verifySeal checks whether the signature contained in the header satisfies the consensus protocol requirements. The method accepts an optional list of parent headers that aren’t yet part of the local blockchain to generate the snapshots from. The transition rule is described in the eth1/2 merge spec EIP-3675.</em></li>
+  <li><a href="https://eips.ethereum.org/EIPS/eip-3675">EIP-3675: Upgrade consensus to Proof-of-Stake</a>: Specification of the consensus mechanism upgrade on Ethereum Mainnet that introduces Proof-of-Stake.</li>
+</ul>
+
+<p><strong>Staking</strong></p>
+
+<ul>
+  <li><a href="https://docs.bnbchain.org/docs/stake/Staking/#staking-economics">BNB Staking Economics</a>: Binance Staking Documentation</li>
+  <li><a href="https://www.bnbchain.org/en/staking">BNB Chain Staking</a>: Binance Staking App</li>
+</ul>
+
+<p><strong>Additional</strong></p>
+
+<p><a name="f19">[19]</a> See <a href="https://docs.bnbchain.org/docs/learn/consensus/#consensus-protocol">BSC Consensus Engine documentations</a></p>
+
+<p><a name="f20">[20]</a> Following BEP-131, see a <a href="https://www.bnbchain.org/en/blog/bep131-introducing-candidate-validators-bnb-smart-chain/">summary</a> and <a href="https://github.com/bnb-chain/BEPs/pull/131">detailed specifications</a>. Note that the proportion of randomly selected validators may increase, as proposed in the BEP.</p>
+
+<p><a name="f21">[21]</a> See <a href="https://github.com/bnb-chain/bsc/blob/cb9e50bdf62c6b46a71724066d39f9851181a5af/consensus/parlia/parlia.go#L546">code</a> for full procedure and how ecrecover is used for signature verification.</p>
+
+<ul>
+  <li><a href="https://messari.io/report/state-of-bnb-chain-q4-2022">State of BNB Chain Q4 2022</a></li>
+</ul>
+
+        </section>
+    </div>
+</body>
+
+</html>

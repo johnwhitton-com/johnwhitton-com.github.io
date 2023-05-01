@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Harmony | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Harmony" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/chains/harmony.html" />
+<meta property="og:url" content="http://localhost:4000/research/chains/harmony.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Harmony" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Overview","headline":"Harmony","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/chains/harmony.html"},"url":"http://localhost:4000/research/chains/harmony.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Harmony</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<p>Despite relatively lower usage than other candidates, Harmony has a mature, battle-tested implementation for fast consensus using BLS-based signature schemes, which has been in production for over 2 years. Additionally, many other chains are also moving towards using BLS for signing blocks in their consensus protocols.</p>
+
+<p>Harmony follows a two-round Fast Byzantine Fault Tolerance consensus derived from PBFT, where BLS signatures (on the BLS12-381 curve) are used to reduce communication costs<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>. Blocks are produced by validator leaders, a minimal subset of validators, then further broadcasted to all validators and confirmed when more than 2/3 of validators sign the block with their own BLS signatures. The leader then aggregates the signatures into a single one and broadcasts again. The validators may verify the aggregated signature and sign the block again before sending the signed block back to the leader. Finally, the leader (after receiving signatures from 2/3 of the validators) may aggregate the signature for one last time and finalize the block. In the block header, the leader records which validators’ signatures are received in each round.</p>
+
+<p>The protocol uses a slot-bidding mechanism to elect a variable number of validators to fill 800-slots, where each validator may occupy multiple slots if their total delegated stake per slot is greater than the effective median<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>.</p>
+
+<h2 id="consensus-mechanism">Consensus Mechanism</h2>
+
+<h3 id="harmony-fast-byzantine-fault-tolerance-fbft">Harmony Fast Byzantine Fault Tolerance (FBFT)</h3>
+
+<p>The following is an excerpt from <a href="https://docs.harmony.one/home/general/technology/consensus">Consensus</a></p>
+<blockquote>
+  <p>The consensus algorithm is a key component of any blockchain. It determines the security and performance of a blockchain and is often referred to as the “engine” of a blockchain. Harmony’s consensus algorithm is called Fast Byzantine Fault Tolerance (FBFT), which is an innovative upgrade on the famous PBFT algorithm. FBFT is one order of magnitude faster and more scalable than PBFT because BLS (Boneh–Lynn–Shacham) aggregate signature is used to significantly reduce the communication cost. Specifically, FBFT allows at least 250 validators to reach consensus within 2 seconds.</p>
+
+  <p>For every round of consensus in FBFT, one validator serves as the “leader” and there are three phases: the announce phase, the prepare phase and the commit phase. In the announce phase, the leader proposes a new block and broadcasts the block hash to all of the validators. In the prepare phase, validators verify the message and sign on the block hash, as well as sending the signature back to the leader. The prepare phase finishes when signatures with more than 2/3 of the voting power are collected. After that, the leader aggregated the collected signatures into a O(1)-sized BLS aggregate signature and then broadcast it with the whole block to start the commit phase. The commit phase involves validators verifying the block and doing a similar signing process as the prepare phase (i.e. 2/3 voting power collection). The consensus is reached after the commit phase is done. This whole process can be done within 2 seconds in mainnet.</p>
+</blockquote>
+
+<p>The following is an excerpt from <a href="https://docs.harmony.one/home/network/validators/definitions/epoch-transition">Epoch Transition</a></p>
+<blockquote>
+  <p>An epoch is a period of time when the beacon shard (i.e. shard 0, the coordinator for other shards) produces a fixed number of blocks. In Harmony mainnet, an epoch is 32768 blocks (~18.2h with a 2s block time) in the beacon shard</p>
+</blockquote>
+
+<p><em>Note: If the leader fails to produce a block within a certain time frame, then a new leader is elected</em></p>
+
+<p><img src="/assets//research/harmony-consensus.png" alt="Harmony FBFT" title="Harmony FBFT" /></p>
+
+<p>Block Structure from <a href="https://github.com/harmony-one/harmony/blob/main/block/v3/header.go">harmony</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>type headerFields struct {
+ ParentHash          common.Hash    `json:"parentHash"       gencodec:"required"`
+ Coinbase            common.Address `json:"miner"            gencodec:"required"`
+ Root                common.Hash    `json:"stateRoot"        gencodec:"required"`
+ TxHash              common.Hash    `json:"transactionsRoot" gencodec:"required"`
+ ReceiptHash         common.Hash    `json:"receiptsRoot"     gencodec:"required"`
+ OutgoingReceiptHash common.Hash    `json:"outgoingReceiptsRoot"     gencodec:"required"`
+ IncomingReceiptHash common.Hash    `json:"incomingReceiptsRoot" gencodec:"required"`
+ Bloom               ethtypes.Bloom `json:"logsBloom"        gencodec:"required"`
+ Number              *big.Int       `json:"number"           gencodec:"required"`
+ GasLimit            uint64         `json:"gasLimit"         gencodec:"required"`
+ GasUsed             uint64         `json:"gasUsed"          gencodec:"required"`
+ Time                *big.Int       `json:"timestamp"        gencodec:"required"`
+ Extra               []byte         `json:"extraData"        gencodec:"required"`
+ MixDigest           common.Hash    `json:"mixHash"          gencodec:"required"`
+ // Additional Fields
+ ViewID              *big.Int `json:"viewID"           gencodec:"required"`
+ Epoch               *big.Int `json:"epoch"            gencodec:"required"`
+ ShardID             uint32   `json:"shardID"          gencodec:"required"`
+ LastCommitSignature [96]byte `json:"lastCommitSignature"  gencodec:"required"`
+ LastCommitBitmap    []byte   `json:"lastCommitBitmap"     gencodec:"required"` // Contains which validator signed
+ Vrf                 []byte   `json:"vrf"`
+ Vdf                 []byte   `json:"vdf"`
+ ShardState          []byte   `json:"shardState"`
+ CrossLinks          []byte   `json:"crossLink"`
+ Slashes             []byte   `json:"slashes"`
+}
+</code></pre></div></div>
+
+<h2 id="signing-mechanism">Signing Mechanism</h2>
+
+<p>Harmony uses BLS12_381 signatures for validators signing blocks. They began work on enhancing the <a href="https://github.com/herumi/bls">herumi/bls package</a> in Jan 2019 to <a href="https://github.com/harmony-one/bls/commit/302fc1eea9d59cecb1a464280944f5b152d7e781">support BLS12_381</a>. They have added <a href="https://github.com/harmony-one/harmony/blob/main/crypto/bls/bls.go">bls</a> and <a href="https://github.com/harmony-one/harmony/blob/main/multibls/multibls.go">mutibls</a> to the <a href="https://github.com/harmony-one/harmony">harmony codbase</a> leveraging their <a href="https://github.com/harmony-one/bls">harmony-one bls package</a>.</p>
+
+<h2 id="light-client-support">Light Client Support</h2>
+
+<p>Harmony is actively looking at light client support<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>.</p>
+
+<p>Some initial work has been done for the support of <a href="https://github.com/opentimestamps/opentimestamps-server/blob/master/doc/merkle-mountain-range.md">Merkle Mountain Ranges</a> has been proposed by Harmony in the pull request <a href="https://github.com/harmony-one/harmony/pull/3872">[WIP] MMR-HardFork: add go-merklemountainrange and modified merkle proof logic #3872</a>.</p>
+
+<p>This introduces a new field into the block header populated by <a href="https://github.com/gupadhyaya/harmony/blob/mmr-hard-fork/internal/mmr/mmr.go">mmr.go</a> which credits <a href="https://github.com/zmitton/go-merklemountainrange">zmitton/go-merklemountainrange</a>.</p>
+
+<p>Updated <a href="https://github.com/gupadhyaya/harmony/blob/mmr-hard-fork/block/interface/header.go">Interface.go</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// MMRRoot is the root of the Merkle Mountain Range tree formed
+// using the block hashes of the current epoch
+MMRRoot() []byte
+
+// SetMMRRoot sets the updated MMR root after appending the parentHash
+SetMMRRoot(newMMRRoot []byte)
+</code></pre></div></div>
+
+<p>Updated <a href="https://github.com/gupadhyaya/harmony/blob/mmr-hard-fork/block/v4/header.go">header.go</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// MMRRoot is the root of the Merkle Mountain Range tree formed
+// using the block hashes of the current epoch
+func (h *Header) MMRRoot() []byte {
+ return append(h.fields.MMRRoot[:0:0], h.fields.MMRRoot...)
+}
+
+// SetMMRRoot sets the updated MMR root after appending the parentHash
+func (h *Header) SetMMRRoot(newMMRRoot []byte) {
+ h.fields.MMRRoot = append(newMMRRoot[:0:0], newMMRRoot...)
+}
+</code></pre></div></div>
+
+<p>Harmony <a href="https://github.com/harmony-one/harmony/pull/3872">MMR PR Review</a> and <a href="https://github.com/harmony-one/harmony/pull/4198/files">latest PR</a> uses Merkle Mountain Ranges to facilitate light client development against Harmony’s sharded Proof of Stake Chain.</p>
+
+<p><strong>Key Core Protocol Changes Include</strong>
+Block Structure from <a href="https://github.com/peekpi/harmony/blob/mmrHardfork/block/v4/header.go">harmony</a> with <a href="https://docs.grin.mw/wiki/chain-state/merkle-mountain-range/">Merkle Mountain Range</a> support <a href="https://github.com/harmony-one/harmony/pull/3872">Mmr hardfork</a> <a href="https://github.com/harmony-one/harmony/pull/4198">PR 4198</a> introduces <code class="language-plaintext highlighter-rouge">MMRoot</code></p>
+
+<p>GOAL: Allow verification that previous blocks were valid based on the MMRRoot Passed.</p>
+
+<p>Features</p>
+
+<ul>
+  <li>add receipt proof</li>
+  <li>adding MMRRoot field to block header &amp; cross-chain epoch</li>
+  <li>add memdb and filedb mmr processing logic</li>
+  <li>add GetProof rpc</li>
+  <li>relayer rpcs for fetching full header</li>
+  <li>adding block signers for rpc response, debug-only</li>
+  <li>minor testing bls</li>
+  <li>fix merge conflicts</li>
+  <li>github.com/zmitton/go-merklemountainrange dependency</li>
+  <li>minor fix</li>
+  <li>moving mmr root compute/update logic to after the shard state is computed</li>
+  <li>fix getting siblings bug</li>
+  <li>adding index to mmr-proof and GetProof with respect to a block number</li>
+  <li>check if mmr directory exists, if not create it first</li>
+  <li>fixing failing test</li>
+  <li>fixing config build test failure</li>
+  <li>fixing more test failures</li>
+  <li>cleanup</li>
+  <li>turn of signers</li>
+  <li>fix header copy issue and write mmr root directly to node.worker header</li>
+  <li>fix nil pointer problems, shard state fetch issue, and refIndex bug</li>
+  <li>clean up</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>type headerFields struct {
+ ParentHash          common.Hash    `json:"parentHash"       gencodec:"required"`
+ Coinbase            common.Address `json:"miner"            gencodec:"required"`
+ Root                common.Hash    `json:"stateRoot"        gencodec:"required"`
+ TxHash              common.Hash    `json:"transactionsRoot" gencodec:"required"`
+ ReceiptHash         common.Hash    `json:"receiptsRoot"     gencodec:"required"`
+ OutgoingReceiptHash common.Hash    `json:"outgoingReceiptsRoot"     gencodec:"required"`
+ IncomingReceiptHash common.Hash    `json:"incomingReceiptsRoot" gencodec:"required"`
+ Bloom               ethtypes.Bloom `json:"logsBloom"        gencodec:"required"`
+ Number              *big.Int       `json:"number"           gencodec:"required"`
+ GasLimit            uint64         `json:"gasLimit"         gencodec:"required"`
+ GasUsed             uint64         `json:"gasUsed"          gencodec:"required"`
+ Time                *big.Int       `json:"timestamp"        gencodec:"required"`
+ Extra               []byte         `json:"extraData"        gencodec:"required"`
+ MixDigest           common.Hash    `json:"mixHash"          gencodec:"required"`
+ // Additional Fields
+ ViewID              *big.Int    `json:"viewID"           gencodec:"required"`
+ Epoch               *big.Int    `json:"epoch"            gencodec:"required"`
+ ShardID             uint32      `json:"shardID"          gencodec:"required"`
+ LastCommitSignature [96]byte    `json:"lastCommitSignature"  gencodec:"required"`
+ LastCommitBitmap    []byte      `json:"lastCommitBitmap"     gencodec:"required"` // Contains which validator signed
+ Vrf                 []byte      `json:"vrf"`
+ Vdf                 []byte      `json:"vdf"`
+ ShardState          []byte      `json:"shardState"`
+ CrossLinks          []byte      `json:"crossLink"`
+ Slashes             []byte      `json:"slashes"`
+ MMRRoot             common.Hash `json:"mmrRoot"`
+}
+</code></pre></div></div>
+
+<p><strong>Sample Light Client Implementation: Horizon Bridge Harmony Light Client Deployed on Ethereum</strong></p>
+
+<p>This enables the validation of previous blocks by implemented by <a href="https://github.com/johnwhitton/horizon/blob/refactorV2/contracts/TokenLockerOnEthereum.sol">TokenLockerOnEthereum.sol</a> to use  <a href="https://github.com/johnwhitton/horizon/blob/refactorV2/contracts/lib/MMRVerifier.sol">MMRVerifier.sol</a> uses <code class="language-plaintext highlighter-rouge">./lib/MMRVerifier.sol</code> to validate the <a href="https://github.com/opentimestamps/opentimestamps-server/blob/master/doc/merkle-mountain-range.md">Mountain Merkle Ranges</a></p>
+
+<h2 id="code-review">Code Review</h2>
+
+<p>The <a href="https://github.com/harmony-one/harmony">Harmony codebase</a> was originally cloned from <a href="./ethereum-1-0.md">Ethereum 1.0</a> around 2019.Thus the majority of code incuding primitives, signing are similar as at that period. Since then Ethreum has worked siginficantly on Ethreum 2.0 and these modifications were selectively leveraged by Harmony.</p>
+
+<p><a href="https://medium.com/harmony-one/2022-harmony-technical-review-88462efba368">Harmony has significant differences</a> from Ethereum 1.0 including sharding, Effective Proof of Stake Consensus Mechanism, <a href="https://www.rosetta-api.org/docs/welcome.html">Rosetta support</a> and verifiable delay functions and verifiaable random functions.</p>
+
+<h3 id="signing">Signing</h3>
+
+<ul>
+  <li><a href="https://github.com/harmony-one/harmony/blob/main/crypto/bls/bls.go">bls</a>: An implementation of BLS threshold signature</li>
+  <li><a href="https://github.com/harmony-one/harmony/blob/main/multibls/multibls.go">multibls</a>: Wrapper for a collection of bls private and public keys with dedup functionality and the ability to serialize to a hex string.</li>
+</ul>
+
+<h3 id="consensus">Consensus</h3>
+
+<ul>
+  <li><a href="https://github.com/harmony-one/harmony/tree/main/consensus">consensus</a>: Consensus package includes the Harmony BFT consensus protocol code, which uses BLS-based multi-signature to cosign the new block. (details are <a href="https://talk.harmony.one/t/bls-based-practical-bft-consensus/131">here</a>).</li>
+  <li><a href="https://github.com/harmony-one/harmony/tree/main/hmy">hmy</a>: implements the Harmony full node service.</li>
+</ul>
+
+<h3 id="sharding">Sharding</h3>
+
+<ul>
+  <li><a href="https://github.com/harmony-one/harmony/tree/main/shard">shard</a>: Trackes the shard state and committee assignment.</li>
+</ul>
+
+<h3 id="staking">Staking</h3>
+
+<ul>
+  <li><a href="https://github.com/harmony-one/harmony/tree/main/staking">staking</a>: Implements staking for <a href="https://blog.harmony.one/introducing-harmonys-effective-proof-of-stake-epos/">Harmony’s Effective Proof of Stake</a>
+    <ul>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/staking/apr">apr</a>: Calculates the expected rewards per year and the rewards for Validators.</li>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/staking/availability">availablity</a>: Measures the availability of validators.</li>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/staking/effective">effective</a>: Calcualates a validators effective proof of stake.</li>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/staking/network">newtwork</a>: Calculates the network rewards.</li>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/staking/reward">reward</a>: Checks whether rewards are issued and if so calculates the rewards based on total tokens staked.</li>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/staking/slash">slash</a>: Slashes validators for malevolent acts such as double signing.</li>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/staking/types">types</a>: Type definitions for staking structures.</li>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/staking/verify">verify</a>: verifies aggregate signatures</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="rosetta">Rosetta</h3>
+
+<ul>
+  <li><a href="https://github.com/harmony-one/harmony/tree/main/rosetta">rosetta</a>: responsible for staring a <a href="https://www.rosetta-api.org/docs/welcome.html">rosetta</a> http server.</li>
+</ul>
+
+<h3 id="cryptographic-primitives">Cryptographic Primitives</h3>
+
+<p><strong>hash functions</strong></p>
+
+<ul>
+  <li><a href="https://github.com/harmony-one/harmony/tree/main/crypto/hash">hash</a>: Uses kecakk256 and sha256 and provides the abilty to hash the RLP representation of the given object.</li>
+</ul>
+
+<p><strong>random number generators</strong></p>
+
+<ul>
+  <li><a href="https://github.com/harmony-one/harmony/tree/main/crypto/vdf">VDF</a>: Verifiable Random Delay Function. Package vdf is a proof-of-concept implementation of a delay function and the security properties are not guaranteed. A more secure implementation of the <a href="https://eprint.iacr.org/2018/623.pdf">VDF by Wesolowski</a> is to be implemented.</li>
+  <li><a href="https://github.com/harmony-one/harmony/tree/main/crypto/vrf">VRF</a>: a pseudorandom function f_k from a secret key k, such that that knowledge of k not only enables one to evaluate f_k at for any message m, but also to provide an NP-proof that the value f_k(m) is indeed correct without compromising the unpredictability of f_k for any m’ != m. See <a href="https://dash.harvard.edu/bitstream/handle/1/5028196/Vadhan_VerifRandomFunction.pdf?sequence=2&amp;isAllowed=y">Verifiable Random Functions</a>.</li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<p><strong>Consensus</strong></p>
+
+<ul>
+  <li><a href="https://docs.harmony.one/home/general/technology/consensus">Harmony FBFT Consensus Documentation</a>: Harmony’s consensus algorithm is called Fast Byzantine Fault Tolerance (FBFT), which is an innovative upgrade on the famous PBFT algorithm. As an implementation detail, note that custom <a href="https://github.com/herumi/bls/issues/74">generator points are used</a>.</li>
+  <li><a href="https://docs.harmony.one/home/network/validators/definitions/slots-bidding-and-election">Harmony Slot Bidding and Election</a></li>
+  <li><a href="https://docs.harmony.one/home/network/validators/definitions/slots-bidding-and-election">Building a Better Blockchain: The Implementation of External Leader Rotation on Harmony</a>: A proposal to improve the leader rotatation by introducing changes to incldue external validators.</li>
+  <li><a href="https://github.com/harmony-one/harmony/blob/main/consensus/consensus.go">Harmony consensus.go Code</a>: Harmony Consensus logic (go)</li>
+  <li><a href="https://github.com/harmony-one/harmony/blob/main/consensus/quorum/quorum.go">Harmony quorom.go</a>: Harmony’s quorom logic responsible for trakcing participants, submitting and aggregating votes.</li>
+  <li><a href="https://docs.grin.mw/wiki/chain-state/merkle-mountain-range/">Merkle Mountain Ranges</a>: Merkle Mountain Ranges1 are an alternative to Merkle trees2. While the latter relies on perfectly balanced binary trees, the former can be seen either as list of perfectly balance binary trees or a single binary tree that would have been truncated from the top right.</li>
+  <li><a href="https://github.com/harmony-one/harmony/pull/3872">Harmony MMR-Hardfork Pull Request 3872</a>: a MMR hard fork PR that adds mmrRoot to block header, adds logic to compute the MMR tree every epoch, RPCs to fetch the MMR proof for any given transaction.</li>
+  <li><a href="https://github.com/harmony-one/harmony/pull/4198">Harmony MMR Hardfork Pull Request 4198</a>: Follow up MMR pull request. <em>MMR is a series of perfect Merkle trees, from high to low. Each Merkle tree root we call it peak. Concat all peak hash and hash it, will get MMR root hash.</em></li>
+  <li><a href="https://github.com/peekpi/harmony/blob/mmrHardfork/block/v4/header.go">Harmony MMRHardfork block header</a>: Harmony proposed block header including Merkle Mountain range (go).</li>
+</ul>
+
+<p><strong>Signing</strong></p>
+
+<ul>
+  <li><a href="https://github.com/harmony-one/bls/blob/master/ffi/go/bls/bls.go">Harmony bls.go codebase</a>: Harmony’s BLS library forked from <a href="https://github.com/herumi/bls">herumi/bls</a> (go).</li>
+</ul>
+
+<p><strong>Staking</strong></p>
+
+<ul>
+  <li><a href="https://docs.harmony.one/home/general/technology/effective-proof-of-stake">Harmony Effective Proof of Stake Documentation</a>: A staking mechanism for Harmony’s sharded blockchain that achieves both security and decentralization using effective stake.</li>
+  <li><a href="https://staking.harmony.one/validators/mainnet">Harmony Staking Dashboard</a>: Staking Dashboard showing approximately 140 Elected Validators from 299 active validators.</li>
+</ul>
+
+<h2 id="footnotes">Footnotes</h2>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://docs.harmony.one/home/general/technology/consensus">Harmony consensus documentation</a>. As an implementation detail, note that custom <a href="https://github.com/herumi/bls/issues/74">generator points are used</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://docs.harmony.one/home/network/validators/definitions/slots-bidding-and-election">Harmony Slot Bidding and Election</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://medium.com/harmony-one/scaling-the-harmony-protocol-with-light-clients-66d1eab26bf">Scaling the Harmony Protocol with Light Clients</a>: a step-by-step guide on how to develop and run a light client on the Harmony Protocol using code examples. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        </section>
+    </div>
+</body>
+
+</html>
