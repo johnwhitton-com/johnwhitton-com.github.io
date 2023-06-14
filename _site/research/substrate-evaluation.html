@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Substrate Evaluation | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Substrate Evaluation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Substrate Evaluation" />
+<meta property="og:description" content="Substrate Evaluation" />
+<link rel="canonical" href="https://johnwhitton-com.github.io/research/substrate-evaluation.html" />
+<meta property="og:url" content="https://johnwhitton-com.github.io/research/substrate-evaluation.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-02-12T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Substrate Evaluation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2019-02-12T00:00:00+00:00","datePublished":"2019-02-12T00:00:00+00:00","description":"Substrate Evaluation","headline":"Substrate Evaluation","mainEntityOfPage":{"@type":"WebPage","@id":"https://johnwhitton-com.github.io/research/substrate-evaluation.html"},"url":"https://johnwhitton-com.github.io/research/substrate-evaluation.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            
+            <ul>
+                <li><a href="/research/substrate-evaluation.html">Substrate Evaluation</a></li>
+            </ul>
+            
+        </header>
+        <section>
+            <h1 id="substrate-evaluation">Substrate Evaluation</h1>
+
+<p><strong>Summary -</strong> Substrate is a chain layer which allows pluggable consensus, definition of storage through the seperation of “extrinsics” and abstracts the runtime design allowing for blockchain providers to decide which runtime best suits there application needs. It also has been built with light client protocol in mind with a number of storage and pruning options giving the ability to clearly seperated different actors requirements for infrastructure (e.g. participants can run a light client on a mobile device and validators can run full nodes with gauranteed performance and uptime). On top of this Polkadot sits as a relay chain (built on Substrate) which allows private chains to share infrastucture such as validators.</p>
+
+<h2 id="reference-material">Reference Material</h2>
+
+<h3 id="blockchain-explorers">Blockchain Explorers</h3>
+<ul>
+  <li><a href="http://polkadash.io/">polkadash.io</a></li>
+  <li><a href="https://polkascan.io/">polkascan.io</a>
+    <ul>
+      <li><a href="https://polkascan.io/n-pre/bbqbirch/">BBQ Birch - Testnet</a></li>
+    </ul>
+  </li>
+  <li><a href="https://poc-2.polkadot.io/#/explorer">poc-2.plokadot.io</a></li>
+  <li><a href="https://polkadot.js.org/apps/next/#/explorer">Substrate Explorer</a></li>
+  <li><a href="https://telemetry.polkadot.io/#/Krumme%20Lanke">Telemetry.polkadot.io</a></li>
+</ul>
+
+<h3 id="relevant-documentation">Relevant Documentation</h3>
+<ul>
+  <li><a href="https://www.parity.io/what-is-substrate/">What is Substrate</a>
+    <ul>
+      <li>Substrate <a href="https://www.youtube.com/watch?v=iUMZyL5kTwc">Video</a> - <a href="http://slides.com/paritytech/paritysubstrate#/">Slides</a>
+        <ul>
+          <li><a href="http://slides.com/paritytech/paritysubstrate#/29">Potential Runtime Designs</a></li>
+        </ul>
+      </li>
+      <li><a href="https://wiki.parity.io/Parity-Substrate">Parity Substrate Wiki</a></li>
+    </ul>
+  </li>
+  <li><a href="https://polkadot.network/#whatisit">What is PolKadot</a>
+    <ul>
+      <li>Polkadot Governance <a href="https://www.youtube.com/watch?v=VsZuDJMmVPY&amp;t=24735s&amp;list=PL6-IF807eaBG5sH-SQXlosqKRM2BZkrqw&amp;index=4">Video</a> - <a href="https://slides.com/paritytech/polkadot-governance#/">Slides</a></li>
+      <li><a href="https://polkadot.network/PolkaDotPaper.pdf">Polkadot Whitepaper</a></li>
+      <li>Polkadot <a href="https://youtu.be/lIghiCmHz0U?list=PLaZFi8ZkzUvKGyWTQ999rbHUXfDQv2LRF">Video</a> <a href="https://www.slideshare.net/gavofyork/polkadot-presentation">Slides</a></li>
+      <li>Substrate : A Rustic Vision of Polkadot by Gavin Wood <a href="https://www.youtube.com/watch?v=0IoUZdDi5Is&amp;feature=youtu.be">Video</a> - <a href="https://slides.com/paritytech/substrate_web3summit#/1">Slides</a></li>
+      <li><a href="https://www.zeroknowledge.fm/46">Gavin Wood Podcast on Polkadot, Sharding and Substrate</a></li>
+      <li><a href="https://docs.google.com/document/d/1iaIWmfV-uA7Uv1O4yt9G2t_86q18h_r7i5T1t-_EZ-s/edit">Polkadot runtime Environment : Alternative Implementation Grant</a> - <a href="https://github.com/w3f/Web3-collaboration/issues/12">Github</a></li>
+    </ul>
+  </li>
+  <li><a href="https://polkadot.network/memorandum">Token Economics - DOTS</a></li>
+  <li><a href="https://wiki.parity.io/Secret-Store.html">Secret Store</a> shard key generation</li>
+  <li><a href="https://wiki.parity.io/IPFS">Parity Ethereum IPFS</a></li>
+  <li><a href="https://medium.com/@davekaj/blockchain-interoperability-cosmos-vs-polkadot-48097d54d2e2">Cosmos vs Polkadot</a></li>
+  <li><a href="https://medium.com/coinmonks/polkadot-hello-world-3-poc-3-on-substrate-is-here-c45d100f72e3">Polkadot POC Tutorials</a></li>
+  <li><a href="https://www.reddit.com/r/dot/">Polkadot on Reddit</a></li>
+  <li><a href="https://substrate.readme.io/">substrate.readme.io</a> - Substrate Developers Hub</li>
+  <li><a href="https://www.youtube.com/watch?time_continue=278&amp;v=26ucTSSaqog">Substrate Workshop - Video</a></li>
+  <li><a href="http://slides.com/paritytech/substrate_web3summit#/">Substrate Web 3 Summit - Slides</a></li>
+  <li><a href="https://hackmd.io/p_v1M8WGRyy9PggYiKA_Xw#">Building on Substrate</a></li>
+  <li><a href="https://medium.com/@gavofyork/polkadot-2018-recap-677dab3e995b">Polkadot 2018 Recap</a></li>
+</ul>
+
+<h2 id="relevant-code-links">Relevant Code Links</h2>
+<h3 id="key-repositories">Key Repositories</h3>
+<ul>
+  <li><a href="https://github.com/paritytech">ParityTech</a>
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate">Substrate</a>
+        <ul>
+          <li><a href="https://github.com/paritytech/substrate/pull/883">Generalize the Consensus Infrastructure</a>
+            <ul>
+              <li><a href="https://github.com/paritytech/substrate/issues/784">Pluggable Consensus Import Queue</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/paritytech/polkadot">Polkadot</a></li>
+      <li><a href="https://github.com/paritytech/wasmi">WASMI</a></li>
+    </ul>
+  </li>
+  <li><a href="https://webassembly.org/">Web Assembly (WASM)</a>
+    <ul>
+      <li><a href="https://github.com/golang/go/issues/18892">GO - support for WASM</a></li>
+      <li><a href="https://github.com/go-interpreter/wagon">GO WAGON</a></li>
+      <li><a href="https://github.com/perlin-network/life">GO Perlin</a></li>
+      <li><a href="https://github.com/paritytech/wasmi">Rust Parity Tech WASMI</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="functional-breakdown">Functional Breakdown</h2>
+<h3 id="persistence">Persistence</h3>
+<ul>
+  <li>Storage
+    <ul>
+      <li><a href="https://rocksdb.org/">RocksDB</a></li>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/core/client/db">DB Code</a></li>
+      <li>Data Overview - Light Client
+        <ul>
+          <li>Block Structure <a href="http://slides.com/paritytech/paritysubstrate#/17">Slide 17</a> to <a href="http://slides.com/paritytech/paritysubstrate#/28">28</a></li>
+        </ul>
+      </li>
+      <li><a href="https://wiki.parity.io/decl_storage">decl_storage - macro</a></li>
+      <li><a href="http://slides.com/paritytech/paritysubstrate#/14">Get and Set Storage</a></li>
+      <li>Light Client
+        <ul>
+          <li><a href="https://github.com/paritytech/substrate/blob/master/core/client/db/src/light.rs">DB Code</a></li>
+          <li><a href="https://github.com/paritytech/substrate/tree/master/core/client/src/light">Light Client Code</a></li>
+          <li><a href="https://github.com/paritytech/substrate/issues/131">Protocol Light Client Storage</a></li>
+        </ul>
+      </li>
+      <li>Node
+        <ul>
+          <li><a href="https://github.com/paritytech/substrate/tree/master/core/client/src">Client Code</a></li>
+        </ul>
+      </li>
+      <li>Validator</li>
+      <li>Archive Node</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="distribution">Distribution</h3>
+<h4 id="discovery">Discovery</h4>
+<h4 id="gossip">Gossip</h4>
+<ul>
+  <li><a href="https://github.com/ethereum/wiki/wiki/libp2p-Whitepaper">libp2p</a></li>
+  <li><a href="https://github.com/paritytech/substrate/tree/master/core/network-libp2p">Substrate Code - network libp2p</a></li>
+  <li><a href="http://slides.com/paritytech/paritysubstrate#/14">Get and Set Storage</a></li>
+  <li>Message Format
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/core/primitives">Substrate Primitives</a></li>
+      <li><a href="https://github.com/paritytech/polkadot/blob/master/primitives/src/parachain.rs">Polkadot Parachain Primitives</a></li>
+      <li><a href="https://github.com/paritytech/polkadot/blob/master/collator/src/lib.rs#L17">Polkadot Collator - Logic</a>
+        <h4 id="execution"><a href="http://slides.com/paritytech/paritysubstrate#/15">Execution</a></h4>
+      </li>
+    </ul>
+  </li>
+  <li><a href="https://wiki.parity.io/impl_stubs">Runtime</a></li>
+  <li><a href="https://wiki.parity.io/impl_stubs">impl-stubs</a></li>
+  <li><a href="https://github.com/paritytech/substrate/tree/master/srml">SRML</a></li>
+  <li><a href="https://github.com/paritytech/substrate-node-template">SRML Node Template</a></li>
+</ul>
+
+<h4 id="consensus">Consensus</h4>
+<ul>
+  <li><a href="http://slides.com/paritytech/paritysubstrate#/17">Hybrid Consensus Slide</a></li>
+  <li><a href="https://github.com/paritytech/substrate/pull/883">Generalized Consensus Pull Request</a></li>
+  <li><a href="https://github.com/paritytech/substrate/tree/master/core/consensus">Consensus Code</a></li>
+  <li><a href="https://github.com/paritytech/rhododendron">Rhododendron - Asynchronously safe BFT consensus, implementation in Rust</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Cryptographically_secure_pseudorandom_number_generator">Random Number Generation CSPRNG</a>
+    <ul>
+      <li><a href="https://github.com/rust-random/rand">Rust-Random</a></li>
+    </ul>
+  </li>
+  <li>Block Finality
+    <ul>
+      <li><a href="https://medium.com/polkadot-network/grandpa-block-finality-in-polkadot-an-introduction-part-1-d08a24a021b5">GRANDPA (GHOST-based Recursive Ancestor Deriving Prefix Agreement)</a>
+        <ul>
+          <li><a href="https://github.com/paritytech/finality-grandpa">Finality GANDPA Code</a></li>
+          <li><a href="https://github.com/paritytech/substrate/blob/master/core/finality-grandpa/src/lib.rs">Substrate using GRANDPA</a></li>
+          <li><a href="https://github.com/paritytech/substrate/issues/1026">Full nodes should store a GRANDPA commit message</a></li>
+          <li><a href="https://github.com/paritytech/substrate/pull/1014">Dynamic Authority sets in GRANDPA</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="polkadot---relay-chain">Polkadot - Relay Chain</h3>
+<ul>
+  <li><a href="https://polkadot.network/PolkaDotPaper.pdf">Whitepaper Overview - Participation in Polkadot</a> - Page 4 gives an overview of the actors</li>
+  <li><a href="https://github.com/paritytech/substrate/blob/v0.2/polkadot/collator/src/lib.rs">Collator</a>
+    <ul>
+      <li>A collator node lives on a distinct parachain and submits a proposal fora state transition, along with a proof for its validity (what we might call a witness or block data).</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/paritytech/substrate/blob/v0.2/polkadot/parachain/src/lib.rs">Pokadot Parachain</a> - Defines primitive types for creating or validating a parachain.</li>
+  <li><a href="https://github.com/paritytech/substrate/blob/v0.2/polkadot/statement-table/src/lib.rs">Statement Table</a> - This stores messages other authorities issue about candidates.</li>
+  <li><a href="https://github.com/paritytech/substrate/tree/v0.2/polkadot/network">Network</a> - Does the heavy lifting of routing the statements and gaining consensus across the relay chain (and associated parachains)
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate/blob/v0.2/polkadot/network/src/consensus.rs">Consensus</a> - The “consensus” networking code built on top of the base network service. This fulfills the <code class="language-plaintext highlighter-rouge">polkadot_consensus::Network</code> trait, providing a hook to be called each time consensus begins on a new chain head.</li>
+      <li><a href="https://github.com/paritytech/substrate/blob/v0.2/polkadot/network/src/collator_pool.rs">Consensus Pool</a> - Bridge between the network and consensus service for getting collations to it.</li>
+      <li><a href="https://github.com/paritytech/substrate/blob/v0.2/polkadot/network/src/router.rs">Router</a> - Statement routing and consensus table router implementation.</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/paritytech/substrate/blob/v0.2/substrate/misbehavior-check/src/lib.rs">Fisherman (Misbehaviour check)</a> - Utility for substrate-based runtimes that want to check misbehavior reports.</li>
+</ul>
+
+<h3 id="security">Security</h3>
+<h4 id="signing">Signing</h4>
+<ul>
+  <li><a href="https://ed25519.cr.yp.to/">ED25519</a>
+    <h4 id="hashing">Hashing</h4>
+  </li>
+  <li><a href="https://github.com/paritytech/substrate/blob/master/core/primitives/src/hashing.rs">Substrate Code - hashing.rs</a></li>
+  <li><a href="https://blake2.net/">Blake2</a> <a href="https://github.com/paritytech/substrate/search?q=blake2&amp;unscoped_q=blake2">use in substrate</a></li>
+  <li><a href="https://cyan4973.github.io/xxHash/">XXHASH</a> <a href="https://github.com/paritytech/substrate/search?q=TWOX&amp;unscoped_q=TWOX">use in substrate</a>
+    <h4 id="privacy">Privacy</h4>
+  </li>
+</ul>
+
+<h3 id="governance">Governance</h3>
+
+<h4 id="staking">Staking</h4>
+<h4 id="voting">Voting</h4>
+
+<h3 id="chaincode">Chaincode</h3>
+<ul>
+  <li>See WASM above</li>
+  <li><a href="https://github.com/paritytech/wasmi">Rust Parity Tech WASMI</a></li>
+  <li><a href="https://github.com/paritytech/substrate/search?q=wasmi&amp;unscoped_q=wasmi">Use in Substrate Code</a>
+    <h3 id="deployment">Deployment</h3>
+    <h4 id="substrate">Substrate</h4>
+  </li>
+  <li><a href="https://github.com/paritytech/substrate#on-mac">Locally on Mac</a></li>
+  <li><a href="https://github.com/paritytech/substrate#on-mac">From Code Base</a>
+    <h4 id="polkadot">Polkadot</h4>
+  </li>
+</ul>
+
+<h3 id="interledger">Interledger</h3>
+<ul>
+  <li>Message Format</li>
+  <li>Relay Chain</li>
+  <li>Consensus Process
+    <h3 id="developer-tools">Developer Tools</h3>
+  </li>
+  <li>API
+    <ul>
+      <li><a href="https://polkadot.js.org/api/">Polkadot Javascript API</a></li>
+    </ul>
+  </li>
+  <li>RPC
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/core/rpc">Substrate Code</a></li>
+    </ul>
+  </li>
+  <li>CLI
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/core/cli">CLI</a></li>
+    </ul>
+  </li>
+  <li>SDK
+    <h3 id="off-chain-orchestration">Off Chain Orchestration</h3>
+  </li>
+  <li>Oracles</li>
+  <li>Workflow
+    <h3 id="wallets">Wallets</h3>
+  </li>
+  <li>Feather
+    <h3 id="chain-tools">Chain Tools</h3>
+  </li>
+  <li>Governance
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate/blob/master/srml/democracy/src/lib.rs">Democracy - Github</a></li>
+    </ul>
+  </li>
+  <li>Token Economics</li>
+  <li>Token Standards
+    <h3 id="business-tools">Business Tools</h3>
+  </li>
+  <li>Analytics</li>
+  <li>System Monitoring</li>
+  <li>Deployment Tools
+    <h3 id="performance">Performance</h3>
+  </li>
+</ul>
+
+<h2 id="key-pull-requests-or-features">Key Pull Requests or Features</h2>
+
+<h2 id="substrate-prototyping">Substrate Prototyping</h2>
+<ul>
+  <li><a href="https://medium.com/coinmonks/polkadot-hello-world-3-poc-3-on-substrate-is-here-c45d100f72e3">Background Material</a></li>
+</ul>
+
+<p><strong>Deploying a Substrate Chain</strong></p>
+<ul>
+  <li><a href="https://hackmd.io/y-E9Q9jTRreni6z9EU0kkA#">Overview</a></li>
+  <li><a href="https://github.com/paritytech/substrate#on-mac">Locally</a></li>
+  <li><a href="https://github.com/paritytech/substrate#on-mac">From Code Base</a></li>
+  <li><a href="https://github.com/paritytech/substrate/issues/949">Current Issue with BBQ Birch</a> - <a href="https://github.com/paritytech/substrate/pull/900">cause</a></li>
+</ul>
+
+<p>Note by default chaindata is held in</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Johns-MacBook-Pro-2:chains jincubator$ pwd
+/Users/jincubator/Library/Application Support/Substrate/chains
+Johns-MacBook-Pro-2:chains jincubator$ ll
+total 0
+drwxr-xr-x  5 jincubator  staff  160 Oct 22 21:31 bbq-birch
+drwxr-xr-x  5 jincubator  staff  160 Oct 23 11:50 development
+drwxr-xr-x  5 jincubator  staff  160 Oct 23 14:16 staging_testnet
+</code></pre></div></div>
+<p>and to purge a chain see</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>substrate purge-chain --help
+</code></pre></div></div>
+
+<p><strong>Deploying Polkadot</strong></p>
+<ul>
+  <li><a href="https://github.com/paritytech/polkadot#4-hacking-on-polkadot">Overview</a></li>
+</ul>
+
+<p><strong>Deploying a simple contract</strong></p>
+<ul>
+  <li><a href="https://medium.com/polkadot-network/preparing-to-build-on-polkadot-349ff5002885">Preparing to build on Polkadot</a></li>
+  <li><a href="https://wiki.parity.io/WebAssembly-Home">Writing a WASM Contract</a></li>
+</ul>
+
+<p><strong>Running a Transaction</strong></p>
+<ul>
+  <li><a href="https://polkadot.js.org/api/examples/promise/07_transfer_dots/">Balance Transfer via API</a></li>
+</ul>
+
+        </section>
+    </div>
+</body>
+
+</html>

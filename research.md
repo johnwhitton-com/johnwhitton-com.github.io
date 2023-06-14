@@ -11,7 +11,7 @@ This knowledge base and learning center is based upon research I have done recen
 
 **Specifically I'd like to thank**
 
-* [Aaron Li](https://www.linkedin.com/in/aaronqli/): who has mentored and driven much of the research around cryptographic primitives, wallets, gaming and trustless bridging.
+* [Aaron Li](https://www.linkedin.com/in/aaronqli/): who has mentored and driven much of the research aaround cryptographic primitives, wallets, gaming and trustless bridging.
 * [The Delendum Team](https://delendum.xyz/team): who are leading many zero knowledge research initiatives.
 * [Ganesha Upadhyaya](https://www.linkedin.com/in/gupadhyaya/): For his leading work on the horizon bridge and other trustless bridging research.
 * [Rongjian Lan](https://www.linkedin.com/in/rongjianlan/): For his work on core protocol, specifically Harmony and the knowledge which he shared.

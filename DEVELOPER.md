@@ -25,7 +25,7 @@ bundle exec jekyll serve
 
 ## Building a static site
 
-```
+```bash
 bundle exec jekyll build
 bundle exec jekyll serve
 ```
@@ -35,3 +35,11 @@ bundle exec jekyll serve
 We have forked [this repo](https://github.com/johnwhitton-com/jekyll4-deploy-gh-pages) and have set up a [worfklow to publish](./.github/_site/workflows/main.yml).
 
 By committing the `jekyll4` branch it publishes to `gh-pages` which, under the repository setting, publishes to `main` on each commit.
+
+## Copying content from Research
+
+Content can be developed in [research](https://github.com/johnwhitton/research) repository and copied here for publishing.
+
+```bash
+./copy.sh; bundle exec jekyll serve
+```

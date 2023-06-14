@@ -1,41 +1,31 @@
 ---
-title: John's work
+title: RESUME/CV
 ---
 
+## Professional Summary
 
-<!-- ![John Career](./../assets/images/JohnWhittonWorkHistory.png "John Career") -->
-<!-- <img src="./../assets/images/JohnWhittonWorkHistory.png "  width="60%" height="40%"> -->
-<img src="./../assets/images/JohnWhittonWorkHistory.png">
-
-## Summary
-
-**John is a research engineer, founder and engineering manager.**
-
-John Whiton has been passionate about software and technology since high school. He graduated from the University of Queensland in Computer Science and travelled globally leading the design and development of many Service Oriented Architectures. He has built private permissioned blockchains on Ethereum and Hypersphere Fabric, grew the ecosystem for a public blockchain at Harmony. He has worked extensively with decentralized financial protocols, bringing a unique perspective by combining his extensive corporate experience with IBM, SAP, Deloitte and KPMG with the disruptive financial models being developed on blockchain. He recently has been designing and prototyping multiple defi and layer1 protocols and consulting as a research engineer on Trustless Bridging incorporating knowledge of DeFi, Cryptographic Primitives, Consensus Layer and Zero Knowledge Proofs.
-
-John has over 20 years of experience. An early entrepreneur, he founded his own consultancy firm which he grew to $800k in revenues and ran from 2000-2009. One of his former clients, EFI ($1.6 billion market cap) brought him on as a Manager in Enterprise Systems Architecture where he remained for 6 years. The next stage of John’s career brought him to Blockchain where he was CTO for Loyyal (BaaS company) and an Ecosystem Architect at Harmony. At Harmony, John helped launch the Mainnet while also being intimately involved with hiring decisions and business strategy.
-
-Since April 2020, John has worked as a founder providing strategy, research, design and building out DeFi infrastructure including trustless bridging, web3 identity and wallets, Parachains and Trading Protocols on Polkadot and Solidity Based DeFi applications.
+Highly motivated research/engineer, technical leader and entrepreneur currently working at the intersection of blockchain infrastrucuture (consensus, zero knowledge, cryptographic primitives, bridges) and DeFi protocols (identity, DeFi, NFT's). Track record of tackling tough technical challenges, driving projects from conception to completion, identifying research gaps and providing solutions. Proven leader of engineering teams with the ability to develop novel technologies and applications through interdisciplinary collaborations.
 
 ## Achievements
 
-#### Founder
+#### Research and Engineering
 
-Founded an enterpriser consultancy firm which he grew to $800k in revenues and ran from 2000-2009.
-
-Founded and co-founded multiple crypto startups, writing whitepapers, reviewing legal infrastructure, fundraising and securing seed funding comittments. Although startups had good designs and team and obtained funding commitments the projects did not move forward due to a combination of team commitment, market fit and crypto market conditions.
+* Wrote multiple DeFi whitepapers.
+* Researched consensus, bridging, cryptographic primitives and zero knowledge proofs.
+* Built Layer 1 platforms, DeFi protocols, non-custodial wallets, web3 identity, wallet infrastructure and NFT contracts for gaming character token sales.
 
 #### Building Great Technical Teams
 
-Grew Harmony from 6 to 20 Engineers, managing 7 engineers at LOYYAL and founding an enterprise consulting startup onboarding a team of 5.
+* Grew Harmony from 6 to 20 Engineers, managed 7 engineers at LOYYAL and founded an enterprise consulting startup onboarding a team of 5.
 
 #### Successful Product Launches
 
-5 blockchain launches and multiple ecosystem releases, Gama Space Station NFT Launch, dot-country web3 identity and web2 backend launch.
+* 5 blockchain launches and multiple ecosystem releases, Gama Space Station NFT Launch, dot-country web3 identity and web2 backend launch.
 
-#### Research and Engineering
+#### Founder
 
-Have written multiple DeFi whitepapers, researched Layer 1 consenusus and zero knowledge proof and built Layer 1 protocols, Non-custodial wallets, Web3 identity and wallet infrastructure. Developed NFT contracts for gaming character token sales.
+* Founded an enterprise consultancy firm which I grew to $800k in annual revenue and ran from 2000-2009.
+* Lead research, legal framework for incorporation, compliance and fundraising efforts for multiple blockchain protocols.
 
 ## Projects
 
@@ -46,10 +36,10 @@ Below are some of links to projects I have designed and built or contributed to.
 #### [johnwhitton](johnwhitton.com): July 2018 - Present, Silicon Valley
 
 * [isolab.gg](https://github.com/isolab-gg/isolab.gg): Trustless Bridge Research using Zero Knowledge Proofs including cryptographic primitives, consensus layer and zero knowledge implementations.
-* [hiddenstate.xyz](https://hiddenstate.xyz/): [dot-country](https://github.com/jw-1ns/knowledge-transfer/blob/main/learning/README.md) implementation inspired by [ENS](https://ens.domains/) and enhanced to integrate web2 DNS server and SMTP routing.
+* [hiddenstate.xyz](https://hiddenstate.xyz/): [1.country](https://github.com/harmony-one/1ns-docs) implementation inspired by [ENS](https://ens.domains/) and enhanced to integrate web2 DNS server and SMTP routing.
 * [modulo](https://modulo.so/): [1-wallet](https://github.com/polymorpher/one-wallet) and [sms-wallet](https://github.com/polymorpher/sms-wallet): non-custodial crypto wallet and lightweight crypto sms wallet.
 * [kanga.finance](https://kanga.finance/): Dex implementation inspired by Sushi and proof of concept integration with one-wallet. ([github](https://github.com/kangafinance)). [Winner](https://docs.google.com/presentation/d/1ZGrbKSaAdtzvMzVh0EVFBfUvA4SqiAeYVXGhJN7Orbs/edit#slide=id.g48989ac23a_0_0) of $30,000 in prizes from [Harmony Hackathon](https://bounties.gitcoin.co/hackathon/harmony-defi/onboard).
-* [eave.network](https://eave.network/): Polkadot DeFi Parachain ([github](https://github.com/EaveNetwork))
+* [eave.network](https://eave.network/): Polkadot DeFi Parachain ([github](https://github.com/EaveNetwork)) inspired by Acala and launched on the Rococo Network.
 * em∆sset ([github](https://github.com/emasset)):
   * Designed StableCoin Payment Platform integrating with banking systems
   * Defi Research: Uniswap, Polkadot, Curve, Balancer, Coinbase Rosettanet
@@ -59,8 +49,7 @@ Below are some of links to projects I have designed and built or contributed to.
 * [Shell protocol](https://shellprotocol.io/): developed initial prototype of the COWRI protocol, a stable coin, meta layer which leveraged the 0x Protocol and became [Shell Protocol](https://shellprotocol.io/).
 * Project X: wrote white paper for a layer 1 blockchain platform
 * Pocketh - wrote design document for a mobile payment platform for restaurants using stable coins and collateralization.
-* Jincubator: researched layer 1 platforms including polkadot, cosmos, stellar
-and ethereum
+* Jincubator: researched layer 1 platforms including polkadot, cosmos, stellar and ethereum
 
 ### Ecosystem Architect
 
@@ -101,7 +90,7 @@ Enterprise Software and Integration Platforms
 
 ## Whitepapers and Design Documents
 
-* [1ns (dot-country)](https://github.com/jw-1ns/knowledge-transfer/blob/main/learning/1-ens-overview.md): dot-copuntry design and deployment overview.
+* [1ns (dot-country)](https://github.com/harmony-one/1ns-docs): dot-country design and deployment overview.
 * [Draft EAVE Whitepaper (2021)](./../assets/images/DraftEAVEWhitepaper.pdf): a multi-chain web3 engine (Trading, DeFi, Liquidity and NFTs)
 * [EAVE Parachain Design (2021)](./../assets/images/EAVEParachainDesign.pdf): A Dedicated DeFi Polkadot Parachain
 * [KANGA Whitepaper(2021)](./../assets/images/KANGAWhitepaper.pdf): a DeFi Trading and Yield Engine]
@@ -140,6 +129,10 @@ Enterprise Software and Integration Platforms
 * [Core Protocol Video](https://youtu.be/HFo6c32qoyI): EAVE Overview
 * [Leadership Video](https://youtu.be/easABjC4gIY): Harmony Engineers on fire
 * [Defi Investor Video](https://youtu.be/iB1wWl5vWTk): WASDEX: World Asset and Securities Digital Exchange
+
+## Education
+
+Bachelor of Science, The University of Queensland (1984-1987)
 
 ## Additional Information
 
