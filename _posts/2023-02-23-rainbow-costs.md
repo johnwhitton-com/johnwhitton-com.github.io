@@ -18,33 +18,32 @@ redirect_from:
 - [Closing Remark](#closing-remark)
   - [References](#references)
 
+
 ## Introduction
 
 In this article we review the use of light clients and how they can improve trust and costing for bridges.
 
 ## Bridge Transaction Walk Through
-
 Following is a walkthough of a funds transfer from Ethereum to a target chain (In this example Near), complete with light client updates, block propogation and proofs to ensure the transaction validity.
 
 ![Ethereum to Near Funds Transfer](/assets/posts/2023-03-23-rainbow-costs/eth2NearFundsTransfer.jpg "Ethereum to NEAR Funds Transfer")
 
 ### Actors
-
 From the diagram above you'll notice that there are many actors involved, below is an overview of the actors and the operations they perform.
 
-- Accounts
-  - [User Account](https://etherscan.io/address/0x29da2ef94deeaf2d2f9003e9354abfcb1ff04b32) : The user is the owner of the funds being transferred and is responsible for signing the transactions to authorize bridging them accross chains. In this example they have accounts on [Ethereum](https://etherscan.io/address/0x29da2ef94deeaf2d2f9003e9354abfcb1ff04b32) and [NEAR](https://nearblocks.io/address/johnrubini.near#tokentxns)
-  - [Target Chain Relayer Acccount](https://nearblocks.io/address/relayer.bridge.near): The relayer account is responsible for relaying messages from Ethereum to the target chain. *Note this is connected to a relayer which is responsible for tasks such as querying latest block headers and getting light client status updates. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/tree/master/eth2near/eth2near-block-relay-rs).
-  - [Target Chain Bridge Validator Accounts](https://nearblocks.io/address/bridge-validator1.near): are responsible for validating light client update proposals and sending approval votes to [DAO Eth Client Contract](https://nearblocks.io/address/bridge-validator.sputnik-dao.near).
-- Ethereum Components
-  - [ERC20 Token Contract](https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code): this is the token contract securing the funds in this examle USDT (Tether). Source code is [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.8/contracts/token/ERC20/presets/ERC20PresetMinterPauser.sol)
-  - [Bridge Contract](https://etherscan.io/address/0x23ddd3e3692d1861ed57ede224608875809e127f#code): Responsible for deposits and withdrawals of tokens on Ethereum as well as various proving and propogation mechanisms such as checking of Signatures and adding Light Client Blocks. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/eth/nearbridge/contracts/NearBridge.sol)
-- Target Chain (NEAR) Components
-  - [Validator DAO Contract](https://nearblocks.io/address/bridge-validator.sputnik-dao.near): Responsible for receivng light client update proposals from the relayer and gathering approval votes for these propoals from Validators and submitting light client updates once the proposal is approved by the Validators. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/eth2near/contract_wrapper/src/dao_eth_client_contract.rs)
-  - [Etherum 2 Client](https://nearblocks.io/address/client-eth2.bridge.near): The Ethereum 2 client is responsbile for processing light client updates and receiving execution header blocks from Ethereum via the relayer. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs). *Note: this replaced the [Ethereum 1 client](https://nearblocks.io/address/client.bridge.near) source code [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth-client/src/lib.rs)*
-  - [Ethereum Prover](https://nearblocks.io/address/prover.bridge.near) : The Ethereum Prover is used to prove transactions are included in a valid block Header. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth-prover/src/lib.rs)
-  - [Bridge Contract](https://nearblocks.io/address/factory.bridge.near#contract): The Bridge contract is responsible for managing tokens including creating new tokens, setting metadata and depositing and withdrawal of tokens. Source code is [here](https://github.com/aurora-is-near/rainbow-token-connector/blob/master/bridge-token-factory/src/lib.rs).
-    - [NEAR Token Contract](https://nearblocks.io/token/dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near?a=dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near): The target chain representation of the token (USDT) managed by the target chain bridge contract.
+* Accounts
+  * [User Account](https://etherscan.io/address/0x29da2ef94deeaf2d2f9003e9354abfcb1ff04b32) : The user is the owner of the funds being transferred and is responsible for signing the transactions to authorize bridging them accross chains. In this example they have accounts on [Ethereum](https://etherscan.io/address/0x29da2ef94deeaf2d2f9003e9354abfcb1ff04b32) and [NEAR](https://nearblocks.io/address/johnrubini.near#tokentxns)
+  * [Target Chain Relayer Acccount](https://nearblocks.io/address/relayer.bridge.near): The relayer account is responsible for relaying messages from Ethereum to the target chain. *Note this is connected to a relayer which is responsible for tasks such as querying latest block headers and getting light client status updates. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/tree/master/eth2near/eth2near-block-relay-rs).
+  * [Target Chain Bridge Validator Accounts](https://nearblocks.io/address/bridge-validator1.near): are responsible for validating light client update proposals and sending approval votes to [DAO Eth Client Contract](https://nearblocks.io/address/bridge-validator.sputnik-dao.near). 
+* Ethereum Components
+  * [ERC20 Token Contract](https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code): this is the token contract securing the funds in this examle USDT (Tether). Source code is [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.8/contracts/token/ERC20/presets/ERC20PresetMinterPauser.sol)
+  * [Bridge Contract](https://etherscan.io/address/0x23ddd3e3692d1861ed57ede224608875809e127f#code): Responsible for deposits and withdrawals of tokens on Ethereum as well as various proving and propogation mechanisms such as checking of Signatures and adding Light Client Blocks. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/eth/nearbridge/contracts/NearBridge.sol)
+* Target Chain (NEAR) Components
+  * [Validator DAO Contract](https://nearblocks.io/address/bridge-validator.sputnik-dao.near): Responsible for receivng light client update proposals from the relayer and gathering approval votes for these propoals from Validators and submitting light client updates once the proposal is approved by the Validators. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/eth2near/contract_wrapper/src/dao_eth_client_contract.rs)
+  * [Etherum 2 Client](https://nearblocks.io/address/client-eth2.bridge.near): The Ethereum 2 client is responsbile for processing light client updates and receiving execution header blocks from Ethereum via the relayer. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs). *Note: this replaced the [Ethereum 1 client](https://nearblocks.io/address/client.bridge.near) source code [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth-client/src/lib.rs)*
+  * [Ethereum Prover](https://nearblocks.io/address/prover.bridge.near) : The Ethereum Prover is used to prove transactions are included in a valid block Header. Source code is [here](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth-prover/src/lib.rs)
+  * [Bridge Contract](https://nearblocks.io/address/factory.bridge.near#contract): The Bridge contract is responsible for managing tokens including creating new tokens, setting metadata and depositing and withdrawal of tokens. Source code is [here](https://github.com/aurora-is-near/rainbow-token-connector/blob/master/bridge-token-factory/src/lib.rs).
+    * [NEAR Token Contract](https://nearblocks.io/token/dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near?a=dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near): The target chain representation of the token (USDT) managed by the target chain bridge contract.
 
 ### Sample TransactionFlow
 
@@ -57,15 +56,16 @@ From the diagram above you'll notice that there are many actors involved, below 
       2. submit_beacon_chain_light_client_update in [client-eth2.bridge.near](https://nearblocks.io/address/client-eth2.bridge.near)
       3. on_proposal_callback in contract [bridge-validator.sputnik-dao.near](https://nearblocks.io/address/bridge-validator.sputnik-dao.near)
 2. Funds Transfer Transaction Flow
-   1. [Lock Funds On Ethereum](https://etherscan.io/tx/0xa685c59a24cc2056e10e660ce8a8bff7bbc335433698e138c77aaadf20ecb614): Locking 10,000 USDT to send to user on NEAR.
+   1. [Lock Funds On Ethereum](https://etherscan.io/tx/0xa685c59a24cc2056e10e660ce8a8bff7bbc335433698e138c77aaadf20ecb614): Locking 10,000 USDT to send to user on NEAR. 
    2. [Deposit Funds on Target Chain Bridge Contract (deposit)](https://nearblocks.io/txns/vniyRR67ndrtvpoQ9c5ACoT4e9c283VSQsrZcN6GGto#execution)
       1. deposit in contract factory.bridge.near
       2. verify_log_entry in contract prover.bridge.near
       3. block_hash_safe in contract client-eth2.bridge.near
-      4. finish_deposit in contract factory.bridge.near : mint of 10,000 USDT.
+      4. finish_deposit in contract factory.bridge.near : mint of 10,000 USDT. 
+
 
 **TODO**
-- Find and review the source code for the [validator light client approval update](https://nearblocks.io/txns/HnzBR7x5Sxnmcm4MfRt1ghhMjJNspDaygUUKeM9T27Li#execution). *Note: the eth2_client has a [validate_light_client_update](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs#L311) which is [configurable](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs#L42) and is used for debugging purposes.*
+* Find and review the source code for the [validator light client approval update](https://nearblocks.io/txns/HnzBR7x5Sxnmcm4MfRt1ghhMjJNspDaygUUKeM9T27Li#execution). *Note: the eth2_client has a [validate_light_client_update](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs#L311) which is [configurable](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs#L42) and is used for debugging purposes.*
 
 ## Bridging Resources Required
 
@@ -76,6 +76,7 @@ Here is the storage and compuational costs per component.
 | [Ethereum 2 Client](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs#L35) | ---            | ---     | ---   |
 | [Prover](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth-prover/src/lib.rs)                 | not applicable | 0 bytes |       |
 | [DAO Contract](https://github.com/aurora-is-near/rainbow-bridge/blob/master/eth2near/contract_wrapper/src/dao_contract.rs)  |                |         |       |
+ 
 
 **TODO**
 Review the following data structure and elements and move into the table above commenting on any mandatory requirements and structures that can be improved.
@@ -120,41 +121,44 @@ pub struct Eth2Client {
 }
 ```
 
-## Closing Remark
+## Closing Remark 
 
 Many technical problems mentioned here warrant a standalone deep-dive article for further discussion (and their relevance to ZKP). We will also write separate articles to discuss the approaches and algorithms we propose to make the trustless bridge work using ZKP and how we solve immediate problems today. If you are interested in working with us, please let us know at [hello@isolab.gg](mailto: hello@isolab.gg)
 
 __________________________________
 
-*If you’re interested in further discussions on this topic or working together on this subject, please reach out to us at hello@isolab.gg*
+_If you’re interested in further discussions on this topic or working together on this subject, please reach out to us at hello@isolab.gg_
+
+
+
 
 ### References
 
 **Explorer and Interactive Links**
 
-- Near
-  - eth-prover
-    - [https://nearblocks.io/address/relayer.bridge.near](https://nearblocks.io/address/relayer.bridge.near)
-    - [https://nearblocks.io/address/client-eth2.bridge.near](https://nearblocks.io/address/client-eth2.bridge.near)
-    - [https://nearblocks.io/address/client.bridge.near](https://nearblocks.io/address/client.bridge.near)
-  - eth-client
-    - [https://nearblocks.io/address/prover.bridge.near](https://nearblocks.io/address/prover.bridge.near)
-    - [https://nearblocks.io/address/client.bridge.near](https://nearblocks.io/address/client.bridge.near)
-  - factory (manages tokens)
-    - [https://nearblocks.io/address/factory.bridge.near](https://nearblocks.io/address/factory.bridge.near)
-  - dao
-    - [https://nearblocks.io/address/bridge-validator.sputnik-dao.near](https://nearblocks.io/address/bridge-validator.sputnik-dao.near)
-  - aurora
-    - [https://nearblocks.io/address/aurora](https://nearblocks.io/address/aurora)
-    - [https://nearblocks.io/address/relay.aurora](https://nearblocks.io/address/relay.aurora)
+* Near 
+    * eth-prover
+        * [https://nearblocks.io/address/relayer.bridge.near](https://nearblocks.io/address/relayer.bridge.near)
+        * [https://nearblocks.io/address/client-eth2.bridge.near](https://nearblocks.io/address/client-eth2.bridge.near)
+        * [https://nearblocks.io/address/client.bridge.near](https://nearblocks.io/address/client.bridge.near)
+    * eth-client
+        * [https://nearblocks.io/address/prover.bridge.near](https://nearblocks.io/address/prover.bridge.near)
+        * [https://nearblocks.io/address/client.bridge.near](https://nearblocks.io/address/client.bridge.near)
+    * factory (manages tokens)
+        * [https://nearblocks.io/address/factory.bridge.near](https://nearblocks.io/address/factory.bridge.near)
+    * dao
+        * [https://nearblocks.io/address/bridge-validator.sputnik-dao.near](https://nearblocks.io/address/bridge-validator.sputnik-dao.near)
+    * aurora
+        * [https://nearblocks.io/address/aurora](https://nearblocks.io/address/aurora)
+        * [https://nearblocks.io/address/relay.aurora](https://nearblocks.io/address/relay.aurora)
 
-- Ethereum
-  - [beaconcha.in](https://beaconcha.in/)
-    - [validators](https://beaconcha.in/validators)
-    - [epochs](https://beaconcha.in/epochs)
-    - [slots](https://beaconcha.in/slots)
-    - [blocks](https://beaconcha.in/blocks)
-    - [transactions](https://beaconcha.in/transactions)
-  - Near Bridge
-    - [NearBridge](https://etherscan.io/address/0x3fefc5a4b1c02f21cbc8d3613643ba0635b9a873)
-    - [ERC20Locker](https://etherscan.io/tx/0xa685c59a24cc2056e10e660ce8a8bff7bbc335433698e138c77aaadf20ecb614)
+* Ethereum
+  * [beaconcha.in](https://beaconcha.in/)
+    * [validators](https://beaconcha.in/validators)
+    * [epochs](https://beaconcha.in/epochs)
+    * [slots](https://beaconcha.in/slots)
+    * [blocks](https://beaconcha.in/blocks)
+    * [transactions](https://beaconcha.in/transactions)
+  * Near Bridge
+    * [NearBridge](https://etherscan.io/address/0x3fefc5a4b1c02f21cbc8d3613643ba0635b9a873)
+    * [ERC20Locker](https://etherscan.io/tx/0xa685c59a24cc2056e10e660ce8a8bff7bbc335433698e138c77aaadf20ecb614)

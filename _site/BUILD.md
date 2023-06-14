@@ -30,6 +30,7 @@ rm -rf wallet
 rm -rf zk
 
 # build the site
+bundle exec jekyll serve
 
 # test the site
 cd _site
@@ -37,10 +38,17 @@ cd _site
 python3 -m http.server 7800
 
 # If the site looks good merge the code
+
+# commit the code to the current Branch
+
 # merge into main
 
 # Publish the website
 # merge into gh_pages
+git pull
+git checkout gh-pages
+git merge main
+git push
 
 
 

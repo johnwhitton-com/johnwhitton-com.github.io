@@ -13,9 +13,9 @@
     <div class="wrapper">
         <header>
             <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
-            {% for work in site.work %}
+            {% for about in site.about %}
             <ul>
-                <li><a href="{{ work.url }}">{{ work.title }}</a></li>
+                <li><a href="{{ about.url }}">{{ about.title }}</a></li>
             </ul>
             {% endfor %}
         </header>
