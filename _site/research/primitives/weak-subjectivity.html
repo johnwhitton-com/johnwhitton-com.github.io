@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Weak Subjectivity | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Weak Subjectivity" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/primitives/weak-subjectivity.html" />
+<meta property="og:url" content="http://localhost:4000/research/primitives/weak-subjectivity.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Weak Subjectivity" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Overview","headline":"Weak Subjectivity","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/primitives/weak-subjectivity.html"},"url":"http://localhost:4000/research/primitives/weak-subjectivity.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/primitives/intro.html">Primitives</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/primitives/fast-fourier-transformations.html">Fast Fourier Transforms</a></li>
+                    
+                    <li><a href="/research/primitives/fraud-proofs.html">Fraud Proofs</a></li>
+                    
+                    <li><a href="/research/primitives/light-clients.html">Light Clients</a></li>
+                    
+                    <li><a href="/research/primitives/primitives.html">Cryptographic Primitives</a></li>
+                    
+                    <li><a href="/research/primitives/weak-subjectivity.html">Weak Subjectivity</a></li>
+                    
+                    <li><a href="/research/primitives/signatures.html">Signature Schemes in Consensus Protocols</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/zk/intro.html">Zero Knowledge</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/zk/zkpos.html">ZK Proof of Stake</a></li>
+                    
+                    <li><a href="/research/zk/zksnarks.html">zk-SNARKs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/bridge/intro.html">Cross-chain Bridges</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/bridge/cosmos-ibc.html">Cosmos IBC</a></li>
+                    
+                    <li><a href="/research/bridge/harmony-horizon.html">Harmony Horizon</a></li>
+                    
+                    <li><a href="/research/bridge/isomorph.html">Isomorph</a></li>
+                    
+                    <li><a href="/research/bridge/near-rainbow.html">Near Rainbow Bridge</a></li>
+                    
+                    <li><a href="/research/bridge/polymerlabs.html">Polymer Labs</a></li>
+                    
+                    <li><a href="/research/bridge/snowbridge.html">Snowbridge</a></li>
+                    
+                    <li><a href="/research/bridge/succinct.html">Succinct Labs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/defi/intro.html">Decentralized Finance</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <!-- <ul>
+                <li><a href="/research/gaming/intro.html">Gaming</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <ul>
+                <li><a href="/research/code/intro.html">Code Reviews</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/code/Horizon.html">Horizon Bridge</a></li>
+                    
+                    <li><a href="/research/code/ethereum-near.html">Ethereum Near Bridging</a></li>
+                    
+                    <li><a href="/research/code/ethereum.html">Ethereum</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/misc/intro.html">Additional Research</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Weak Subjectivity</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<p>Following is an excerpt from <em>Analysis on Weak Subjectivity in Ethereum 2.0</em> [^1] .</p>
+
+<blockquote>
+  <p>Weak subjectivity <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">1</a></sup> is a social-consensus-driven approach for solving the fun- damental “nothing-at-stake” problem of proof-of-stake protocols. In particular, it addresses the problem in the presence of long-range forks, while the slash- ing mechanism handles the case of short-range forks. Specifically, the current weak subjectivity mechanism deals with the following two types of long-range attacks <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">2</a></sup></p>
+
+  <p>– <em>Exploiting retired validators:</em> Adversaries can create and reveal a new chain branching from a certain block on the canonical chain, after 2/3 of validators who were active for the block have exited. Note that such validators can still justify and finalize conflicting blocks at earlier slots without being slashed after they have exited.</p>
+
+  <p>– <em>Exploiting diverging validator sets:</em> Adversaries can build a new chain until the validator set for the new chain is sufficiently different from that of the canonical chain. The larger the difference between the two validator sets, the lower the accountable safety tolerance. For example, if the intersection of the two sets is smaller than 2/3 of each set, then it is possible to have conflicting blocks to be finalized without any validators violating the slashing conditions.</p>
+
+  <p><em>It is unknown whether this mechanism can deal with other types of long-range attacks, if any, in general.</em></p>
+
+  <p>The current weak subjectivity mechanism employs a social consensus layer in parallel to maintain sufficiently many checkpoints (called weak subjectivity check- points) so that there exist no conflicting finalized blocks that are descendants of the latest weak subjectivity checkpoint. In other words, the purpose of the latest weak subjectivity checkpoints is to deterministically identify the unique canonical chain even in the presence of conflicting finalized blocks caused by the long-range attacks.</p>
+</blockquote>
+
+<h2 id="references">References</h2>
+
+<!-- Articles and guides -->
+<ul>
+  <li>
+    <p><a href="https://notes.ethereum.org/@adiasg/weak-subjectvity-eth2">Weak Subjectivity in Eth2.0</a>: This document is aimed for Eth2.0 client teams to understand weak subjectivity periods and their implication.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/ethereum/consensus-specs/blob/master/specs/phase0/weak-subjectivity.md">Phase 0 – Weak Subjectivity Guide</a>: This document is a guide for implementing the Weak Subjectivity protections in Phase 0.</p>
+  </li>
+</ul>
+
+<!-- Documentation -->
+<ul>
+  <li>
+    <p><a href="https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/weak-subjectivity/">Ethereum Docs: WEAK SUBJECTIVITY</a>: This refers to a chain that can progress objectively after some initial seed of information is retrieved socially.</p>
+  </li>
+  <li>
+    <p><a href="https://docs.teku.consensys.net/Concepts/Weak-Subjectivity/">Teku Docs: Weak Subjectivity</a>: The weak subjectivity period refers to how far behind the chain head a node can be before 1/3 of validators may have exited since the node was last in sync.</p>
+  </li>
+</ul>
+
+<!-- Implementations -->
+<ul>
+  <li><a href="https://github.com/prysmaticlabs/prysm/blob/develop/beacon-chain/blockchain/weak_subjectivity_checks.go">Prysm: weak_subjectivity_checks.go</a>
+    <ul>
+      <li><a href="https://github.com/prysmaticlabs/prysm/blob/develop/beacon-chain/blockchain/weak_subjectivity_checks.go#L31">NewWeakSubjectivityVerifier</a> validates a checkpoint, and if valid, uses it to initialize a weak subjectivity verifier.</li>
+      <li><a href="https://github.com/prysmaticlabs/prysm/blob/develop/beacon-chain/blockchain/weak_subjectivity_checks.go#L52">VerifyWeakSubjectivity</a> verifies the weak subjectivity root in the service struct.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><!-- Footnotes -->
+[^1]: <a href="https://github.com/runtimeverification/beacon-chain-verification/blob/master/weak-subjectivity/weak-subjectivity-analysis.pdf">Analysis on Weak Subjectivity in Ethereum 2.0</a>:</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://blog.ethereum.org/2014/11/25/proof-stake-learned-love-weak-subjectivity">Proof of Stake: How I Learned to Love Weak Subjectivity</a>: <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>It is unknown whether this mechanism can deal with other types of long-range attacks, if any, in general <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Crosschain Bridge Analysis - An Introduction | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Crosschain Bridge Analysis - An Introduction" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Here we present a survey of existing bridge designs, historical security incidents, and a brief discussion of common components and where ZKP may be used." />
+<meta property="og:description" content="Here we present a survey of existing bridge designs, historical security incidents, and a brief discussion of common components and where ZKP may be used." />
+<link rel="canonical" href="http://localhost:4000/research/bridge/intro.html" />
+<meta property="og:url" content="http://localhost:4000/research/bridge/intro.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Crosschain Bridge Analysis - An Introduction" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Here we present a survey of existing bridge designs, historical security incidents, and a brief discussion of common components and where ZKP may be used.","headline":"Crosschain Bridge Analysis - An Introduction","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/bridge/intro.html"},"url":"http://localhost:4000/research/bridge/intro.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/primitives/intro.html">Primitives</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/primitives/fast-fourier-transformations.html">Fast Fourier Transforms</a></li>
+                    
+                    <li><a href="/research/primitives/fraud-proofs.html">Fraud Proofs</a></li>
+                    
+                    <li><a href="/research/primitives/light-clients.html">Light Clients</a></li>
+                    
+                    <li><a href="/research/primitives/primitives.html">Cryptographic Primitives</a></li>
+                    
+                    <li><a href="/research/primitives/weak-subjectivity.html">Weak Subjectivity</a></li>
+                    
+                    <li><a href="/research/primitives/signatures.html">Signature Schemes in Consensus Protocols</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/zk/intro.html">Zero Knowledge</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/zk/zkpos.html">ZK Proof of Stake</a></li>
+                    
+                    <li><a href="/research/zk/zksnarks.html">zk-SNARKs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/bridge/intro.html">Cross-chain Bridges</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/bridge/cosmos-ibc.html">Cosmos IBC</a></li>
+                    
+                    <li><a href="/research/bridge/harmony-horizon.html">Harmony Horizon</a></li>
+                    
+                    <li><a href="/research/bridge/isomorph.html">Isomorph</a></li>
+                    
+                    <li><a href="/research/bridge/near-rainbow.html">Near Rainbow Bridge</a></li>
+                    
+                    <li><a href="/research/bridge/polymerlabs.html">Polymer Labs</a></li>
+                    
+                    <li><a href="/research/bridge/snowbridge.html">Snowbridge</a></li>
+                    
+                    <li><a href="/research/bridge/succinct.html">Succinct Labs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/defi/intro.html">Decentralized Finance</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <!-- <ul>
+                <li><a href="/research/gaming/intro.html">Gaming</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <ul>
+                <li><a href="/research/code/intro.html">Code Reviews</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/code/Horizon.html">Horizon Bridge</a></li>
+                    
+                    <li><a href="/research/code/ethereum-near.html">Ethereum Near Bridging</a></li>
+                    
+                    <li><a href="/research/code/ethereum.html">Ethereum</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/misc/intro.html">Additional Research</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Crosschain Bridge Analysis - An Introduction</h1>
+            <!-- <h6><p>Here we present a survey of existing bridge designs, historical security incidents, and a brief discussion of common components and where ZKP may be used.</p>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <p>Here we present a survey of existing bridge designs, historical security incidents, and a brief discussion of common components and where ZKP may be used.</p>
+
+<h2 id="bridge-taxonomy">Bridge Taxonomy</h2>
+
+<p>Bridge designs evolved as DeFi and multi-chain paradigm gained popularity. Our summary is inspired by prior taxonomy work by <a href="https://twitter.com/gupadhyaya">Ganesha Upadhyaya</a> in <a href="https://medium.com/harmony-one/harmonys-cross-chain-future-41d02d53b10">A Classification of Various Bridging Technologies</a>, <a href="https://twitter.com/dberenzon">Dmitriy Berenzon</a> in <a href="https://medium.com/1kxnetwork/blockchain-bridges-5db6afac44f8">Blockchain Bridges: Building Networks of Cryptonetworks</a>, and by multiple researchers from Jump Crypto in <a href="https://jumpcrypto.com/security-stack-up-how-bridges-compare/">Security Stack-Up: How Bridges Compare</a></p>
+
+<blockquote>
+  <p>At a very high level, there are two types of bridging solutions: 1) proof-based and 2) committee-based. The proof-based solutions entail cryptographic proving of the validity of any transaction of one chain in the other, whereas the committee-based solution relies on the social consensus of the bridge validators to attest for the transaction validity, which often involves no cryptographic proving.</p>
+
+  <ul>
+    <li>Ganesha Upadhyaya in “A Classification of Various Bridging Technologies”</li>
+  </ul>
+</blockquote>
+
+<h3 id="proof-based">Proof Based</h3>
+
+<h4 id="validity-proofs">Validity Proofs</h4>
+
+<p>Validity-proof based bridges prioritize security, trustlessness, permissionlessness, and delay minimization</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Design</th>
+      <th>Code</th>
+      <th>UI</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ZKP</td>
+      <td><a href="https://rdi.berkeley.edu/zkp/zkBridge/uploads/paper.pdf">zkBridge</a></td>
+      <td>TBD</td>
+      <td>TBD</td>
+      <td>By Berkeley researcehrs (<a href="https://twitter.com/zkcollective">Twitter</a>)</td>
+    </tr>
+    <tr>
+      <td>ZKP</td>
+      <td><a href="https://docs.telepathy.xyz/protocol/overview">Telepathy</a></td>
+      <td><a href="https://github.com/succinctlabs?q=telepathy&amp;type=all&amp;language=&amp;sort=">Telepathy</a></td>
+      <td><a href="https://demo.telepathy.xyz/">Demo</a></td>
+      <td>By <a href="https://succinct.xyz">Succint Labs</a></td>
+    </tr>
+    <tr>
+      <td>Native</td>
+      <td><a href="https://arxiv.org/pdf/2101.06000.pdf">Horizon</a></td>
+      <td><a href="https://github.com/harmony-one/horizon">Horizon</a></td>
+      <td>TBD</td>
+      <td>Inactive. By Harmony</td>
+    </tr>
+    <tr>
+      <td>Native</td>
+      <td><a href="https://github.com/cosmos/ibc">IBC</a> (<a href="https://tutorials.cosmos.network/academy/3-ibc/1-what-is-ibc.html">Intro</a>)</td>
+      <td><a href="https://github.com/cosmos/ibc-go">ibc-go</a></td>
+      <td>Various / <a href="https://hub.mintscan.io/chains/ibc-network">Explorer</a></td>
+      <td>Within Cosmos Network</td>
+    </tr>
+    <tr>
+      <td>Native</td>
+      <td><a href="https://github.com/Gravity-Bridge/Gravity-Bridge/blob/main/docs/design/overview.md">Gravity</a></td>
+      <td><a href="https://github.com/Gravity-Bridge/Gravity-Bridge">Gravity</a></td>
+      <td><a href="https://bridge.blockscape.network/">Gravity</a></td>
+      <td>Ethereum &lt;-&gt; Cosmos</td>
+    </tr>
+    <tr>
+      <td>Native</td>
+      <td><a href="https://github.com/ava-labs/xsvm">AWM</a> (<a href="https://medium.com/avalancheavax/avalanche-warp-messaging-awm-launches-with-the-first-native-subnet-to-subnet-message-on-avalanche-c0ceec32144a">Intro</a>)</td>
+      <td><a href="https://github.com/ava-labs/avalanchego/tree/master/vms/platformvm/warp">Wrap</a> / <a href="https://github.com/ava-labs/xsvm">XSVM</a></td>
+      <td>TBD / <a href="https://subnets.avax.network/subnets">Explorer</a></td>
+      <td>Within Avalanche Subnets</td>
+    </tr>
+    <tr>
+      <td>Native</td>
+      <td><a href="https://docs.snowbridge.network/architecture/overview">Snowbridge</a></td>
+      <td><a href="https://github.com/Snowfork/snowbridge">snowbridge</a></td>
+      <td>TBD</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>LCP</td>
+      <td><a href="https://medium.com/lcp-network/lcp-a-proxy-for-light-client-verification-to-realize-trust-minimized-and-gas-efficient-f7d5868e4b0">Datachain LCP</a></td>
+      <td><a href="https://github.com/datachainlab/lcp">LCP</a> / <a href="https://github.com/datachainlab/harmony-cosmos-bridge-demo">Demo</a></td>
+      <td>TBD</td>
+      <td>Relies on TEE enclave</td>
+    </tr>
+    <tr>
+      <td>LCP</td>
+      <td><a href="https://medium.com/avalancheavax/avalanche-bridge-secure-cross-chain-asset-transfers-using-intel-sgx-b04f5a4c7ad1">Avalanche</a></td>
+      <td>TBD / <a href="https://github.com/ava-labs/audits/blob/main/bridge/Avalanche_Bridge_Security_Audit_Report_Halborn_v1_1.pdf">Audit</a></td>
+      <td><a href="https://core.app/bridge/">core.app</a></td>
+      <td>Relies on TEE enclave (Intel SGX)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="fraud-proofs">Fraud Proofs</h4>
+
+<p>Fraud-proof based bridges assume all participants are truthful unless someone presents a proof showing otherwise. As a result, they must leave a wide fraud-proof time window and carefully design economic incentives for such. This limitation inevitably incurs much higher delay, but makes implementation substantially easier and costs significantly less to operate and maintain. Fraud-proof based bridges face more security risks due to reliance on fraud-prover and economic incentives, but still far less risky than committee-based bridges.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Design</th>
+      <th>Code</th>
+      <th>UI</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://near.org/blog/eth-near-rainbow-bridge/">Rainbow</a></td>
+      <td><a href="https://github.com/aurora-is-near/rainbow-bridge">rainbow-bridge</a></td>
+      <td><a href="https://rainbowbridge.app/transfer">rainbowbridge.app</a></td>
+      <td>By NEAR</td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.nomad.xyz/governance-bridge/architecture">Nomad</a> (<a href="https://medium.com/nomad-xyz-blog/the-nomad-design-philosophy-6fc0eacf3263">Intro</a>)</td>
+      <td><a href="https://github.com/nomad-xyz/monorepo">monorepo</a></td>
+      <td><a href="https://app.nomad.xyz/">app.nomad.xyz</a></td>
+      <td>Hacked $200M (engineering flaw)</td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.darwinia.network/">Darwinia</a> (<a href="https://darwinia.network/itering_io_optimistic_bridge_technical_paper_en.pdf">Paper</a>)</td>
+      <td><a href="https://github.com/darwinia-network/darwinia">darwinia</a></td>
+      <td>TBD / <a href="https://darwinia.subscan.io/">Explorer</a></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="committee-based">Committee Based</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sub Category</th>
+      <th>Type</th>
+      <th>Design/Docs</th>
+      <th>Implementation</th>
+      <th>Frontend</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Protocol Validators</td>
+      <td> </td>
+      <td><a href="https://www.gravitybridge.net/faq">Cosmos Gravity Bridge</a></td>
+      <td><a href="https://github.com/cosmos/gravity-bridge">gravity-bridge</a></td>
+      <td><a href="https://bridge.blockscape.network/">https://bridge.blockscape.network/</a> <a href="https://emeris.com/">https://emeris.com/ (ON HOLD)</a></td>
+    </tr>
+    <tr>
+      <td>Proof of Stake Chain</td>
+      <td> </td>
+      <td><a href="https://axelar.network/axelar_whitepaper.pdf">Axelar</a> <a href="https://docs.axelar.dev/">docs</a></td>
+      <td><a href="https://github.com/axelarnetwork/axelar-core">axelar-core</a></td>
+      <td>TBD</td>
+    </tr>
+    <tr>
+      <td>Proof of Stake Chain</td>
+      <td> </td>
+      <td><a href="https://cbridge-docs.celer.network/">Celer cBridge</a> <a href="https://celer.network/doc/CelerNetwork-Whitepaper.pdf">Celer Network Whitepaper</a></td>
+      <td><a href="https://github.com/celer-network/cBridge-node">cBridge-node</a>, <a href="https://github.com/celer-network/cBridge-contracts">cBridge-contracts</a>, <a href="https://github.com/celer-network/cbridge-cowa">cBridge-cowa</a></td>
+      <td><a href="https://cbridge.celer.network/">https://cbridge.celer.network/</a></td>
+    </tr>
+    <tr>
+      <td>External Networks</td>
+      <td>Multisig</td>
+      <td><a href="https://medium.com/harmony-one/introducing-horizon-an-ethereum-harmony-cross-chain-bridge-2f56ed7214b3">Horizon 1.0</a></td>
+      <td><a href="https://github.com/harmony-one/horizon">github</a></td>
+      <td>OBSOLETE</td>
+    </tr>
+    <tr>
+      <td>External Networks</td>
+      <td>Multisig</td>
+      <td><a href="https://book.wormhole.com/wormhole/2_architectureOverview.html">Wormhole</a></td>
+      <td><a href="https://github.com/wormhole-foundation/wormhole">wormhole</a></td>
+      <td><a href="https://wormhole.com/network/">network</a> <a href="https://wormhole.com/ecosystem/">ecosystem</a></td>
+    </tr>
+    <tr>
+      <td>External Networks</td>
+      <td>Decentralized Oracle Network (DON)</td>
+      <td><a href="https://blog.chain.link/introducing-the-cross-chain-interoperability-protocol-ccip/">Chainlink (CCIP)</a>, <a href="https://chain.link/cross-chain">web</a> <a href="https://research.chain.link/whitepaper-v2.pdf?_ga=2.40239147.884807142.1677705772-204109244.1677705772">Chainlink Whitepaper</a></td>
+      <td><a href="https://github.com/smartcontractkit/ccip-read">ccip-read</a></td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>External Networks</td>
+      <td>Decentralized Oracle Network (DON)</td>
+      <td><a href="https://layerzero.network/pdf/LayerZero_Whitepaper_Release.pdf">LayerZero</a>, <a href="https://layerzero.gitbook.io/docs/">docs</a></td>
+      <td><a href="https://github.com/LayerZero-Labs/LayerZero">LayerZero</a></td>
+      <td><a href="https://theaptosbridge.com/bridge">https://theaptosbridge.com/bridge</a> <a href="https://bitcoinbridge.network/bridge">https://bitcoinbridge.network/bridge</a> <a href="https://bridge.harmony.one/one">https://bridge.harmony.one/one</a></td>
+    </tr>
+    <tr>
+      <td>External Networks</td>
+      <td>Multi-Party Communication (MPC)</td>
+      <td><a href="https://docs.multichain.org/getting-started/introduction">Multichain bridge</a></td>
+      <td><a href="https://github.com/anyswap/CrossChain-Bridge">Cross-Chain-Bridge</a></td>
+      <td><a href="https://bsc.anyswap.exchange/bridge#/router">https://bsc.anyswap.exchange/</a></td>
+    </tr>
+    <tr>
+      <td>External Networks</td>
+      <td>Multi-Party Communication (MPC)</td>
+      <td><a href="https://medium.com/synapse-protocol/introducing-synapse-protocol-2af926143deb">Synapse Protocol</a>, <a href="https://docs.synapseprotocol.com/">docs</a></td>
+      <td><a href="https://github.com/orgs/synapsecns/repositories">synapsecns</a></td>
+      <td><a href="https://synapseprotocol.com/">https://synapseprotocol.com/</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="others">Others</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sub Category</th>
+      <th>Type</th>
+      <th>Design/Docs</th>
+      <th>Implementation</th>
+      <th>Frontend</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rollup-to-rollup</td>
+      <td> </td>
+      <td> </td>
+      <td><a href="https://hop.exchange/whitepaper.pdf">Hop Protocol</a>, <a href="https://docs.hop.exchange/basics/a-short-explainer">docs</a></td>
+      <td><a href="https://github.com/hop-protocol/contracts">contracts</a></td>
+      <td><a href="https://app.hop.exchange/">https://app.hop.exchange/</a></td>
+    </tr>
+    <tr>
+      <td>mesh-network</td>
+      <td> </td>
+      <td> </td>
+      <td><a href="https://docs.routerprotocol.com/whitepaper/introducing-router-protocol/architecture">Router Protocol</a>, <a href="https://dev.routerprotocol.com/">docs</a></td>
+      <td><a href="https://github.com/orgs/router-protocol/repositories">Router Protocol</a></td>
+      <td><a href="https://app.thevoyager.io/swap">https://app.thevoyager.io/swap</a></td>
+    </tr>
+    <tr>
+      <td>Bridge Components</td>
+      <td> </td>
+      <td> </td>
+      <td><a href="https://github.com/paritytech/parity-bridges-common#high-level-architecture">Parity Bridges Common</a></td>
+      <td><a href="https://github.com/paritytech/parity-bridges-common">parity-bridges-common</a></td>
+      <td>TBD</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="miscellaneous">Miscellaneous</h3>
+
+<ul>
+  <li>TVL of bridges can be found on <a href="https://defillama.com/protocols/Bridge">DeFi Llama</a></li>
+  <li>Some tools and queries are already prepared on Dune Analytics for analysis of bridge volume. See for example: <a href="https://dune.com/queries/511393">https://dune.com/queries/511393</a>.</li>
+</ul>
+
+<h2 id="bridging-components">Bridging Components</h2>
+
+<p>Following are the main components for Cross-Chain Bridges we review</p>
+
+<ul>
+  <li>Approach : The design approach for the bridge</li>
+  <li>Proving Mechanisms: How do we ensure transactions are valid
+    <ul>
+      <li>Transaction Proofs: How do we ensure a transacion was included in a valid block</li>
+      <li>Block Proofs: How do we ensure a block was included in the canonical chain</li>
+    </ul>
+  </li>
+  <li>Relayer Mechanisms
+    <ul>
+      <li>Relaying: How do we relay messages (blocks and transactions) between chains</li>
+    </ul>
+  </li>
+  <li>Light Clients: What Light client approaches can we leverage</li>
+  <li>Token Lockers: How do we safely store bridged assets in a trustless cost effective way</li>
+  <li>Multi-chain support: What chains are supported and what is the proces to add additional chains.</li>
+  <li>Economics: What are the costs for bridging between chains and how do we secure and incentivize validators and relayers.</li>
+</ul>
+
+<h2 id="cross-chain-communication-protocols">Cross Chain Communication Protocols</h2>
+
+<ul>
+  <li><a href="https://ibcprotocol.org/">INTER‑BLOCKCHAINCOMMUNICATION PROTOCOL</a></li>
+  <li><a href="https://github.com/cosmos/ibc">Cosmos IBC: Interchain Standards</a></li>
+  <li><a href="https://blog.cosmos.network/ibc-update-the-internet-of-blockchains-is-growing-fast-dae883228ebf">IBC Update— The Internet of Blockchains Is Growing Fast</a></li>
+  <li><a href="https://github.com/paritytech/xcm-format/blob/master/README.md">Polkadot Cross-Consensus Message (XCM) Format</a></li>
+  <li><a href="https://research.web3.foundation/en/latest/polkadot/XCMP/index.html">XCMP Design</a></li>
+  <li><a href="https://research.web3.foundation/en/latest/polkadot/XCMP/HRMP%20channels.html">HRMP Channels</a></li>
+  <li><a href="https://polkadot.network/blog/the-path-of-a-parachain-block/">The Path of a Parachain Block</a></li>
+  <li><a href="https://github.com/paritytech/parity-bridges-common/blob/master/README.md">Parity Bridges Common</a></li>
+</ul>
+
+<h2 id="bridge-attack-vectors-and-hacks">Bridge Attack Vectors and Hacks</h2>
+
+<p>Following is an overview of some common bridge attack vectors.</p>
+
+<ul>
+  <li><a href="https://old.reddit.com/r/ethereum/comments/rwojtk/ama_we_are_the_efs_research_team_pt_7_07_january/hrngyk8/">Vitalik; security limits of bridges</a></li>
+</ul>
+
+<blockquote>
+  <p>Now, imagine what happens if you move 100 ETH onto a bridge on Solana to get 100 Solana-WETH, and then Ethereum gets 51% attacked. The attacker deposited a bunch of their own ETH into Solana-WETH and then reverted that transaction on the Ethereum side as soon as the Solana side confirmed it. The Solana-WETH contract is now no longer fully backed, and perhaps your 100 Solana-WETH is now only worth 60 ETH. Even if there’s a perfect ZK-SNARK-based bridge that fully validates consensus, it’s still vulnerable to theft through 51% attacks like this.</p>
+
+  <p>It’s always safer to hold Ethereum-native assets on Ethereum or Solana-native assets on Solana than it is to hold Ethereum-native assets on Solana or Solana-native assets on Ethereum. And in this context, “Ethereum” refers not just to the base chain, but also any proper L2 that is built on it. If Ethereum gets 51% attacked and reverts, Arbitrum and Optimism revert too, and so “cross-rollup” applications that hold state on Arbitrum and Optimism are guaranteed to remain consistent even if Ethereum gets 51% attacked. And if Ethereum does not get 51% attacked, there’s no way to 51% attack Arbitrum and Optimism separately. Hence, holding assets issued on Optimism wrapped on Arbitrum is still perfectly safe.</p>
+
+  <p>Why a rollup can’t just “go use another data layer”. If a rollup stores its data on Celestia or BCH or whatever else but deals with assets on Ethereum, if that layer gets 51% attacked you’re screwed. The DAS on Celestia providing 51% attack resistance doesn’t actually help you because the Ethereum network isn’t reading that DAS; it would be reading a bridge, which would be vulnerable to 51% attacks. To be a rollup that provides security to applications using Ethereum-native assets, you have to use the Ethereum data layer (and likewise for any other ecosystem).</p>
+</blockquote>
+
+<p>Here are some sample hacks</p>
+
+<ul>
+  <li><a href="https://blog.chainalysis.com/reports/cross-chain-bridge-hacks-2022/">Vulnerabilities in Cross-chain Bridge Protocols Emerge as Top Security Risk</a></li>
+</ul>
+
+<blockquote>
+  <p>Following last night’s exploit of the Nomad Bridge, Chainalysis estimates that $2 billion in cryptocurrency has been stolen across 13 separate cross-chain bridge hacks, the majority of which was stolen this year. Attacks on bridges account for 69% of total funds stolen in 2022 so far.</p>
+</blockquote>
+
+<ul>
+  <li><a href="https://halborn.com/explained-the-qubit-hack-january-2022/">EXPLAINED: THE QUBIT HACK (JANUARY 2022)</a></li>
+</ul>
+
+<blockquote>
+  <p>The exploited contract used a modified safeTransferFrom() function which instead of making use of functionCall() to verify that the target address contained contract code, used the call() function directly. As the 0 address has no code at all, no code is run, and the call is completed successfully without reverting. As a result, the deposit function executed successfully but no real tokens were deposited.</p>
+
+  <p>The Ethereum QBridge caught the Deposit event and interpreted it as a valid deposit of ETH.  As a result, qXETH tokens were minted for the attacker on BSC.</p>
+</blockquote>
+
+<ul>
+  <li><a href="https://halborn.com/explained-the-wormhole-hack-february-2022/">EXPLAINED: THE WORMHOLE HACK (FEBRUARY 2022)</a></li>
+</ul>
+
+<blockquote>
+  <p>The actual extraction of 120k ETH from the Wormhole bridge came at the end of a series of events.  The actual flow of the attack was:</p>
+
+  <ol>
+    <li>The attacker creates a validator action approval (VAA) with a call to post_vaa</li>
+    <li>This VAA was used in a call to complete_wrapped to mint the 120,000 ETH extracted in the attack</li>
+    <li>The attacker “legitimately” extracted the minted tokens from the bridge</li>
+  </ol>
+
+  <p>The vulnerability that made the attack possible was a failure to perform proper signature verification in the VAA creation process.  The role of signature verification is delegated several times from post_vaa to verify_signatures to Secp256k1.</p>
+  <ul>
+    <li><a href="https://halborn.com/explained-the-ronin-hack-march-2022/">EXPLAINED: THE RONIN HACK (MARCH 2022)</a></li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>The Ronin Network attack was extremely stealthy.  In fact, the hack wasn’t noticed until six days after it occurred when the project team was notified by a user that they couldn’t withdraw about 5k ETH from the project’s bridge.  Further investigation discovered the largest hack in DeFi history to date.</p>
+
+  <p>The Ronin Network hack was made possible by compromised private keys.  The Ronin Network uses a set of nine validator nodes to approve transactions on the bridge, and a deposit or withdrawal requires approval by a majority of five of these nodes.  The attacker gained control of four validators controlled by Sky Mavis and a third-party Axie DAO validator that signed their malicious transactions.</p>
+</blockquote>
+
+<ul>
+  <li><a href="https://halborn.com/explained-the-harmony-horizon-bridge-hack/">EXPLAINED: THE HARMONY HORIZON BRIDGE HACK</a></li>
+</ul>
+
+<blockquote>
+  <p>Like most cross-chain bridges, the Harmony Horizon Bridge has a validation process for approving transactions being transferred over the bridge.  In this case, the approvals process uses a multi-signature scheme with five validators.</p>
+
+  <p>However, the bridge only used a 2 of 5 validation scheme.  This means that only two blockchain accounts needed to be compromised for an attacker to approve any malicious transaction that they wished.</p>
+
+  <p>The Harmony Horizon bridge was exploited via the theft of two private keys.  These private keys were encrypted with both a passphrase and a key management service, and no system had access to multiple plaintext keys.  However, the attacker managed to access and decrypt multiple keys.</p>
+
+  <p>With access to two of the bridge’s private keys, the attacker could create a transaction extracting $100 million from the bridge and confirm it using two accounts under their control.</p>
+</blockquote>
+
+<ul>
+  <li><a href="https://halborn.com/the-nomad-bridge-hack-a-deeper-dive/">THE NOMAD BRIDGE HACK: A DEEPER DIVE</a></li>
+</ul>
+
+<blockquote>
+  <p>On August 1, DeFi bridge Nomad was hacked for over $190M.</p>
+
+  <p>After a frenzied hack from hundreds of wallets, the bridge’s TVL dropped from $190,740,000 to $1,794 in mere hours. The hack involved a total of 960 transactions with 1,175 individual withdrawals from the bridge.
+According to Nomad’s post-mortem, an implementation bug in a June 21 smart contract upgrade caused the Replica contract to fail to authenticate messages properly.  This issue meant that any message could be forged as long as it had not already been processed.</p>
+
+  <p>As a result, contracts relying on the Replica for authentication of inbound messages suffered security failures.  From there, this authentication failure resulted in fraudulent messages being passed to the Nomad BridgeRouter contract.</p>
+</blockquote>
+
+<h2 id="references">References</h2>
+<!-- Background and Overview -->
+<ul>
+  <li><a href="https://medium.com/harmony-one/harmonys-cross-chain-future-41d02d53b10">Harmony’s Cross-Chain Future</a></li>
+  <li><a href="https://github.com/nomad-xyz/awesome-interop">Awesome Interoperability</a>: A curated list of awesome interoperability resources, libraries, tools and more.</li>
+  <li><a href="https://twitter.com/vitalikbuterin/status/1479501366192132099?lang=en">Vitalik: why the future will be <em>multi-chain</em>, but it will not be <em>cross-chain</em></a></li>
+  <li><a href="https://notes.ethereum.org/@vbuterin/SkeyEI3xv">Vitalik’s Annotated Ethereum 2.0 Spec</a></li>
+</ul>
+
+<!-- Background and Overview (Zero Knowledge Related) -->
+<ul>
+  <li><a href="https://medium.com/@ingonyama/bridging-the-multichain-universe-with-zero-knowledge-proofs-6157464fbc86">Bridging the Multichain Universe with Zero Knowledge Proofs</a></li>
+  <li><a href="https://github.com/worldcoin/awesome-zkml">awesome-zkml</a></li>
+</ul>
+
+<!-- Mathematical Theory -->
+<ul>
+  <li><a href="https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/">Elliptic Curve Cryptography: a gentle introduction</a></li>
+  <li><a href="https://vitalik.ca/general/2017/01/14/exploring_ecp.html">Exploring Elliptic Curve Pairings</a></li>
+</ul>
+
+<!-- Mathematical Theory (Zero Knowledge Related) -->
+<ul>
+  <li><a href="https://dankradfeist.de/ethereum/2020/06/16/kate-polynomial-commitments.html">KZG polynomial commitments</a></li>
+</ul>
+
+<!-- Research Papers -->
+<ul>
+  <li><a href="https://arxiv.org/pdf/1809.09044.pdf">Fraud and Data Availability Proofs</a>: Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities. <em>Light clients, also known as Simple Payment Verification (SPV) clients, are nodes which only download a small portion of the data in a blockchain, and use indirect means to verify that a given chain is valid.</em></li>
+</ul>
+
+<!-- Research Articles -->
+<ul>
+  <li><a href="https://notes.ethereum.org/@vbuterin/single_slot_finality">Paths toward single-slot finality</a>: A look at how to improve Ethereum’s LMD GHOST + Casper FFG consensus.</li>
+</ul>
+
+<!-- Research Papers (Zero Knowledge Related) -->
+<ul>
+  <li><a href="https://rdi.berkeley.edu/zkp/zkBridge/uploads/paper.pdf">zkBridge: Trustless Cross-chain Bridges Made Practical</a></li>
+  <li><a href="https://hyperoracle.medium.com/zkpos-end-to-end-trustless-65edccd87c5a">zkPoS: End-to-End Trustless</a>: HyperOracle article on how zkPoS provides the ability of proving the consensus with ZK.</li>
+  <li><a href="https://eprint.iacr.org/2022/621.pdf">Caulk: Lookup Arguments in Sublinear Time</a></li>
+  <li><a href="https://eprint.iacr.org/2022/1355.pdf">HyperPlonk: Plonk with Linear-Time Prover and High-Degree Custom Gates</a></li>
+</ul>
+
+<!-- Research Articles (Zero Knowledge Related) -->
+<ul>
+  <li><a href="https://ethresear.ch/t/slonk-a-simple-universal-snark/6420">SLONK—a simple universal SNARK</a>: a simplification to PLONK called SLONK. We replace the permutation argument (the “P” in PLONK) in favour of a shift argument (the “S” in SLONK). We get a universal SNARK with the smallest known proof size and verification time.</li>
+  <li><a href="https://notes.ethereum.org/T0ZVaaywQAqP4jegqO3asg?view">Kate commitments from the Lagrange basis without FFTs</a>: how to commit, evaluate and open polynomials in the Lagrange basis without FFTs. This is the first part in a series (see part 1, part 2, part 3) showing how to do PLONK-style universal SNARKs without FFTs</li>
+  <li><a href="https://notes.ethereum.org/Il4z42lmQtaUYFigsjsk2Q?view">Hadamard checks from the Lagrange basis without FFTs</a>: how to prove Hadamard relations between polynomials in the Lagrange basis without FFTs. This is the second part (see part 1, part 2, part 3) in a series showing how to do PLONK-style universal SNARKs without FFTs.</li>
+  <li><a href="https://notes.ethereum.org/DLRqK9V7RIOsTZkab8Hm_Q?view">PLONK-style SNARKs without FFTs</a>: how to do PLONK-style universal SNARKs without FFTs. This is part 3 in a series (part 1, part 2, part 3).</li>
+</ul>
+
+<!-- Implementation Articles -->
+<ul>
+  <li><a href="https://rdi.berkeley.edu/zkp/zkBridge/zkBridge.html">zkBridge: Trustless Cross-chain Bridges Made Practical</a></li>
+  <li><a href="https://blog.succinct.xyz/post/2022/09/20/proof-of-consensus">Succinct Towards the endgame of blockchain interoperability with proof of consensus</a></li>
+</ul>
+
+<!-- Implementations -->
+<ul>
+  <li><a href="https://github.com/wormhole-foundation/wormhole/blob/dev.v2/ethereum/contracts/Implementation.sol">Wormhole ethereum contracts Implementaion.sol</a></li>
+  <li><a href="https://github.com/semaraugusto/bls-verification-contract/blob/master/contracts/verifier.sol">bls verification contract</a></li>
+</ul>
+
+<!-- Documentation -->
+<ul>
+  <li><a href="https://ethereum.org/en/developers/docs/">ETHEREUM DEVELOPMENT DOCUMENTATION</a></li>
+  <li><a href="https://docs.minaprotocol.com/">MINA docs</a></li>
+</ul>
+
+<!-- Additional References -->
+
+<ul>
+  <li><a href="https://minacrypto.com/2022/04/27/nil-foundation/">nil-Foundation ETH-Mina bridge live on Ethereum testnet Ropsten</a></li>
+</ul>
+
+<h2 id="bridge-implementation-references">Bridge Implementation References</h2>
+
+<ul>
+  <li><a href="./harmony-horizon">Harmony Horizon Bridge</a>: Detailed code review
+    <ul>
+      <li><a href="https://github.com/johnwhitton/horizon/tree/refactorV2">Horizon</a>: javascript, solidity</li>
+    </ul>
+  </li>
+  <li><a href="./ethereum-near">Near Rainbow Bridge</a>: Detailed code review
+    <ul>
+      <li><a href="https://github.com/aurora-is-near/rainbow-bridge">Near Rainbow Bridge</a>: rust, go, solidity, javascript</li>
+      <li><a href="https://github.com/aurora-is-near/rainbow-token-connector">Near Rainbow Token Connector</a>: soldity</li>
+      <li>SDK
+        <ul>
+          <li><a href="https://github.com/aurora-is-near/rainbow-bridge-client/tree/main/packages/client">Near Rainbow Bridge Client</a>: typescript</li>
+        </ul>
+      </li>
+      <li>Frontend
+        <ul>
+          <li><a href="https://github.com/aurora-is-near/rainbow-bridge-frontend">NEAR Rainbow Bridge Frontend</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/nomad-xyz/monorepo">Nomad monprepo</a>: Nomad is a cross-chain communication protocol. This repo contains the following: Smart contracts for the core Nomad protocol, Smart contracts for the Nomad token bridge SDKs for Nomad’s core protocol, bridge, and governance systems, Tooling for local environment simulation and Smart contract deployment tooling.
+    <ul>
+      <li><a href="https://github.com/nomad-xyz/rust">Nomad rust</a>: Nomad is a cross-chain communication standard that supports passing messages between blockchains easily and inexpensively. Like IBC light clients and similar systems, Nomad establishes message-passing channels between chains. Once a channel is established, any application on that chain can use it to send messages to others chains.</li>
+      <li><a href="https://github.com/nomad-xyz/gelato-sdk">Nomad gelato-sdk</a>: This crate reimplements Gelato’s Relay SDK in Rust. It simply wraps Gelato Relay requests and responses to/from Gelato endpoints with Rust types and methods.</li>
+    </ul>
+  </li>
+  <li><a href="../bridge/succinct">Succinct labs</a>: Deep dive on Succinct labs Proof of Consensus for Ethreum.
+    <ul>
+      <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus">Proof of Consensus for Ethereum</a>: contains both the zkSNARK circuits as well as the smart contracts needed for our succinct light client implementation, as well as prototype message passing contracts and bridge contracts.</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/datachainlab/harmony-cosmos-bridge-demo">Datachain lcp</a>A proxy for light client verification executed in TEE.</li>
+  <li><a href="https://github.com/cosmos/ibc-go">Cosmos ibc-go</a>: allows blockchains to talk to each other. This end-to-end, connection-oriented, stateful protocol provides reliable, ordered, and authenticated communication between heterogeneous blockchains.
+    <ul>
+      <li><a href="https://github.com/cosmos/ibc">Cosmos ibc</a>: ibc specification</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/cosmos/gravity-bridge">Cosmos gravity bridge</a>: Cosmos &lt;-&gt; Ethereum bridge designed to run on the Cosmos Hub focused on maximum design simplicity and efficiency.</li>
+  <li><a href="https://github.com/axelarnetwork/axelar-core">Axelar</a>:  based on the Cosmos SDK is the main application of the axelar network. <a href="https://axelar.network/axelar_whitepaper.pdf">whitepaper</a> <a href="https://docs.axelar.dev/">docs</a></li>
+  <li><a href="https://github.com/celer-network/cBridge-node">Celer cBridge-node</a>: Celer cBridge relay node implementation in Golang. (<a href="https://cbridge-docs.celer.network/">docs</a>)
+    <ul>
+      <li><a href="https://github.com/celer-network/cBridge-contracts">Celer cBridge-contracts</a>: Contracts for cBridge, cross-chain liquidity solution powered by Hashed-Timelock Transfers</li>
+      <li><a href="https://github.com/celer-network/cbridge-cowa">Celer cBridge-cowa</a>: CosmWasm Rust smart contracts for cbridge</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/wormhole-foundation/wormhole">Wormhole</a>: the reference implementation of the Wormhole protocol. (<a href="https://book.wormhole.com/introduction/introduction.html">docs</a>)</li>
+  <li><a href="https://github.com/LayerZero-Labs/LayerZero">LayerZero Labs LayerZero</a>:  contains the smart contracts for LayerZero Endpoints. (<a href="https://layerzero.gitbook.io/docs/">docs</a>)</li>
+  <li><a href="https://github.com/anyswap/CrossChain-Bridge">Multichain CrossChain-Bridge</a>: Cross-Chain bridge based on Anyswap MPC network. (<a href="https://docs.multichain.org/getting-started/introduction">docs</a>)</li>
+  <li><a href="https://github.com/synapsecns">Synapse Protocol</a>: a universal interoperability protocol that enables secure cross-chain communication.( <a href="https://docs.synapseprotocol.com/">docs</a>)
+    <ul>
+      <li><a href="https://github.com/synapsecns/synapse-contracts">synapse-contracts</a>:  smart contracts for Synapse Protocol.</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/hop-protocol/contracts">Hop Protocol contracts</a>: Hop is a scalable rollup-to-rollup general token bridge. Heare are the smart contracts that power the Hop Exchange. (<a href="https://hop.exchange/whitepaper.pdf">whitepaper</a>, <a href="https://docs.hop.exchange/basics/a-short-explainer">docs</a>).</li>
+  <li><a href="https://github.com/orgs/router-protocol/repositories">Router Protocol</a>: (<a href="https://docs.routerprotocol.com/whitepaper/introducing-router-protocol">whitepaper</a>, <a href="https://dev.routerprotocol.com/">docs</a>)</li>
+  <li><a href="https://github.com/paritytech/parity-bridges-common">Parity Bridges Common</a>: a collection of components for building bridges.</li>
+  <li><a href="https://github.com/Snowfork/snowbridge">Snowfork snowbridge</a>: A trustless bridge between Polkadot and Ethereum. (<a href="https://docs.snowbridge.network/">docs</a>)</li>
+</ul>
+
+        </section>
+    </div>
+</body>
+
+</html>

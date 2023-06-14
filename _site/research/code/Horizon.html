@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Horizon Bridge | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Horizon Bridge" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/code/Horizon.html" />
+<meta property="og:url" content="http://localhost:4000/research/code/Horizon.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Horizon Bridge" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Overview","headline":"Horizon Bridge","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/code/Horizon.html"},"url":"http://localhost:4000/research/code/Horizon.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/primitives/intro.html">Primitives</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/primitives/fast-fourier-transformations.html">Fast Fourier Transforms</a></li>
+                    
+                    <li><a href="/research/primitives/fraud-proofs.html">Fraud Proofs</a></li>
+                    
+                    <li><a href="/research/primitives/light-clients.html">Light Clients</a></li>
+                    
+                    <li><a href="/research/primitives/primitives.html">Cryptographic Primitives</a></li>
+                    
+                    <li><a href="/research/primitives/weak-subjectivity.html">Weak Subjectivity</a></li>
+                    
+                    <li><a href="/research/primitives/signatures.html">Signature Schemes in Consensus Protocols</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/zk/intro.html">Zero Knowledge</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/zk/zkpos.html">ZK Proof of Stake</a></li>
+                    
+                    <li><a href="/research/zk/zksnarks.html">zk-SNARKs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/bridge/intro.html">Cross-chain Bridges</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/bridge/cosmos-ibc.html">Cosmos IBC</a></li>
+                    
+                    <li><a href="/research/bridge/harmony-horizon.html">Harmony Horizon</a></li>
+                    
+                    <li><a href="/research/bridge/isomorph.html">Isomorph</a></li>
+                    
+                    <li><a href="/research/bridge/near-rainbow.html">Near Rainbow Bridge</a></li>
+                    
+                    <li><a href="/research/bridge/polymerlabs.html">Polymer Labs</a></li>
+                    
+                    <li><a href="/research/bridge/snowbridge.html">Snowbridge</a></li>
+                    
+                    <li><a href="/research/bridge/succinct.html">Succinct Labs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/defi/intro.html">Decentralized Finance</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <!-- <ul>
+                <li><a href="/research/gaming/intro.html">Gaming</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <ul>
+                <li><a href="/research/code/intro.html">Code Reviews</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/code/Horizon.html">Horizon Bridge</a></li>
+                    
+                    <li><a href="/research/code/ethereum-near.html">Ethereum Near Bridging</a></li>
+                    
+                    <li><a href="/research/code/ethereum.html">Ethereum</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/misc/intro.html">Additional Research</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Horizon Bridge</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<p>This document reviews the <a href="https://github.com/johnwhitton/horizon/tree/refactorV2">horizon</a> current implementation, development tasks that need to be done to support POW and offers some thoughts on next steps to support Ethereum 2.0 and other chains.</p>
+
+<p>Further thoughs on ETH 2.0 support, removing the ETHHASH logic and SPV client and potentially replacing with MMR trees per epoch and checkpoints similar to Harmony Light Client on Ethereum, can be found in <a href="./ETH2_0.md">ETH2_0.md</a>.</p>
+
+<ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#next-steps">Next Steps</a>
+    <ul>
+      <li><a href="#ethereum-light-client">Ethereum Light Client</a></li>
+      <li><a href="#harmony-light-client">Harmony Light Client</a></li>
+      <li><a href="#transaction-sequencing">Transaction Sequencing</a></li>
+      <li><a href="#bridge-functionality">Bridge Functionality</a></li>
+      <li><a href="#multichain-support">MultiChain Support</a></li>
+    </ul>
+  </li>
+  <li><a href="#current-implementation-walkthough">Current Implementation Walkthough</a></li>
+  <li><a href="#ethereum-light-client-on-harmony">Ethereum Light Client (on Harmony)</a>
+    <ul>
+      <li><a href="#mapping-tokens-ethereum-to-harmony">Mapping Tokens (Ethereum to Harmony)</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Following are some of the improvements needed broken down by functional areas.</p>
+
+<h3 id="ethereum-light-client">Ethereum Light Client</h3>
+
+<ol>
+  <li>ETH 2.0 support see <a href="./ETH2_0.md">here</a></li>
+  <li>Queuing mechanism should be implemented to queue bridge transactions. The queue can be polled as part of the block relay functionality to process bridge transactions once the blocks have been relayed.</li>
+  <li>Consider whether we can use p2p messaging to receive published blocks rather than looping and polling via an RPC.</li>
+</ol>
+
+<h3 id="harmony-light-client">Harmony Light Client</h3>
+
+<ol>
+  <li>Needs to implement a process to <code class="language-plaintext highlighter-rouge">submitCheckpoint</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">eprove</code> logic needs to be reviewed</li>
+  <li>Queuing mechanism should be implemented to queue bridge transactions. The queue can be polled as part of the <code class="language-plaintext highlighter-rouge">submitCheckpoint</code> functionality to process bridge transactions once the blocks have been relayed.</li>
+  <li>Need to facilitate the core protocol <a href="https://github.com/harmony-one/harmony/pull/4198/files">MMR enhancements PR</a></li>
+</ol>
+
+<h3 id="transaction-sequencing">Transaction Sequencing</h3>
+
+<p>Sequencing of Transactions: Needs to be implemented and <code class="language-plaintext highlighter-rouge">TokenMap</code> in <code class="language-plaintext highlighter-rouge">bridge.js</code> needs to be refactored. Below is the current sequence flow and areas for improvements.</p>
+
+<ol>
+  <li>Ethereum Mapping Request</li>
+  <li>Relay of Block to EthereumLightClient.sol on Harmony
+    <ul>
+      <li>The block has to be relayed before we can process the Harmony Mapping request, as we have just executed the transaction the relayer usually has not relayed the block so this will fail.</li>
+      <li>There must be an additional 25 blocks on Ethereum before this block can be considered part of the canonical chain.</li>
+      <li>This logic needs to be rewritten to break down execution for 1. the ethereum mapping request 2. After a 25 block delay the Harmony Proof validation and executing the Harmony Mapping Request**</li>
+    </ul>
+  </li>
+  <li>Harmony Mapping Request</li>
+  <li>Relay of Checkpoint to HarmonyLightClient.sol on Ethereum
+    <ul>
+      <li>A <code class="language-plaintext highlighter-rouge">submitCheckpoint</code> in <code class="language-plaintext highlighter-rouge">HarmonyLightClient.sol</code> needs to have called either for the next epoch or for a checkpoint, after the block the harmony mapping transaction was in.**</li>
+      <li>Automatic submission of checkpoints to the Harmony Light Client has not been developed as yet. (It is not part of the <code class="language-plaintext highlighter-rouge">ethRelay.js</code>). And so the checkpoint would need to be manually submitted before the Ethereum Mapping could take place.</li>
+    </ul>
+  </li>
+  <li>Etherem Process Harmony Mapping Acknowledgement</li>
+</ol>
+
+<h3 id="bridge-functionality">Bridge Functionality</h3>
+
+<ol>
+  <li>Need to support mapping Harmony Tokens to Ethereum</li>
+</ol>
+
+<h3 id="multichain-support">MultiChain Support</h3>
+
+<ol>
+  <li>Need to support other chains
+    <ul>
+      <li>EVM: BSC, Polygon, Avalanche, Arbitrum, Optimism</li>
+      <li>Bitcoin</li>
+      <li>NEAR</li>
+      <li>Solana</li>
+      <li>Polkadot</li>
+    </ul>
+  </li>
+  <li>Links to initial Design thoughs including reviews of cross chain messaging protocols and other multichain bridges can be found in <a href="./MultiChainTrustlessBridgeDraft.pdf">Multichain Trustless Bridge : Draft</a></li>
+</ol>
+
+<h2 id="current-implementation-walkthough">Current Implementation Walkthough</h2>
+
+<p>Following is a detailed walk though of the current implementation of the Ethereum Light Client and the flow for mapping tokens from Ethereum to Harmony.</p>
+
+<h2 id="ethereum-light-client-on-harmony">Ethereum Light Client (on Harmony)</h2>
+
+<p><strong>Design</strong>
+Existing Design</p>
+
+<ol>
+  <li>DAG is generated for each Ethereum EPOCH: This takes a couple of hours and has a size of approx 1GB.</li>
+  <li>Relayer is run to replicate each block header to the SPV Client on Harmony.</li>
+  <li>EthereumLightClient.sol addBlockHeader: Adds each block header to the Ethereum Light Client.</li>
+  <li>Transactions are Verified</li>
+</ol>
+
+<p><strong>Running the Relayer</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Start the relayer (note: replace the etherum light client address below)
+# relay [options] &lt;ethUrl&gt; &lt;hmyUrl&gt; &lt;elcAddress&gt;   relay eth block header to elc on hmy
+ yarn cli ethRelay relay http://localhost:8645 http://localhost:9500 0x3Ceb74A902dc5fc11cF6337F68d04cB834AE6A22
+</code></pre></div></div>
+
+<p><strong>Implementation</strong></p>
+
+<ol>
+  <li>DAG Generation can be done explicity by calling <code class="language-plaintext highlighter-rouge">dagProve</code> from the CLI or it is done automatically by <code class="language-plaintext highlighter-rouge">getHeaderProof</code> in <code class="language-plaintext highlighter-rouge">ethHashProof/BlockProof.js</code> which is called from <code class="language-plaintext highlighter-rouge">blockRelay</code> in <code class="language-plaintext highlighter-rouge">cli/ethRelay.js</code>.</li>
+  <li>Relaying of Block Headers is done by <code class="language-plaintext highlighter-rouge">blockRelayLoop</code> in <code class="language-plaintext highlighter-rouge">cli/ethRelay.js</code> which
+    <ul>
+      <li>Reads the last block header from EthereumLightClient.sol</li>
+      <li>Loops through calling an Ethereum RPC per block to retrieve the blockHeader using <code class="language-plaintext highlighter-rouge">return eth.getBlock(blockNo).then(fromRPC)</code> in function <code class="language-plaintext highlighter-rouge">getBlockByNumber</code> in <code class="language-plaintext highlighter-rouge">eth2hmy-relay/getBlockHeader.js</code></li>
+    </ul>
+  </li>
+  <li>Adding BlockHeaders is done by <code class="language-plaintext highlighter-rouge">await elc.addBlockHeader(rlpHeader, proofs.dagData, proofs.proofs)</code> which is called from <code class="language-plaintext highlighter-rouge">cli/ethRelay.js</code>. <code class="language-plaintext highlighter-rouge">addBlockHeader</code> in <code class="language-plaintext highlighter-rouge">EthereumLightClient.sol</code>
+    <ul>
+      <li>calculates the blockHeader Hash</li>
+      <li>and checks that it
+        <ul>
+          <li>hasn’t already been relayed,</li>
+          <li>is the next block to be added,</li>
+          <li>has a valid timestamp</li>
+          <li>has a valid difficulty</li>
+          <li>has a valid Proof of Work (POW)</li>
+        </ul>
+      </li>
+      <li>Check if the canonical chain needs to be replaced by another fork</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="mapping-tokens-ethereum-to-harmony">Mapping Tokens (Ethereum to Harmony)</h3>
+
+<p><strong>Design</strong></p>
+
+<ol>
+  <li>If the Token Has not already been mapped on Harmony
+    <ul>
+      <li>Harmony: Create an ERC20 Token</li>
+      <li>Harmony: Map the Ethereum Token to the new ERC20 Contract</li>
+      <li>Ethereum: Validate the Harmony Mapping Transaction</li>
+      <li>Ethereum: Map the Harmony ERC20 token to the existing Ethereum Token</li>
+      <li>Harmony: Validate the Ethereum mapping Transaction</li>
+    </ul>
+  </li>
+</ol>
+
+<p><em>Note: The key difference between <code class="language-plaintext highlighter-rouge">TokenLockerOnEthereum.sol</code> and <code class="language-plaintext highlighter-rouge">TokenLockerOnHarmony.sol</code> is the proof validation. <code class="language-plaintext highlighter-rouge">TokenLockerOnEthereum.sol</code> uses <code class="language-plaintext highlighter-rouge">./lib/MMRVerifier.sol</code> to validate the <a href="https://github.com/opentimestamps/opentimestamps-server/blob/master/doc/merkle-mountain-range.md">Mountain Merkle Ranges</a> on Harmony and <code class="language-plaintext highlighter-rouge">HarmonyProver.sol</code>. <code class="language-plaintext highlighter-rouge">TokenLockerOnHarmony.sol</code> imports <code class="language-plaintext highlighter-rouge">./lib/MPTValidatorV2.sol</code> to validate <a href="https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/#merkle-patricia-trees">Merkle Patrica Trie</a> and <code class="language-plaintext highlighter-rouge">./EthereumLightClient.sol</code>.</em></p>
+
+<p><em>Note: <code class="language-plaintext highlighter-rouge">validateAndExecuteProof</code> is responsible for creation of the BridgeTokens on the destination chain it does this by calling <code class="language-plaintext highlighter-rouge">execute</code> call in <code class="language-plaintext highlighter-rouge">TokenLockerLocker.sol</code> which then calls the function <code class="language-plaintext highlighter-rouge">onTokenMapReqEvent</code> in <code class="language-plaintext highlighter-rouge">TokenRegistry.sol</code> which creates a new Bridge Token <code class="language-plaintext highlighter-rouge">BridgedToken mintAddress = new BridgedToken{salt: salt}();</code> and then initializes it. This uses <a href="https://ethereum.org/en/developers/docs/data-structures-and-encoding/rlp/">(RLP) Serialization</a></em></p>
+
+<p><em>Note: The shims in <code class="language-plaintext highlighter-rouge">ethWeb3.js</code> provide simplified functions for <code class="language-plaintext highlighter-rouge">ContractAt</code>, <code class="language-plaintext highlighter-rouge">ContractDeploy</code>, <code class="language-plaintext highlighter-rouge">sendTx</code> and <code class="language-plaintext highlighter-rouge">addPrivateKey</code> and have a constructor which uses <code class="language-plaintext highlighter-rouge">process.env.PRIVATE_KEY</code>.</em></p>
+
+<p><strong>Mapping the Tokens</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Map the Tokens
+# map &lt;ethUrl&gt; &lt;ethBridge&gt; &lt;hmyUrl&gt; &lt;hmyBridge&gt; &lt;token&gt;
+yarn cli Bridge map http://localhost:8645 0x017f8C7d1Cb04dE974B8aC1a6B8d3d74bC74E7E1 http://localhost:9500 0x017f8C7d1Cb04dE974B8aC1a6B8d3d74bC74E7E1 0x4e59AeD3aCbb0cb66AF94E893BEE7df8B414dAB1
+</code></pre></div></div>
+
+<p><strong>Implementation</strong></p>
+
+<ul>
+  <li>The CLI calls <code class="language-plaintext highlighter-rouge">tokenMap</code> in <code class="language-plaintext highlighter-rouge">src/bridge/contract.js</code> to
+    <ul>
+      <li>Instantiate the Ethereum Bridge and Harmony Bridge Contracts</li>
+      <li>Calls <code class="language-plaintext highlighter-rouge">TokenMap</code> in <code class="language-plaintext highlighter-rouge">scr/bridge/bridge.js</code> to
+        <ul>
+          <li>Issue a token Map request on Ethereum <code class="language-plaintext highlighter-rouge">const mapReq = await src.IssueTokenMapReq(token)</code></li>
+          <li>Acknowledge the Map Request on Harmony <code class="language-plaintext highlighter-rouge">const mapAck = await Bridge.CrossRelayEthHmy(src, dest, mapReq)</code></li>
+          <li>Issue a token Map request on Harmony <code class="language-plaintext highlighter-rouge">return Bridge.CrossRelayHmyEth(dest, src, mapAck.transactionHash)</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Here is the Logic (call execution overview) when Mapping Tokens across Chains. <em>NOTE: Currently mapping has only been developed from Ethereum to Harmony (not bi-directional)</em>.</strong></p>
+
+<ol>
+  <li>Bridge Map is called in src.cli.index.js and it calls <code class="language-plaintext highlighter-rouge">tokenMap</code> in <code class="language-plaintext highlighter-rouge">bridge/contract.js</code> which
+    <ul>
+      <li>Get srcBridge Contract on Ethereum <code class="language-plaintext highlighter-rouge">TokenLockerOnEthereum.sol</code> from <code class="language-plaintext highlighter-rouge">ethBridge.js</code> it also instantiates an <code class="language-plaintext highlighter-rouge">eprover</code> using <code class="language-plaintext highlighter-rouge">tools/eprover/index.js</code> which calls <code class="language-plaintext highlighter-rouge">txProof.js</code> which uses <a href="https://www.npmjs.com/package/eth-proof">eth-proof npm package</a>. <em>Note: this is marked with a //TODO need to test and develop proving logic on Harmony.</em></li>
+      <li>Get destBridge Contract on Hamony <code class="language-plaintext highlighter-rouge">TokenLockerOnHarmony.sol</code> from <code class="language-plaintext highlighter-rouge">hmyBridge.js</code> it also instantiates an <code class="language-plaintext highlighter-rouge">hprove</code> using <code class="language-plaintext highlighter-rouge">tools/eprover/index.js</code> which calls <code class="language-plaintext highlighter-rouge">txProof.js</code> which uses <a href="https://www.npmjs.com/package/eth-proof">eth-proof npm package</a>.</li>
+      <li>calls <code class="language-plaintext highlighter-rouge">TokenMap</code> in <code class="language-plaintext highlighter-rouge">bridge.js</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">TokenMap</code> Calls IssueTokenMapReq (on the Ethreum Locker) returning the <code class="language-plaintext highlighter-rouge">mapReq.transactionHash</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">IssueTokenMapReq(token)</code> is held in <code class="language-plaintext highlighter-rouge">bridge.js</code> as part of the bridge class</li>
+      <li>It calls <code class="language-plaintext highlighter-rouge">issueTokenMapReq</code> on <code class="language-plaintext highlighter-rouge">TokenLockerOnEthereum.sol</code> which is implemented by <code class="language-plaintext highlighter-rouge">TokenRegistry.sol</code></li>
+      <li><code class="language-plaintext highlighter-rouge">issueTokenMapReq</code> checks if the token has already been mapped if not it was emitting a <code class="language-plaintext highlighter-rouge">TokenMapReq</code> with the details of the token to be mapped. However this was commented out as it was felt that, if it has not been mapped, we use the <code class="language-plaintext highlighter-rouge">transactionHash</code> of the mapping request` to drive the logic below (not the event).</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">TokenMap</code> calls <code class="language-plaintext highlighter-rouge">Bridge.CrossRelay</code> with the IssueTokenMapReq.hash to
+    <ul>
+      <li>gets the proof of the transaction on Ethereum via <code class="language-plaintext highlighter-rouge">getProof</code> calling <code class="language-plaintext highlighter-rouge">prover.ReceiptProof</code> which calls the eprover and returns <code class="language-plaintext highlighter-rouge">proof</code> with
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">hash: sha3(resp.header.serialize()),</code></li>
+          <li><code class="language-plaintext highlighter-rouge">root: resp.header.receiptRoot,</code></li>
+          <li><code class="language-plaintext highlighter-rouge">proof: encode(resp.receiptProof),</code></li>
+          <li><code class="language-plaintext highlighter-rouge">key: encode(Number(resp.txIndex)) // '0x12' =&gt; Nunmber</code></li>
+        </ul>
+      </li>
+      <li>We then call <code class="language-plaintext highlighter-rouge">dest.ExecProof(proof)</code> to execute  the proof on Harmony
+        <ul>
+          <li>This calls <code class="language-plaintext highlighter-rouge">validateAndExecuteProof</code> on <code class="language-plaintext highlighter-rouge">TokenLockerOnHarmony.sol</code> with the <code class="language-plaintext highlighter-rouge">proofData</code> from above, which
+            <ul>
+              <li>requires <code class="language-plaintext highlighter-rouge">lightclient.VerifyReceiptsHash(blockHash, rootHash),</code> implemented by <code class="language-plaintext highlighter-rouge">./EthereumLightClient.sol</code>
+                <ul>
+                  <li>This returns <code class="language-plaintext highlighter-rouge">return bytes32(blocks[uint256(blockHash)].receiptsRoot) == receiptsHash;</code></li>
+                  <li><strong>Which means the block has to be relayed first, as we have just executed the transaction the relayer usually has not relayed the block so this will fail</strong></li>
+                </ul>
+              </li>
+              <li>requires <code class="language-plaintext highlighter-rouge">lightclient.isVerified(uint256(blockHash)</code> implemented by <code class="language-plaintext highlighter-rouge">./EthereumLightClient.sol</code>
+                <ul>
+                  <li>This returns <code class="language-plaintext highlighter-rouge">return canonicalBlocks[blockHash] &amp;&amp; blocks[blockHash].number + 25 &lt; blocks[canonicalHead].number;</code></li>
+                  <li><strong>Which means there must be an additional 25 blocks on Ethereum before this can be processed. This logic needs to be rewritten to break down execution for 1. the ethereum mapping request 2. After a 25 block delay the Harmony Proof validation and executing the Harmony Mapping Request</strong></li>
+                </ul>
+              </li>
+              <li><code class="language-plaintext highlighter-rouge">require(spentReceipt[receiptHash] == false, "double spent!");</code> to ensure that we haven’t already executed this proof</li>
+              <li>gets the <code class="language-plaintext highlighter-rouge">rlpdata</code> using <code class="language-plaintext highlighter-rouge">EthereumProver.validateMPTProof</code> implemented by <code class="language-plaintext highlighter-rouge">EthereumProver.sol</code> which
+                <ul>
+                  <li>Validates a Merkle-Patricia-Trie proof.</li>
+                  <li>Returns a value whose inclusion is proved or an empty byte array for a proof of exclusion</li>
+                </ul>
+              </li>
+              <li>marks <code class="language-plaintext highlighter-rouge">spentReceipt[receiptHash] = true;</code></li>
+              <li><code class="language-plaintext highlighter-rouge">execute(rlpdata)</code> implemented by <code class="language-plaintext highlighter-rouge">TokenLocker.sol</code> which calls <code class="language-plaintext highlighter-rouge">onTokenMapReqEvent(topics, Data)</code> implemented by <code class="language-plaintext highlighter-rouge">TokenRegistry.sol</code>
+                <ul>
+                  <li><code class="language-plaintext highlighter-rouge">address tokenReq = address(uint160(uint256(topics[1])));</code> gets the address of the token to be mapped.</li>
+                  <li>require <code class="language-plaintext highlighter-rouge">address(RxMapped[tokenReq]) == address(0)</code> that the token has not already been mapped.</li>
+                  <li><code class="language-plaintext highlighter-rouge">address(RxMapped[tokenReq]) == address(0)</code> creates a new BridgedToken implemented by <code class="language-plaintext highlighter-rouge">BridgedToken.sol</code>
+                    <ul>
+                      <li><code class="language-plaintext highlighter-rouge">contract BridgedToken is ERC20Upgradeable, ERC20BurnableUpgradeable, OwnableUpgradeable</code> it is a standard openzepplin ERC20 Burnable, Ownable, Upgradeable token</li>
+                    </ul>
+                  </li>
+                  <li><code class="language-plaintext highlighter-rouge">mintAddress.initialize</code> initialize the token with the same <code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">symbol</code> and <code class="language-plaintext highlighter-rouge">decimals</code> as the ethereum bridged token</li>
+                  <li><code class="language-plaintext highlighter-rouge">RxMappedInv[address(mintAddress)] = tokenReq;</code> updates the inverse Key Value Mapping</li>
+                  <li><code class="language-plaintext highlighter-rouge">RxMapped[tokenReq] = mintAddress;</code> updates the Ethereum mapped tokens</li>
+                  <li><code class="language-plaintext highlighter-rouge">RxTokens.push(mintAddress);</code> add the newly created token to a list of bridged tokens</li>
+                  <li><code class="language-plaintext highlighter-rouge">emit TokenMapAck(tokenReq, address(mintAddress));</code></li>
+                </ul>
+              </li>
+              <li><code class="language-plaintext highlighter-rouge">require(executedEvents &gt; 0, "no valid event")</code> to check if it executed the mapping correctly.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>We then take the Harmony Mapping <code class="language-plaintext highlighter-rouge">transactionHash</code> and repeat the above process to prove the Harmony mapping acknowledgment on Ethereum (Cross Relay second call) <code class="language-plaintext highlighter-rouge">return Bridge.CrossRelay(dest, src, mapAck.transactionHash);</code></li>
+</ol>
+
+<ul>
+  <li>gets the proof of the transaction on Harmony via <code class="language-plaintext highlighter-rouge">getProof</code> calling <code class="language-plaintext highlighter-rouge">prover.ReceiptProof</code> which calls the eprover and returns <code class="language-plaintext highlighter-rouge">proof</code> with
+      *<code class="language-plaintext highlighter-rouge">hash: sha3(resp.header.serialize()),</code>
+      * <code class="language-plaintext highlighter-rouge">root: resp.header.receiptRoot,</code>
+      *<code class="language-plaintext highlighter-rouge">proof: encode(resp.receiptProof),</code>
+      * <code class="language-plaintext highlighter-rouge">key: encode(Number(resp.txIndex)) // '0x12' =&gt; Nunmber</code>
+    <ul>
+      <li>We then call <code class="language-plaintext highlighter-rouge">dest.ExecProof(proof)</code> to execute the proof on Ethereum
+        <ul>
+          <li>This calls <code class="language-plaintext highlighter-rouge">validateAndExecuteProof</code> on <code class="language-plaintext highlighter-rouge">TokenLokerOnEthereum.sol</code> with the <code class="language-plaintext highlighter-rouge">proofData</code> from above, which
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">require(lightclient.isValidCheckPoint(header.epoch, mmrProof.root),</code> implemented by <code class="language-plaintext highlighter-rouge">HarmonyLightClient.sol</code>
+                <ul>
+                  <li><code class="language-plaintext highlighter-rouge">return epochMmrRoots[epoch][mmrRoot]</code> which means that the epoch has to have had a checkpoint submitted via <code class="language-plaintext highlighter-rouge">submitCheckpoint</code></li>
+                </ul>
+              </li>
+              <li><code class="language-plaintext highlighter-rouge">bytes32 blockHash = HarmonyParser.getBlockHash(header);</code> gets the blockHash implemented by <code class="language-plaintext highlighter-rouge">HarmonyParser.sol</code>
+                <ul>
+                  <li>This returns <code class="language-plaintext highlighter-rouge">return keccak256(getBlockRlpData(header));</code></li>
+                  <li><code class="language-plaintext highlighter-rouge">getBlockRlpData</code>  creates a list <code class="language-plaintext highlighter-rouge">bytes[] memory list = new bytes[](15);</code> and uses statements like <code class="language-plaintext highlighter-rouge">list[0] = RLPEncode.encodeBytes(abi.encodePacked(header.parentHash));</code> to perform <a href="https://ethereum.org/en/developers/docs/data-structures-and-encoding/rlp/">Recursive-Length Prefix (RLP) Serialization</a> implemented by <code class="language-plaintext highlighter-rouge">RLPEncode.sol</code></li>
+                </ul>
+              </li>
+              <li><code class="language-plaintext highlighter-rouge">HarmonyProver.verifyHeader(header, mmrProof);</code> verifys the header implemented by <code class="language-plaintext highlighter-rouge">HarmonyProver.sol</code>
+                <ul>
+                  <li><code class="language-plaintext highlighter-rouge">bytes32 blockHash = HarmonyParser.getBlockHash(header);</code> gets the blockHash implemented by <code class="language-plaintext highlighter-rouge">HarmonyParser.sol</code> as above</li>
+                  <li><code class="language-plaintext highlighter-rouge">valid = MMRVerifier.inclusionProof(proof.root, proof.width, proof.index, blockHash, proof.peaks, proof.siblings);</code> verifys the proff using the <a href="https://github.com/opentimestamps/opentimestamps-server/blob/master/doc/merkle-mountain-range.md">Merkle Mountain Range Proof</a> passed <code class="language-plaintext highlighter-rouge">MMRVerifier.MMRProof memory proof</code> and the <code class="language-plaintext highlighter-rouge">blockHash</code>.</li>
+                  <li><strong>NOTE: This means that a <code class="language-plaintext highlighter-rouge">submitCheckpoint</code> in <code class="language-plaintext highlighter-rouge">HarmonyLightClient.sol</code> needs to have called either for the next epoch or for a checkpoint, after the block the harmony mapping transaction was in.</strong></li>
+                  <li><strong>NOTE: Automatic submission of checkpoints to the Harmony Light Client has not been developed as yet. (It is not part of the <code class="language-plaintext highlighter-rouge">ethRelay.js</code>). And so the checkpoint would need to be manually submitted before the Ethereum Mapping could take place.</strong></li>
+                </ul>
+              </li>
+              <li><code class="language-plaintext highlighter-rouge">require(spentReceipt[receiptHash] == false, "double spent!");</code> ensure that we haven’t already processed this mapping request`</li>
+              <li><code class="language-plaintext highlighter-rouge">HarmonyProver.verifyReceipt(header, receiptdata)</code> ensure the receiptdata is valid</li>
+              <li><code class="language-plaintext highlighter-rouge">spentReceipt[receiptHash] = true;</code> marks the receipt as having been processed</li>
+              <li><code class="language-plaintext highlighter-rouge">execute(receiptdata.expectedValue);</code> implemented by <code class="language-plaintext highlighter-rouge">TokenLocker.sol</code> which calls <code class="language-plaintext highlighter-rouge">onTokenMapAckEvent(topics)</code> implemented by <code class="language-plaintext highlighter-rouge">TokenRegistry.sol</code>
+                <ul>
+                  <li><code class="language-plaintext highlighter-rouge">address tokenReq = address(uint160(uint256(topics[1])));</code></li>
+                  <li><code class="language-plaintext highlighter-rouge">address tokenAck = address(uint160(uint256(topics[2])));</code></li>
+                  <li><code class="language-plaintext highlighter-rouge">require(TxMapped[tokenReq] == address(0), "missing mapping to acknowledge");</code></li>
+                  <li><code class="language-plaintext highlighter-rouge">TxMapped[tokenReq] = tokenAck;</code></li>
+                  <li><code class="language-plaintext highlighter-rouge">TxMappedInv[tokenAck] = IERC20Upgradeable(tokenReq);</code></li>
+                  <li><code class="language-plaintext highlighter-rouge">TxTokens.push(IERC20Upgradeable(tokenReq));</code></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Upon completion of tokenMap control is passed back to Bridge Map which</li>
+  <li>Calls TokenPair on Ethereum</li>
+  <li>Calls ethTokenInfo to get the status of the ERC20</li>
+  <li>Calls hmyTokenInfo to get the tokenStatus on Harmony</li>
+</ol>
+
+        </section>
+    </div>
+</body>
+
+</html>

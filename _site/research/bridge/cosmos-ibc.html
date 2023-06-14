@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Cosmos IBC | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Cosmos IBC" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cosmos IBC" />
+<meta property="og:description" content="Cosmos IBC" />
+<link rel="canonical" href="http://localhost:4000/research/bridge/cosmos-ibc.html" />
+<meta property="og:url" content="http://localhost:4000/research/bridge/cosmos-ibc.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-24T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Cosmos IBC" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-24T00:00:00-08:00","datePublished":"2023-02-24T00:00:00-08:00","description":"Cosmos IBC","headline":"Cosmos IBC","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/bridge/cosmos-ibc.html"},"url":"http://localhost:4000/research/bridge/cosmos-ibc.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/primitives/intro.html">Primitives</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/primitives/fast-fourier-transformations.html">Fast Fourier Transforms</a></li>
+                    
+                    <li><a href="/research/primitives/fraud-proofs.html">Fraud Proofs</a></li>
+                    
+                    <li><a href="/research/primitives/light-clients.html">Light Clients</a></li>
+                    
+                    <li><a href="/research/primitives/primitives.html">Cryptographic Primitives</a></li>
+                    
+                    <li><a href="/research/primitives/weak-subjectivity.html">Weak Subjectivity</a></li>
+                    
+                    <li><a href="/research/primitives/signatures.html">Signature Schemes in Consensus Protocols</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/zk/intro.html">Zero Knowledge</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/zk/zkpos.html">ZK Proof of Stake</a></li>
+                    
+                    <li><a href="/research/zk/zksnarks.html">zk-SNARKs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/bridge/intro.html">Cross-chain Bridges</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/bridge/cosmos-ibc.html">Cosmos IBC</a></li>
+                    
+                    <li><a href="/research/bridge/harmony-horizon.html">Harmony Horizon</a></li>
+                    
+                    <li><a href="/research/bridge/isomorph.html">Isomorph</a></li>
+                    
+                    <li><a href="/research/bridge/near-rainbow.html">Near Rainbow Bridge</a></li>
+                    
+                    <li><a href="/research/bridge/polymerlabs.html">Polymer Labs</a></li>
+                    
+                    <li><a href="/research/bridge/snowbridge.html">Snowbridge</a></li>
+                    
+                    <li><a href="/research/bridge/succinct.html">Succinct Labs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/defi/intro.html">Decentralized Finance</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <!-- <ul>
+                <li><a href="/research/gaming/intro.html">Gaming</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <ul>
+                <li><a href="/research/code/intro.html">Code Reviews</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/code/Horizon.html">Horizon Bridge</a></li>
+                    
+                    <li><a href="/research/code/ethereum-near.html">Ethereum Near Bridging</a></li>
+                    
+                    <li><a href="/research/code/ethereum.html">Ethereum</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/misc/intro.html">Additional Research</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Cosmos IBC</h1>
+            <!-- <h6><h1 id="cosmos-ibc">Cosmos IBC</h1>
+</h6> -->
+            <!-- <div>Feb 24th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h1 id="cosmos-ibc">Cosmos IBC</h1>
+
+<h2 id="overview">Overview</h2>
+
+<p>Cosmos is a network of the many blockchains built on IBC protocol. The IBC protocol is a universal interoperability protocol that allows two different blockchains to communicate with one another. IBC guarantees reliable, ordered, and authenticated communication. See <a href="https://v1.cosmos.network/resources/whitepaper">Cosmos Network Whitepaper</a></p>
+
+<p>Blockchains based on IBC protocol may use validity based proofs for interchain communication. See <a href="https://medium.com/the-interchain-foundation/eli5-what-is-ibc-def44d7b5b4c">IBC Protocol ELI5: What is IBC?</a></p>
+
+<h3 id="protocol">Protocol</h3>
+
+<ul>
+  <li><a href="https://github.com/cosmos/ibc">Design</a>: the primary repository for development and documentation</li>
+  <li><a href="https://tutorials.cosmos.network/academy/3-ibc/">Docs</a>: a quick introduction. See also <a href="https://ibc.cosmos.network/">ibc-go documentation</a></li>
+  <li><a href="https://github.com/cosmos/ibc-go">Implementation</a>: Implementation in Golang, built as a Cosmos SDK module.</li>
+  <li><a href="https://ibc.cosmos.network/main/roadmap/roadmap.html">Roadmap</a></li>
+</ul>
+
+<h3 id="bridging">Bridging</h3>
+
+<ul>
+  <li><a href="https://github.com/cosmos/relayer">Relayer</a>: “…blockchains do not directly pass messages to each other over the network. This is where relayer comes in. A relayer process monitors for updates on opens paths between sets of IBC enabled chains…”</li>
+  <li><a href="https://ibc.cosmos.network/main/ibc/light-clients/overview.html">Light Clients</a>: “…Light clients operate under a strict set of rules which provide security guarantees for state updates and facilitate the ability to verify the state of a remote blockchain using merkle proofs”</li>
+</ul>
+
+<h3 id="utilities">Utilities</h3>
+
+<ul>
+  <li><a href="https://hub.mintscan.io/chains/ibc-network">Explorer</a>: Monitoring interchain activities and messaging in 3D</li>
+  <li><a href="https://www.keplr.app/">Keplr</a>: Wallet designed to work across blockchains on IBC (see <a href="https://catdotfish.medium.com/getting-started-with-ibc-transfers-276e9ce91e17">Getting Started with Cosmos IBC Transfers</a>)</li>
+</ul>
+
+<p>(to be continued)</p>
+
+<!--============ Content below requires significant revision ==========
+
+## Code Review 
+
+Following is a review of [ibc-go](https://github.com/cosmos/ibc-go)
+
+### Signing Mechanisms from [cosmos-sdk](https://github.com/cosmos/cosmos-sdk)
+* [bcrypt](https://www.usenix.org/legacy/event/usenix99/provos/provos.pdf)
+  * [cosmos-sdk bcrypt](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/bcrypt)
+* [ed25519](https://ed25519.cr.yp.to/ed25519-20110926.pdf)
+  * [cosmos-sdk ed25519](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/ed25519)
+* [ecdsa](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm)
+  * [cosmos-sdk ecdsa](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/internal/ecdsa)
+* [secp256k1](https://www.secg.org/sec2-v2.pdf)
+  * [cosmos-sdk secp256k1](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/secp256k1)
+  * [secp256r1](https://www.secg.org/sec2-v2.pdf)
+    * [cosmos-sdk secp256r1](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/secp256r1)
+
+* [merkle.go](https://github.com/cosmos/ibc-go/blob/main/modules/core/23-commitment/types/merkle.go)
+
+### Proving Mechanisms
+
+### Relayer Mechanisms
+
+* [e2e relayer.go](https://github.com/cosmos/ibc-go/blob/main/e2e/relayer/relayer.go) uses [strangelove-ventures interchaintest relayer](https://github.com/strangelove-ventures/interchaintest/tree/main/relayer)
+  * [cosmos-relayer.go](https://github.com/strangelove-ventures/interchaintest/blob/main/relayer/rly/cosmos_relayer.go)
+
+### Light Client Functionality
+* [light-clients](https://github.com/cosmos/ibc-go/tree/main/modules/light-clients)
+
+### Token Lockers
+
+## References
+
+## Appendices-->
+
+        </section>
+    </div>
+</body>
+
+</html>

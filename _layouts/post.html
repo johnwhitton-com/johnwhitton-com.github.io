@@ -16,7 +16,7 @@
             <ul>
                 <li><a href="/posts">John's Writing</a></li>
             </ul>
-            {% for posts in site.posts reversed %}
+            {% for posts in site.posts %}
             <ul>
                 <li><a href="{{ posts.url }}">{{ posts.title }}</a></li>
             </ul>
@@ -24,12 +24,12 @@
         </header>
         <section>
             <style>
-            sup {
-                font-size: 0.8rem;
-                position: relative;
-                top: -0.5rem;
-            }
-             </style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
             {% include navigation.html fixed=true %}
             <h2>{{ page.title }}</h2>
             <h6>{{ page.excerpt }}</h6>

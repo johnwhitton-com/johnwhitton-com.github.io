@@ -17,11 +17,18 @@ cp -rf ../research-web/_research/* _research
 rm -rf ./assets/research/*
 cp -rf ../research-web/assets/research/* assets/research
 
-rm -rf ./_research/bridge
-rm -rf ./_research/code
+# rm -rf ./_research/bridge
+# rm -rf ./_research/code
 rm -rf ./_research/defi
 rm -rf ./_research/gaming
 rm -rf ./_research/misc
-rm -rf ./_research/primitives
+# rm -rf ./_research/misc
+# rm -rf ./_research/primitives
 rm -rf ./_research/wallet
-rm -rf ./_research/zk
+# rm -rf ./_research/zk
+
+# Clean up layouts for research and posts
+
+
+bundle exec jekyll build
+# bundle exec jekyll serve
