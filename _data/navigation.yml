@@ -1,10 +1,12 @@
 - name: Home
   link: /
-- name: My Work
+- name: About John
+  link: /about.html
+- name: Resume/CV
   link: /work.html
-- name: Colleagues
+- name: References
   link: /colleagues.html
-- name: Posts
+- name: Writing
   link: /posts.html
 - name: Research
   link: /research.html
