@@ -3,6 +3,8 @@ cp -rf ../research-web/*.md .
 cp -rf ../research-web/*.yml .
 rm -rf ./_about/*
 cp -rf ../research-web/_about/* ./_about/.
+rm -rf ./_data/*
+cp -rf ../research-web/_data/* ./_data/.
 rm -rf ./_work/*
 cp -rf ../research-web/_work/* ./_work/.
 rm -rf ./_layouts/*
@@ -12,6 +14,7 @@ rm -rf ./_posts/*
 cp -rf ../research-web/_posts/* _posts
 rm -rf ./assets/posts/*
 cp -rf ../research-web/assets/posts/* assets/posts
+cp -rf ../research-web/assets/images/* assets/images
 rm -rf ./_research/*
 cp -rf ../research-web/_research/* _research
 rm -rf ./assets/research/*
