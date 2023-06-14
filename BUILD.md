@@ -14,26 +14,16 @@ cd research-web
 # cpr
 ./copy.sh; bundle exec jekyll serve
 
+# Now update johnwhitton-com from research-web
 # cd johnwhitton-com.github.io
 cd ../johnwhitton-com.github.io
-# checkout a new branch
-git checkout -b May2023
-# copy latest content from research
-cpr
-rm -rf bridge
-rm -rf code
-rm -rf defi
-rm -rf gaming
-rm -rf misc
-rm -rf primitives
-rm -rf wallet
-rm -rf zk
+./copy.sh
 
 # build the site
 bundle exec jekyll build
 # bundle exec jekyll serve
 
-
+# Make sure to remove research and posts that are WIP
 # If the site looks good merge the code
 
 # commit the code to the current Branch
