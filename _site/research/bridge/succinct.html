@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Succinct Labs | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Succinct Labs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview Succinct Bridge Overview Trusted Setup Best Practices for Setup Trusted Ceremony (Powers of Tau) Example Build circuits Contracts Library Contracts Light Client Contracts Bridge Contracts Additional Contracts Relayer Appendices Footnotes" />
+<meta property="og:description" content="Overview Succinct Bridge Overview Trusted Setup Best Practices for Setup Trusted Ceremony (Powers of Tau) Example Build circuits Contracts Library Contracts Light Client Contracts Bridge Contracts Additional Contracts Relayer Appendices Footnotes" />
+<link rel="canonical" href="http://localhost:4000/research/bridge/succinct.html" />
+<meta property="og:url" content="http://localhost:4000/research/bridge/succinct.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-24T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Succinct Labs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-24T00:00:00-08:00","datePublished":"2023-02-24T00:00:00-08:00","description":"Overview Succinct Bridge Overview Trusted Setup Best Practices for Setup Trusted Ceremony (Powers of Tau) Example Build circuits Contracts Library Contracts Light Client Contracts Bridge Contracts Additional Contracts Relayer Appendices Footnotes","headline":"Succinct Labs","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/bridge/succinct.html"},"url":"http://localhost:4000/research/bridge/succinct.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/primitives/intro.html">Primitives</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/primitives/fast-fourier-transformations.html">Fast Fourier Transforms</a></li>
+                    
+                    <li><a href="/research/primitives/fraud-proofs.html">Fraud Proofs</a></li>
+                    
+                    <li><a href="/research/primitives/light-clients.html">Light Clients</a></li>
+                    
+                    <li><a href="/research/primitives/primitives.html">Cryptographic Primitives</a></li>
+                    
+                    <li><a href="/research/primitives/weak-subjectivity.html">Weak Subjectivity</a></li>
+                    
+                    <li><a href="/research/primitives/signatures.html">Signature Schemes in Consensus Protocols</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/zk/intro.html">Zero Knowledge</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/zk/zkpos.html">ZK Proof of Stake</a></li>
+                    
+                    <li><a href="/research/zk/zksnarks.html">zk-SNARKs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/bridge/intro.html">Cross-chain Bridges</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/bridge/cosmos-ibc.html">Cosmos IBC</a></li>
+                    
+                    <li><a href="/research/bridge/harmony-horizon.html">Harmony Horizon</a></li>
+                    
+                    <li><a href="/research/bridge/isomorph.html">Isomorph</a></li>
+                    
+                    <li><a href="/research/bridge/near-rainbow.html">Near Rainbow Bridge</a></li>
+                    
+                    <li><a href="/research/bridge/polymerlabs.html">Polymer Labs</a></li>
+                    
+                    <li><a href="/research/bridge/snowbridge.html">Snowbridge</a></li>
+                    
+                    <li><a href="/research/bridge/succinct.html">Succinct Labs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/defi/intro.html">Decentralized Finance</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <!-- <ul>
+                <li><a href="/research/gaming/intro.html">Gaming</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <ul>
+                <li><a href="/research/code/intro.html">Code Reviews</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/code/Horizon.html">Horizon Bridge</a></li>
+                    
+                    <li><a href="/research/code/ethereum-near.html">Ethereum Near Bridging</a></li>
+                    
+                    <li><a href="/research/code/ethereum.html">Ethereum</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/misc/intro.html">Additional Research</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Succinct Labs</h1>
+            <!-- <h6><ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#succinct-bridge-overview">Succinct Bridge Overview</a></li>
+  <li><a href="#trusted-setup">Trusted Setup</a>
+    <ul>
+      <li><a href="#best-practices-for-setup">Best Practices for Setup</a></li>
+      <li><a href="#trusted-ceremony-powers-of-tau">Trusted Ceremony (Powers of Tau)</a></li>
+      <li><a href="#example-build">Example Build</a></li>
+    </ul>
+  </li>
+  <li><a href="#circuits">circuits</a></li>
+  <li><a href="#contracts">Contracts</a>
+    <ul>
+      <li><a href="#library-contracts">Library Contracts</a></li>
+      <li><a href="#light-client-contracts">Light Client Contracts</a></li>
+      <li><a href="#bridge-contracts">Bridge Contracts</a></li>
+      <li><a href="#additional-contracts">Additional Contracts</a></li>
+    </ul>
+  </li>
+  <li><a href="#relayer">Relayer</a></li>
+  <li><a href="#appendices">Appendices</a></li>
+  <li><a href="#footnotes">Footnotes</a></li>
+</ul>
+</h6> -->
+            <!-- <div>Feb 24th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#succinct-bridge-overview">Succinct Bridge Overview</a></li>
+  <li><a href="#trusted-setup">Trusted Setup</a>
+    <ul>
+      <li><a href="#best-practices-for-setup">Best Practices for Setup</a></li>
+      <li><a href="#trusted-ceremony-powers-of-tau">Trusted Ceremony (Powers of Tau)</a></li>
+      <li><a href="#example-build">Example Build</a></li>
+    </ul>
+  </li>
+  <li><a href="#circuits">circuits</a></li>
+  <li><a href="#contracts">Contracts</a>
+    <ul>
+      <li><a href="#library-contracts">Library Contracts</a></li>
+      <li><a href="#light-client-contracts">Light Client Contracts</a></li>
+      <li><a href="#bridge-contracts">Bridge Contracts</a></li>
+      <li><a href="#additional-contracts">Additional Contracts</a></li>
+    </ul>
+  </li>
+  <li><a href="#relayer">Relayer</a></li>
+  <li><a href="#appendices">Appendices</a></li>
+  <li><a href="#footnotes">Footnotes</a></li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>Succinct<sup id="fnref:ov-1" role="doc-noteref"><a href="#fn:ov-1" class="footnote" rel="footnote">1</a></sup> is building Telepathy<sup id="fnref:ov-2" role="doc-noteref"><a href="#fn:ov-2" class="footnote" rel="footnote">2</a></sup> a zkSNARK circuit that verifies Ethereum validator signatures, allowing for a gas-efficient light client to run as a smart contract on any EVM chain.</p>
+
+<ul>
+  <li><a href="https://github.com/succinctlabs">succint</a>
+    <ul>
+      <li><a href="https://github.com/succinctlabs/plonky2-ecdsa">https://github.com/succinctlabs/plonky2-ecdsa</a></li>
+      <li><a href="https://github.com/succinctlabs/gnark-plonky2-verifier">https://github.com/succinctlabs/gnark-plonky2-verifier</a></li>
+      <li><a href="https://github.com/succinctlabs/telepathy-contracts">https://github.com/succinctlabs/telepathy-contracts</a>
+        <ul>
+          <li><a href="https://github.com/succinctlabs/telepathy-contracts/tree/main/src/amb">Arbitrary Message Bridge</a></li>
+          <li><a href="https://github.com/succinctlabs/optimism-bedrock-contracts">https://github.com/succinctlabs/optimism-bedrock-contracts</a></li>
+          <li><a href="https://github.com/succinctlabs/v3-core">https://github.com/succinctlabs/v3-core</a> (Business Source License 2023-04-01)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="succinct-bridge-overview">Succinct Bridge Overview</h2>
+
+<ol>
+  <li><a href="https://blog.succinct.xyz/blog/proof-of-consensus">Succinct Blog Oct 29, 2022</a>: Proof of Consensus Bridging between Ethereum and Gnosis Chain</li>
+</ol>
+
+<blockquote>
+  <p>The on-chain light client recreates the light client spec in Solidity (code here). In particular, we implement the process_light_client_finality_update function inside the step function in our smart contract. Then, inside step, where we would typically verify an aggregate BLS signature, we instead replace it with verification of a single Groth16 zkSNARK to reduce gas costs.</p>
+
+  <p>Recall that the validator set of the sync committee rotates every 27 hours. On chain, we keep track of a commitment to the set of validators in the mapping syncCommitteeRootByPeriod. To update this mapping for the next period, we verify the merkle inclusion proof that the current validator set signs for the commitment for the next validator set. This computation happens inside the updateSyncCommittee function.</p>
+
+  <p>Unfortunately, the commitment the validators sign is an SSZ commitment (simple serialization, Eth PoS serialization format) that is quite SNARK unfriendly, as it uses the SHA-256 hash function. It takes ~70 million constraints in a Groth16 circuit to compute the serialization of 512 validator BLS public keys to its corresponding SSZ commitment. Because we don’t want to do this for every single header verification proof (which happens every 6 minutes, i.e. once per epoch), we use an additional SNARK (the commitmentMappingProof argument) to provably map an SSZ commitment to a SNARK-friendly Poseidon commitment, that is stored in the mapping sszToPoseidon. For each BLS signature verification, we pass in the poseidon commitment of the sync committee validators as public input to ensure that the BLS signature we are verifying is from the correct public keys. Overall this approach (using 2 SNARKs) saves us 70M constraints on the BLS signature verification SNARK, which we must run for every update we wish to submit to the light client. The commitment mapping SNARK must only be run every sync committee period (roughly once every 27 hours).</p>
+
+  <p>Toolchain
+We use the Circom programming language and the Groth16 proving system to generate our zkSNARKs. While a newer proof system (like PLONK arithmetization + KZG or FRI) would improve proving time, we believe Circom is the most production-ready zkSNARK stack today. In particular, Tornado Cash’s circuits are built on top of Circom and have been used for several years. Additionally, the on-chain verification cost of a Groth16 zkSNARK is the cheapest of all proving systems available today.</p>
+</blockquote>
+
+<ol>
+  <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus">eth-proof-of-consensus</a>: github repository</li>
+  <li><a href="https://forum.gnosis.io/t/gip-57-should-gnosis-dao-support-research-of-a-zksnark-enabled-light-client-and-bridge/5421">GIP-57</a>: $600,000 Grant from Gnosis to Succinct to support</li>
+  <li><a href="https://twitter.com/succinctlabs/status/1572299292177481729">Succinct Tweet</a> : Succinct tweet giving an overview of the bridge</li>
+  <li><a href="https://blog.succinct.xyz/post/2022/09/20/proof-of-consensus">Succinct Blog Sep 20, 2022</a>: Towards the endgame of blockchain interoperability with proof of consensus</li>
+  <li><a href="https://forum.gnosis.io/t/gip-57-should-gnosis-dao-support-research-of-a-zksnark-enabled-light-client-and-bridge/5421">GIP-57</a>: $600,000 Grant from Gnosis to Succinct to support research of a zkSNARK-enabled light client and bridge.</li>
+  <li><a href="https://youtu.be/cMSayTJA1B4">Succinct Video</a>: ZK8: Succinct Verification of Consensus with zkSNARKs - Uma Roy &amp; John Guibas - Succinct Labs</li>
+</ol>
+
+<h2 id="trusted-setup">Trusted Setup</h2>
+
+<h3 id="best-practices-for-setup">Best Practices for Setup</h3>
+
+<ol>
+  <li><a href="https://hackmd.io/V-7Aal05Tiy-ozmzTGBYPA">Best Practices for Large Circuits</a>: compiling and generating Groth16 proofs for large ZK circuits using the circom / snarkjs toolstack.</li>
+</ol>
+
+<blockquote>
+  <p>For such large circuits, you need a machine with an Intel processor, lots of RAM and a large hard drive with swap enabled. For example, the zkPairing project used an AWS r5.8xlarge instance with 32-core 3.1GHz, 256G RAM machine with 1T hard drive and 400G swap.</p>
+
+  <p>Compilation: for circuits with &gt;20M constraints, one should not compile to WebAssembly because witness generation will exceed the memory cap of WebAssembly. For this reason, one must compile with the C++ flag and remove the wasm flag.</p>
+</blockquote>
+
+<ol>
+  <li><a href="https://blog.hermez.io/hermez-zero-knowledge-proofs/">Hermez Zero-Knowledge Proofs</a>: Overview of the Hermez Trusted Setupi</li>
+</ol>
+
+<p><a href="https://aws.amazon.com/ec2/pricing/on-demand/">Machine</a>: AWS r5.8xlarge instance with 32-core 3.1GHz, 256G RAM machine with 1T hard drive and 400G swap. $2.016 per hour</p>
+
+<h3 id="trusted-ceremony-powers-of-tau">Trusted Ceremony (Powers of Tau)</h3>
+
+<ol>
+  <li><a href="https://github.com/weijiekoh/perpetualpowersoftau">Perpetual Powers of Tau</a>: The goal is to securely generate zk-SNARK</li>
+  <li><a href="https://github.com/iden3/snarkjs/blob/master/README.md#7-prepare-phase-2">snarkjs Prepare phase 2</a>: Provide instructions on prepare phase 2 and links to the Powers of Tau files.</li>
+  <li><a href="https://www.dropbox.com/sh/mn47gnepqu88mzl/AACaJkBU7mmCq8uU8ml0-0fma?dl=0">Powers of Tau files on Dropbox</a>:</li>
+</ol>
+
+<p><a href="https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_27.ptau">Download powersOfTau28_hez_final_27.ptau</a>: 144 GB file containing the encrypted evaluation of the Lagrange polynomials at tau for tau, alpha<em>tau and beta</em>tau. It takes the beacon ptau file we generated in the previous step, and outputs a final ptau file which will be used to generate the circuit proving and verification keys.</p>
+
+<h3 id="example-build">Example Build</h3>
+
+<ol>
+  <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus/blob/main/circuits/circuits/aggregate_bls_verify.circom">build_aggregate_bls_verify.sh</a></li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/bash
+PHASE1=/home/ubuntu/powersOfTau28_hez_final_27.ptau
+BUILD_DIR=../build
+CIRCUIT_NAME=test_aggregate_bls_verify_512
+TEST_DIR=../test
+OUTPUT_DIR="$BUILD_DIR"/"$CIRCUIT_NAME"_cpp
+
+run() {
+    if [ ! -d "$BUILD_DIR" ]; then
+        echo "No build directory found. Creating build directory..."
+        mkdir -p "$BUILD_DIR"
+    fi
+
+    # echo "****COMPILING CIRCUIT****"
+    # start=`date +%s`
+    # circom "$TEST_DIR"/circuits/"$CIRCUIT_NAME".circom --O1 --r1cs --sym --c --output "$BUILD_DIR"
+    # end=`date +%s`
+    # echo "DONE ($((end-start))s)"
+
+    # echo "****Running make to make witness generation binary****"
+    # start=`date +%s`
+    # make -C "$OUTPUT_DIR"
+    # end=`date +%s`
+    # echo "DONE ($((end-start))s)"
+
+    echo "****Executing witness generation****"
+    start=`date +%s`
+    ./"$OUTPUT_DIR"/"$CIRCUIT_NAME" "$TEST_DIR"/input_aggregate_bls_verify_512.json witness.wtns
+    end=`date +%s`
+    echo "DONE ($((end-start))s)"
+
+    echo "****Converting witness to json****"
+    start=`date +%s`
+    npx snarkjs wej "$OUTPUT_DIR"/witness.wtns "$OUTPUT_DIR"/witness.json
+    end=`date +%s`
+    echo "DONE ($((end-start))s)"
+
+    echo "****GENERATING ZKEY 0****"
+    start=`date +%s`
+    npx --trace-gc --trace-gc-ignore-scavenger --max-old-space-size=2048000 --initial-old-space-size=2048000 --no-global-gc-scheduling --no-incremental-marking --max-semi-space-size=1024 --initial-heap-size=2048000 --expose-gc snarkjs zkey new "$BUILD_DIR"/"$CIRCUIT_NAME".r1cs "$PHASE1" "$OUTPUT_DIR"/"$CIRCUIT_NAME"_p1.zkey
+    end=`date +%s`
+    echo "DONE ($((end-start))s)"
+
+    echo "****CONTRIBUTE TO PHASE 2 CEREMONY****"
+    start=`date +%s`
+    npx snarkjs zkey contribute "$OUTPUT_DIR"/"$CIRCUIT_NAME"_p1.zkey "$OUTPUT_DIR"/"$CIRCUIT_NAME"_p2.zkey -n="First phase2 contribution" -e="some random text for entropy"
+    end=`date +%s`
+    echo "DONE ($((end-start))s)"
+
+    echo "****VERIFYING FINAL ZKEY****"
+    start=`date +%s`
+    npx --trace-gc --trace-gc-ignore-scavenger --max-old-space-size=2048000 --initial-old-space-size=2048000 --no-global-gc-scheduling --no-incremental-marking --max-semi-space-size=1024 --initial-heap-size=2048000 --expose-gc npx snarkjs zkey verify "$BUILD_DIR"/"$CIRCUIT_NAME".r1cs "$PHASE1" "$OUTPUT_DIR"/"$CIRCUIT_NAME"_p2.zkey
+    end=`date +%s`
+    echo "DONE ($((end-start))s)"
+
+    echo "****EXPORTING VKEY****"
+    start=`date +%s`
+    npx snarkjs zkey export verificationkey "$OUTPUT_DIR"/"$CIRCUIT_NAME"_p2.zkey "$OUTPUT_DIR"/"$CIRCUIT_NAME"_vkey.json
+    end=`date +%s`
+    echo "DONE ($((end-start))s)"
+
+    echo "****GENERATING PROOF FOR SAMPLE INPUT****"
+    start=`date +%s`
+    ~/rapidsnark/build/prover "$OUTPUT_DIR"/"$CIRCUIT_NAME"_p2.zkey "$OUTPUT_DIR"/witness.wtns "$OUTPUT_DIR"/"$CIRCUIT_NAME"_proof.json "$OUTPUT_DIR"/"$CIRCUIT_NAME"_public.json
+    end=`date +%s`
+    echo "DONE ($((end-start))s)"
+
+    echo "****VERIFYING PROOF FOR SAMPLE INPUT****"
+    start=`date +%s`
+    npx snarkjs groth16 verify "$OUTPUT_DIR"/"$CIRCUIT_NAME"_vkey.json "$OUTPUT_DIR"/"$CIRCUIT_NAME"_public.json "$OUTPUT_DIR"/"$CIRCUIT_NAME"_proof.json
+    end=`date +%s`
+    echo "DONE ($((end-start))s)"
+
+    echo "****EXPORTING SOLIDITY SMART CONTRACT****"
+    start=`date +%s`
+    npx snarkjs zkey export solidityverifier "$OUTPUT_DIR"/"$CIRCUIT_NAME"_p2.zkey verifier.sol
+    end=`date +%s`
+    echo "DONE ($((end-start))s)"
+}
+
+mkdir -p logs
+run 2&gt;&amp;1 | tee logs/"$CIRCUIT_NAME"_$(date '+%Y-%m-%d-%H-%M').log
+</code></pre></div></div>
+
+<h2 id="circuits">circuits</h2>
+
+<ol>
+  <li><a href="https://docs.circom.io/getting-started/installation/">Circom Documentation</a>: Circom is a novel domain-specific language for defining arithmetic circuits that can be used to generate zero-knowledge proofs.</li>
+  <li><a href="https://github.com/iden3/circom">Circom github</a></li>
+  <li><a href="https://github.com/iden3/circomlib">circomlib github</a> contains a library of circuit templates.</li>
+  <li><a href="https://0xparc.org/blog/zk-pairing-1">zkPairing Docs</a>: zkSNARKs for Elliptic Curve Pairings (Part 1)</li>
+  <li><a href="https://github.com/yi-sun/circom-pairing">circom-paring github</a>: proof-of-concept implementations of elliptic curve pairings (in particular, the optimal Ate pairing and Tate pairing) for the BLS12-381 curve in circom.</li>
+  <li><a href="https://github.com/puma314/batch-ecdsa">Batch ECDSA Verification (github)</a>: Implementation of batch ECDSA verification in circom.</li>
+  <li><a href="https://github.com/0xPARC/circom-ecdsa">circom-ecdsa (github)</a>:  proof-of-concept implementations of ECDSA operations in circom.</li>
+  <li><a href="https://www.npmjs.com/package/snarkjs">snarkjs</a>: This is a JavaScript and Pure Web Assembly implementation of zkSNARK and PLONK schemes. It uses the Groth16 Protocol (3 point only and 3 pairings) and PLONK.</li>
+  <li><a href="https://github.com/iden3/snarkjs/blob/master/README.md#7-prepare-phase-2">snarkjs Prepare phase 2</a>: Provide instructions on prepare phase 2 and links to the Powers of Tau files.</li>
+  <li><a href="https://github.com/weijiekoh/perpetualpowersoftau">Perpetual Powers of Tau</a>: The goal is to securely generate zk-SNARK parameters for circuits of up to 2 ^ 28 (260+ million) constraints.</li>
+  <li><a href="https://www.dropbox.com/sh/mn47gnepqu88mzl/AACaJkBU7mmCq8uU8ml0-0fma?dl=0">Powers of Tau files on Dropbox</a>:</li>
+  <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus/blob/main/circuits/circuits/aggregate_bls_verify.circom">eth-proof-of-consensus: circuits aggregate_bls_verify.circom</a>: example circuit with the following includes</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>include "../circom-pairing/circuits/bls_signature.circom";
+include "../circom-pairing/circuits/curve.circom";
+include "../circom-pairing/circuits/bls12_381_func.circom";
+include "./sha256_bytes.circom";
+</code></pre></div></div>
+
+<h2 id="contracts">Contracts</h2>
+
+<p>Built using <a href="https://book.getfoundry.sh/">foundry</a>(<a href="https://github.com/foundry-rs/foundry">github</a>) and <a href="https://book.getfoundry.sh/forge/">forge</a>.  Verifiers (<a href="#light-client-contracts">Light Client Contracts</a>) can be <a href="https://docs.circom.io/getting-started/proving-circuits/#verifying-from-a-smart-contract">generated</a> from <a href="#circuits">circuits</a> using <a href="https://www.npmjs.com/package/snarkjs">snarkjs</a></p>
+
+<h3 id="library-contracts">Library Contracts</h3>
+
+<ol>
+  <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus/tree/main/contracts/lib">eth-proof-of-consensus/contracts/lib/</a>
+    <ol>
+      <li><a href="https://github.com/hamdiallam/Solidity-RLP">RLP decoder/reader</a>: The reader contract provides an interface to first take RLP encoded bytes and convert them into an internal data structure, RLPItem through the function, toRlpItem(bytes).</li>
+      <li><a href="https://github.com/lidofinance/curve-merkle-oracle">curve-merkle-oracle</a>: Trustless price oracle for ETH/stETH Curve pool.</li>
+    </ol>
+  </li>
+</ol>
+
+<blockquote>
+  <p>Mechanics
+The oracle works by generating and verifying Merkle Patricia proofs of the following Ethereum state:</p>
+
+  <p>Curve stETH/ETH pool contract account and the following slots from its storage trie:</p>
+
+  <p>admin_balances[0]
+admin_balances[1]
+stETH contract account and the following slots from its storage trie:</p>
+
+  <p>shares[0xDC24316b9AE028F1497c275EB9192a3Ea0f67022]
+keccak256(“lido.StETH.totalShares”)
+keccak256(“lido.Lido.beaconBalance”)
+keccak256(“lido.Lido.bufferedEther”)
+keccak256(“lido.Lido.depositedValidators”)
+keccak256(“lido.Lido.beaconValidators”)</p>
+</blockquote>
+
+<h3 id="light-client-contracts">Light Client Contracts</h3>
+
+<ol>
+  <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus/tree/main/contracts/src/lightclient">eth-proof-of-consensus: lightclient</a>
+    <ol>
+      <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus/blob/main/contracts/src/lightclient/BeaconLightClient.sol">BeaconLightClient.sol</a></li>
+      <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus/blob/main/contracts/src/lightclient/PoseidonCommitmentVerifier.sol">PoseidonCommitmentVerifier.sol</a></li>
+      <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus/blob/main/contracts/src/lightclient/BLSAggregatedSignatureVerifier.sol">BLSAggregatedSignatureVerifier.sol</a></li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="bridge-contracts">Bridge Contracts</h3>
+
+<ol>
+  <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus/tree/main/contracts/src/amb">eth-proof-of-consensus: amb</a>: Arbitrary Message Bridge
+    <ol>
+      <li><a href="https://ethereum-magicians.org/t/a-standard-interface-for-arbitrary-message-bridges-between-chains-layers/6163">Ethereum Magicians: A standard interface for arbitrary message bridges between chains/layers</a></li>
+      <li><a href="https://docs.tokenbridge.net/eth-xdai-amb-bridge/about-the-eth-xdai-amb">Token BridgeL ETH-xDai Arbitrary Message Bridge</a>: An Arbitrary Message Bridge (AMB) between the Ethereum Mainnet and the xDai chain</li>
+    </ol>
+  </li>
+  <li><a href="https://github.com/succinctlabs/eth-proof-of-consensus/tree/main/contracts/src/bridge">eth-proof-of-consensus: bridge</a></li>
+</ol>
+
+<h3 id="additional-contracts">Additional Contracts</h3>
+
+<ol>
+  <li><a href="https://github.com/succinctlabs/tokenbridge-contracts">tokenbridge-contracts</a>: core functionality for the POA bridge. They implement the logic to relay assests between two EVM-based blockchain networks. The contracts collect bridge validator’s signatures to approve and facilitate relay operations. (forked from <a href="https://github.com/omni/tokenbridge-contracts">omni</a>)</li>
+</ol>
+
+<h2 id="relayer">Relayer</h2>
+
+<p><em>Note: no public repository for relay functionality was found in <a href="https://github.com/succinctlabs">succinctlabs github</a>.</em></p>
+
+<p><strong>TODO</strong>: This section should give an overview of</p>
+
+<ul>
+  <li>Communication Protocol</li>
+  <li>Message Formatting</li>
+  <li>Relayer CodeBase</li>
+  <li>Relayers Roles : Creating Proofs relaying blocks etc.</li>
+  <li>Economic incentives.</li>
+</ul>
+
+<p>Additional Information can be found in <a href="./DeepDiveOnNearBridge.md#relayers">DeepDiveOnNearBridge: Relayers</a></p>
+
+<ol>
+  <li><a href="https://blockscout.com/xdai/mainnet/address/0xa3ae36abaD813241b75b3Bb0e9E7a37aeFD70807">BeaconLightClient on Gnosis Chain</a>: Transactions every 50 blocks on Gnosis i.e. approximately every 3 minutes</li>
+  <li><a href="https://blog.succinct.xyz/blog/proof-of-consensus/">Succinct Blog Oct 29, 2022</a>: Proof of Consensus Bridging between Ethereum and Gnosis Chain</li>
+</ol>
+
+<blockquote>
+  <p>On Gnosis Chain, after the Ethereum block in which the deposit transaction was included is finalized (generally 2 epochs, ~12 minutes) and the light client has been updated with a block of height greater than or equal to this block, our relayer automatically submits an executeMessage transaction to the Gnosis AMB.</p>
+</blockquote>
+
+<h2 id="appendices">Appendices</h2>
+
+<h2 id="footnotes">Footnotes</h2>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:ov-1" role="doc-endnote">
+      <p><a href="https://www.succinct.xyz/">Succint</a>: Building the end game of interoperability with zkSNARKs <a href="#fnref:ov-1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ov-2" role="doc-endnote">
+      <p><a href="https://docs.telepathy.xyz/">Telepathy</a>: a zkSNARK circuit that verifies Ethereum validator signatures, allowing for a gas-efficient light client to run as a smart contract on any EVM chain. <a href="#fnref:ov-2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        </section>
+    </div>
+</body>
+
+</html>

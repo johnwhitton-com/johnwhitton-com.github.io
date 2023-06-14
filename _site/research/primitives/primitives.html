@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Cryptographic Primitives | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Cryptographic Primitives" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/primitives/primitives.html" />
+<meta property="og:url" content="http://localhost:4000/research/primitives/primitives.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-04T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Cryptographic Primitives" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-04T00:00:00-08:00","datePublished":"2023-02-04T00:00:00-08:00","description":"Overview","headline":"Cryptographic Primitives","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/primitives/primitives.html"},"url":"http://localhost:4000/research/primitives/primitives.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/primitives/intro.html">Primitives</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/primitives/fast-fourier-transformations.html">Fast Fourier Transforms</a></li>
+                    
+                    <li><a href="/research/primitives/fraud-proofs.html">Fraud Proofs</a></li>
+                    
+                    <li><a href="/research/primitives/light-clients.html">Light Clients</a></li>
+                    
+                    <li><a href="/research/primitives/primitives.html">Cryptographic Primitives</a></li>
+                    
+                    <li><a href="/research/primitives/weak-subjectivity.html">Weak Subjectivity</a></li>
+                    
+                    <li><a href="/research/primitives/signatures.html">Signature Schemes in Consensus Protocols</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/zk/intro.html">Zero Knowledge</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/zk/zkpos.html">ZK Proof of Stake</a></li>
+                    
+                    <li><a href="/research/zk/zksnarks.html">zk-SNARKs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/bridge/intro.html">Cross-chain Bridges</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/bridge/cosmos-ibc.html">Cosmos IBC</a></li>
+                    
+                    <li><a href="/research/bridge/harmony-horizon.html">Harmony Horizon</a></li>
+                    
+                    <li><a href="/research/bridge/isomorph.html">Isomorph</a></li>
+                    
+                    <li><a href="/research/bridge/near-rainbow.html">Near Rainbow Bridge</a></li>
+                    
+                    <li><a href="/research/bridge/polymerlabs.html">Polymer Labs</a></li>
+                    
+                    <li><a href="/research/bridge/snowbridge.html">Snowbridge</a></li>
+                    
+                    <li><a href="/research/bridge/succinct.html">Succinct Labs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/defi/intro.html">Decentralized Finance</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <!-- <ul>
+                <li><a href="/research/gaming/intro.html">Gaming</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <ul>
+                <li><a href="/research/code/intro.html">Code Reviews</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/code/Horizon.html">Horizon Bridge</a></li>
+                    
+                    <li><a href="/research/code/ethereum-near.html">Ethereum Near Bridging</a></li>
+                    
+                    <li><a href="/research/code/ethereum.html">Ethereum</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/misc/intro.html">Additional Research</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Cryptographic Primitives</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 4th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<p>Cryptographic and Mathematic Primitives</p>
+
+<h2 id="reference-implementations">Reference Implementations</h2>
+
+<p><strong>general primitives</strong></p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Bloom_filter">bloom filter</a>
+    <ul>
+      <li><a href="https://github.com/ethereum/go-ethereum/tree/master/core/bloombits">geth bloombits</a> (go): Package bloombits implements bloom filtering on batches of data.</li>
+    </ul>
+  </li>
+  <li><a href="https://ethereum.github.io/execution-specs/autoapi/ethereum/base_types/index.html">int_to_bytes</a>
+    <ul>
+      <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/int_to_bytes">lighthouse int_to_bytes</a> (rust): The Eth 2.0 specification uses <code class="language-plaintext highlighter-rouge">int.to_bytes(2, 'little')</code>, which throws an error if <code class="language-plaintext highlighter-rouge">int</code> doesn’t fit within 3 bytes. The specification relies upon implicit asserts for some validity conditions, so we ensure the calling function is aware of the error condition as opposed to hiding it with a modulo.</li>
+    </ul>
+  </li>
+  <li><a href="https://en.wikipedia.org/wiki/Leaky_bucket#As_a_meter">leaky bucket</a>
+    <ul>
+      <li><a href="https://github.com/prysmaticlabs/prysm/blob/develop/container/leaky-bucket/leakybucket.go">prysm</a>: leaky bucket as a meter</li>
+    </ul>
+  </li>
+  <li>linked list
+    <ul>
+      <li><a href="https://github.com/prysmaticlabs/prysm/tree/develop/container/doubly-linked-list">prysm</a> (go): doubly linked list</li>
+    </ul>
+  </li>
+  <li><a href="https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/">merkle patrica tries</a>
+    <ul>
+      <li><a href="https://github.com/ethereum/go-ethereum/blob/master/trie/trie.go#L17">geth trie</a> (go): Package trie implements Merkle Patricia Tries.</li>
+      <li><a href="https://github.com/ethereum/go-ethereum/blob/master/core/state/database.go#L63">geth database</a> (go): Trie is a Ethereum Merkle Patricia trie.</li>
+    </ul>
+  </li>
+  <li><a href="https://en.wikipedia.org/wiki/Merkle_tree">merkle trees</a>
+    <ul>
+      <li><a href="https://github.com/prysmaticlabs/prysm/blob/develop/container/trie/sparse_merkle.go">prysm sparse_merkle</a> (go): defines utilities for sparse merkle tries for Ethereum consensus.</li>
+      <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/cached_tree_hash">lighthouse cached_tree_hash</a> (rust): Sparse Merkle tree suitable for tree hashing vectors and lists.</li>
+      <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/tree_hash">lighthouse tree_hash</a> (rust): Convenience method for <code class="language-plaintext highlighter-rouge">MerkleHasher</code> which also provides some fast-paths for small trees.<code class="language-plaintext highlighter-rouge">minimum_leaf_count</code> will only be used if it is greater than or equal to the minimum number of leaves that can be created from <code class="language-plaintext highlighter-rouge">bytes</code>.</li>
+      <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/tree_hash_derive">lighthouse tree_hash_derive</a> (rust):</li>
+      <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto/merkle">tendermint go</a> (go): Merkle Tree For smaller static data structures that don’t require immutable snapshots or mutability; for instance the transactions and validation signatures of a block can be hashed using this simple merkle tree logic.</li>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/utils/binary-merkle-tree">paritytech binary-merkle-trie</a> (rust):  implements a simple binary Merkle Tree utilities required for inter-op with Ethereum bridge &amp; Solidity contract.</li>
+      <li><a href="https://github.com/Snowfork/snowbridge/blob/main/relayer/crypto/merkle/merkle.go">snowbridge merkle.go</a></li>
+      <li><a href="https://github.com/Snowfork/snowbridge/blob/main/parachain/pallets/ethereum-beacon-client/src/merkleization.rs">snowbridge merkleization.rs</a></li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/ethereum/consensus-specs/blob/dev/ssz/merkle-proofs.md">merkle_proof</a> <a href="https://soliditydeveloper.com/merkle-tree">explainer</a>
+    <ul>
+      <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/merkle_proof">lighthouse merkle_proof</a> (rust): efficiently represents a Merkle tree of fixed depth where only the first N indices are populated by non-zero leaves (perfect for the deposit contract tree).</li>
+      <li><a href="https://github.com/Snowfork/snowbridge/blob/main/relayer/crypto/merkle/simplified_mmr_proof.go">snowbridge simplified_mmr_proof.go</a></li>
+      <li><a href="https://github.com/Snowfork/snowbridge/tree/main/parachain/pallets/basic-channel/merkle-proof">snowbridge merkle-proof rust</a></li>
+      <li><a href="https://github.com/Snowfork/snowbridge/blob/main/core/packages/contracts/contracts/utils/MerkleProof.sol">snowbridge MerkleProof.sol</a></li>
+      <li><a href="https://www.npmjs.com/package/eth-proof">npm package eth-proof</a></li>
+    </ul>
+  </li>
+  <li><a href="https://docs.grin.mw/wiki/chain-state/merkle-mountain-range/">Merkle Mountain Range</a>
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/merkle-mountain-range">paritytech merkle-mountain-range</a> (rust)</li>
+      <li><a href="https://github.com/peekpi/harmony/tree/mmrHardfork/internal/mmr">harmony mmr (go)</a>: Adds a merkle mountain range to harmony’s core protocol to support light clients  (WIP) <a href="https://github.com/harmony-one/harmony/pull/4198/files">PR4198</a></li>
+    </ul>
+  </li>
+  <li>queues
+    <ul>
+      <li><a href="https://github.com/prysmaticlabs/prysm/tree/develop/container/queue">prysm</a> (go): priority queue</li>
+      <li><a href="https://github.com/Snowfork/snowbridge/blob/main/core/packages/contracts/contracts/utils/MMRProof.sol">snowbridge MMRProof.sol</a></li>
+      <li><a href="https://github.com/Snowfork/merkle-mountain-range">snowfork merkle-mountain-range</a></li>
+    </ul>
+  </li>
+  <li>safe-arithmetic
+    <ul>
+      <li><a href="https://github.com/sigp/lighthouse/tree/stable/consensus/safe_arith">lighthouse safe_arith</a> (rust): Library for safe arithmetic on integers, avoiding overflow and division by zero.</li>
+    </ul>
+  </li>
+  <li>slice
+    <ul>
+      <li><a href="https://github.com/prysmaticlabs/prysm/tree/develop/container/slice">prysm</a> (go)</li>
+    </ul>
+  </li>
+  <li><a href="https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/">tries</a>
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/trie">paritytech trie</a>:  Utility functions to interact with Substrate’s Base-16 Modified Merkle Patricia tree (“trie”).</li>
+    </ul>
+  </li>
+  <li><a href="https://eprint.iacr.org/2018/623.pdf">Verifiable Delay Function</a>
+    <ul>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/crypto/vdf">harmony vdf</a> (go): Package vdf is a proof-of-concept implementation of a delay function and the security properties are not guaranteed.</li>
+    </ul>
+  </li>
+  <li><a href="https://en.wikipedia.org/wiki/Verifiable_random_function">Verfiable Random Function</a>
+    <ul>
+      <li><a href="https://github.com/harmony-one/harmony/tree/main/crypto/vrf">harmony vrf</a> (go): A VRF is a pseudorandom function f_k from a secret key k, such that that knowledge of k not only enables one to evaluate f_k at for any message m, but also to provide an NP-proof that the value f_k(m) is indeed correct without compromising the unpredictability of f_k for any m’ != m. <a href="https://ieeexplore.ieee.org/document/814584">https://ieeexplore.ieee.org/document/814584</a></li>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/primitives/consensus/vrf">paritytech vrf</a>: Primitives for VRF-based consensus engines. Schnorrkel-based VRF.</li>
+    </ul>
+  </li>
+  <li>tree
+    <ul>
+      <li><a href="https://github.com/paritytech/substrate/tree/master/utils/fork-tree">paritytech fork-tree</a> (rust): Utility library for managing tree-like ordered data with logic for pruning the tree while finalizing nodes.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Hash functions</strong></p>
+
+<p><a href="https://en.wikipedia.org/wiki/SHA-2">SHA-2</a></p>
+
+<p><a href="https://www.geeksforgeeks.org/difference-between-sha-256-and-keccak-256/">difference between sha256 and kecakk256</a></p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Argon2">Argon 2</a>
+    <ul>
+      <li><a href="https://github.com/P-H-C/phc-winner-argon2">Argon2</a>: eference C implementation of Argon2.</li>
+      <li><a href="https://cs.opensource.google/go/x/crypto/+/master:argon2/argon2.go">x/crypto Argon2</a> (go): Package argon2 implements the key derivation function Argon2.</li>
+      <li><a href="https://github.com/sru-systems/rust-argon2">rust-argon2</a> (rust): Rust library for hashing passwords using Argon2.</li>
+      <li><a href="https://www.npmjs.com/package/argon2">node-argon2</a> (typescript): Bindings to the reference Argon2 implementation.</li>
+    </ul>
+  </li>
+  <li><a href="https://en.wikipedia.org/wiki/BLAKE_(hash_function)">blake</a>
+    <ul>
+      <li><a href="https://www.blake2.net/">blake2</a> hash function
+        <ul>
+          <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/blake2b">ethereum-go-ethereum</a> (go): Package blake2b implements the BLAKE2b hash algorithm defined by RFC 7693 and the extendable output function (XOF) BLAKE2Xb.</li>
+          <li><a href="https://github.com/bnb-chain/bsc/tree/master/crypto/blake2b">bsc blake2b</a> (go): Package blake2b implements the BLAKE2b hash algorithm defined by RFC 7693 and the extendable output function (XOF) BLAKE2Xb.</li>
+        </ul>
+      </li>
+      <li><a href="https://github.com/BLAKE3-team/BLAKE3">blake3</a>
+        <ul>
+          <li><a href="https://crates.io/crates/blake3">blake3 rust crate</a> (rust): BLAKE3 is based on an optimized instance of the established hash function BLAKE2 and on the original Bao tree mode.</li>
+          <li><a href="https://github.com/zeebo/blake3">zeebo blake3</a> (go) : Pure Go implementation of BLAKE3 with AVX2 and SSE4.1 acceleration.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="https://keccak.team/keccak.html">keccak256</a> hash function
+    <ul>
+      <li><a href="https://github.com/prysmaticlabs/prysm/blob/develop/crypto/hash/hash.go">prysm</a> (go)</li>
+      <li><a href="https://github.com/sigp/lighthouse/blob/stable/crypto/eth2_hashing/src/lib.rs">lighthouse</a> (rust): wrapper over two SHA256 crates: <code class="language-plaintext highlighter-rouge">sha2</code> and <code class="language-plaintext highlighter-rouge">ring</code></li>
+      <li><a href="https://github.com/bnb-chain/bsc/blob/master/crypto/crypto.go#L91">bsc crypto</a> (go)</li>
+      <li><a href="https://github.com/harmony-one/harmony/blob/main/crypto/hash/hash.go">harmony hash</a> (go)</li>
+      <li><a href="https://github.com/Snowfork/snowbridge/blob/main/relayer/crypto/keccak/keccak.go">snowbridge keccak</a></li>
+    </ul>
+  </li>
+  <li><a href="https://pkg.go.dev/crypto/sha256">sha256</a>
+    <ul>
+      <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto/tmhash">tendermint tmhash</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>encryption</strong></p>
+
+<ul>
+  <li><a href="https://cryptobook.nakov.com/asymmetric-key-ciphers/ecies-public-key-encryption">ECIES</a> (go): a hybrid encryption scheme
+    <ul>
+      <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/ecies">ethereum-go-ethereum</a> (go)</li>
+      <li><a href="https://github.com/bnb-chain/bsc/tree/master/crypto/ecies">bsc ecies</a> (go)</li>
+    </ul>
+  </li>
+  <li><a href="https://www.rfc-editor.org/rfc/pdfrfc/rfc4880.txt.pdf">ascii armored encryption uses ed25519</a>
+    <ul>
+      <li><a href="https://github.com/ethereum/go-ethereum/tree/master/crypto/signify">ethereum-go-ethereum</a> (go)</li>
+      <li><a href="https://github.com/bnb-chain/bsc/tree/master/crypto/signify">bsc signify</a> (go)</li>
+      <li><a href="https://github.com/tendermint/tendermint/blob/main/crypto/armor/armor.go">tenderming armor</a> (go)</li>
+    </ul>
+  </li>
+  <li><a href="https://en.wikipedia.org/wiki/ChaCha20-Poly1305">ChaCha20-Poly1305</a>: an authenticated encryption with additional data (AEAD) algorithm
+    <ul>
+      <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto/xchacha20poly1305">tendermint xchacha20poly1305</a> (go)</li>
+    </ul>
+  </li>
+  <li><a href="https://libsodium.gitbook.io/doc/advanced/stream_ciphers/xsalsa20">XSalsa20</a> (go): XSalsa20 is a stream cipher based upon Salsa20 but with a much longer nonce: 192 bits instead of 64 bits.
+    <ul>
+      <li><a href="https://github.com/tendermint/tendermint/tree/main/crypto/xsalsa20symmetric">tendermint xsalsa20symmetric</a> (go): secret must be 32 bytes long. Use something like Sha256(Bcrypt(passphrase)). The ciphertext is (secretbox.Overhead + 24) bytes longer than the plaintext.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Random number generators</strong></p>
+
+<ul>
+  <li><a href="https://github.com/prysmaticlabs/prysm/blob/develop/crypto/rand/rand.go">prysm</a> (go)</li>
+</ul>
+
+<p><strong>Serialization/DeSerialization</strong></p>
+
+<ul>
+  <li><a href="https://ethereum.org/en/developers/docs/data-structures-and-encoding/rlp/">RECURSIVE-LENGTH PREFIX (RLP) SERIALIZATION</a>
+    <ul>
+      <li><a href="https://github.com/ethereum/go-ethereum/tree/master/rlp">ethereum rlp</a></li>
+      <li><a href="https://github.com/harmony-one/harmony/blob/main/crypto/hash/rlp.go">harmony rlp</a></li>
+    </ul>
+  </li>
+  <li><a href="https://ethereum.org/en/developers/docs/data-structures-and-encoding/ssz/">Simple Serialize</a>
+    <ul>
+      <li><a href="https://github.com/Snowfork/snowbridge/blob/main/parachain/pallets/ethereum-beacon-client/src/ssz.rs">snowbridge ssz.rs</a></li>
+    </ul>
+  </li>
+  <li><a href="https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/">Merkle Patricia Trie</a></li>
+</ul>
+
+<p><strong>Threading</strong></p>
+
+<ul>
+  <li><a href="https://github.com/prysmaticlabs/prysm/blob/develop/container/thread-safe/map.go">prysm</a>: contains generic containers that are protected either by Mutexes or atomics underneath the hood.</li>
+</ul>
+
+<p><strong>zero knowledge</strong></p>
+
+<ul>
+  <li>hash functions
+    <ul>
+      <li><a href="https://www.usenix.org/system/files/sec21-grassi.pdf">Poseidon</a>: A New Hash Function for
+Zero-Knowledge Proof Systems (<a href="https://youtu.be/hUx3WpDV_l0">video</a>)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Bloom_filter">Bloom Filter Wikipedia</a>: A Bloom filter is a space-efficient probabilistic data structure, conceived by Burton Howard Bloom in 1970, that is used to test whether an element is a member of a set.</li>
+  <li><a href="https://www.jasondavies.com/bloomfilter/">Bloom Filters Explainer</a>: The bloom filter essentially consists of a bit vector of length m, represented by the central column.</li>
+  <li><a href="https://blockchain-academy.hs-mittweida.de/coursesblockchain-introduction-technical-beginner-to-intermediate/lessons/lesson-11-bloomfilter/">Bloomfilter Lesson 11 - Blockchain Academy</a>: Blockchain Introduction Technical – Beginner to Intermediate  Lesson 11 – Bloomfilter.</li>
+  <li><a href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.25.4189&amp;rep=rep1&amp;type=pdf">Cuckoo Hashing</a>: a simple dictionary with worst case constant lookup time, equaling the theoretical performance of the classic dynamic perfect hashing scheme
+of Dietzfelbinger et al.</li>
+  <li><a href="http://www.lkozma.net/cuckoo_hashing_visualization/">Cukoo Hashing Visualization</a>: Visualization of Cukoo Hashing  an elegant method for resolving collisions in hash tables.</li>
+  <li><a href="https://vitalik.ca/general/2019/05/12/fft.html">Fast Fourier Transforms</a>: Vitaliks explaniner on Fast Fourier Transforms. Trigger warning: specialized mathematical topic, with
+special thanks to Karl Floersch for feedback.</li>
+  <li><a href="https://blockchain-academy.hs-mittweida.de/courses/blockchain-introduction-technical-beginner-to-intermediate/lessons/lesson-10-merkle-trees-merkle-proofs/">Merkle Trees/Merkle Proofs Lesson 10 - Blockchain Academy</a>: Blockchain Introduction Technical – Beginner to Intermediate  Lesson 10 – Merkle Trees/Merkle Proofs.</li>
+</ul>
+
+        </section>
+    </div>
+</body>
+
+</html>

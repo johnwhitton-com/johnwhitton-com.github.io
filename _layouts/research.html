@@ -17,6 +17,33 @@
                 <li><a href="/research">John's Research</a></li>
             </ul>
             <ul>
+                <li><a href="/research/primitives/intro.html">Primitives</a></li>
+                <ul>
+                    {% assign primitives = site.research | where:"category", "primitive" %}
+                    {% for primitive in primitives %}
+                    <li><a href="{{ primitive.url }}">{{ primitive.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/zk/intro.html">Zero Knowledge</a></li>
+                <ul>
+                    {% assign zks = site.research | where:"category", "zk" %}
+                    {% for zk in zks %}
+                    <li><a href="{{ zk.url }}">{{ zk.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/bridge/intro.html">Cross-chain Bridges</a></li>
+                <ul>
+                    {% assign bridges = site.research | where:"category", "bridge" %}
+                    {% for bridge in bridges %}
+                    <li><a href="{{ bridge.url }}">{{ bridge.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul>
+            <ul>
                 <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
                 <ul>
                     {% assign chains = site.research | where:"category", "chain" %}
@@ -25,6 +52,42 @@
                     {% endfor %}
                 </ul>
             </ul>
+            <!-- <ul>
+                <li><a href="/research/defi/intro.html">Decentralized Finance</a></li>
+                <ul>
+                    {% assign defis = site.research | where:"category", "defi" %}
+                    {% for defi in defis %}
+                    <li><a href="{{ defi.url }}">{{ defi.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul> -->
+            <!-- <ul>
+                <li><a href="/research/gaming/intro.html">Gaming</a></li>
+                <ul>
+                    {% assign gamings = site.research | where:"category", "gaming" %}
+                    {% for gaming in gamings %}
+                    <li><a href="{{ gaming.url }}">{{ gaming.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul> -->
+            <ul>
+                <li><a href="/research/code/intro.html">Code Reviews</a></li>
+                <ul>
+                    {% assign codes = site.research | where:"category", "code" %}
+                    {% for code in codes %}
+                    <li><a href="{{ code.url }}">{{ code.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/misc/intro.html">Additional Research</a></li>
+                <ul>
+                    {% assign miscs = site.research | where:"category", "misc" %}
+                    {% for misc in miscs %}
+                    <li><a href="{{ misc.url }}">{{ misc.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul> -->
         </header>
         <section>
             {% include navigation.html fixed=true %}

@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Signature Schemes in Consensus Protocols | John Whitton’s Site</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Signature Schemes in Consensus Protocols" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Overview" />
+<meta property="og:description" content="Overview" />
+<link rel="canonical" href="http://localhost:4000/research/primitives/signatures.html" />
+<meta property="og:url" content="http://localhost:4000/research/primitives/signatures.html" />
+<meta property="og:site_name" content="John Whitton’s Site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-05T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Signature Schemes in Consensus Protocols" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-02-05T00:00:00-08:00","datePublished":"2023-02-05T00:00:00-08:00","description":"Overview","headline":"Signature Schemes in Consensus Protocols","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/research/primitives/signatures.html"},"url":"http://localhost:4000/research/primitives/signatures.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+<!-- <link rel="stylesheet" href="/assets/css/katex.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/index.html"><img src="/assets/images/jincubator.png"></a>
+            <ul>
+                <li><a href="/research">John's Research</a></li>
+            </ul>
+            <ul>
+                <li><a href="/research/primitives/intro.html">Primitives</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/primitives/fast-fourier-transformations.html">Fast Fourier Transforms</a></li>
+                    
+                    <li><a href="/research/primitives/fraud-proofs.html">Fraud Proofs</a></li>
+                    
+                    <li><a href="/research/primitives/light-clients.html">Light Clients</a></li>
+                    
+                    <li><a href="/research/primitives/primitives.html">Cryptographic Primitives</a></li>
+                    
+                    <li><a href="/research/primitives/weak-subjectivity.html">Weak Subjectivity</a></li>
+                    
+                    <li><a href="/research/primitives/signatures.html">Signature Schemes in Consensus Protocols</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/zk/intro.html">Zero Knowledge</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/zk/zkpos.html">ZK Proof of Stake</a></li>
+                    
+                    <li><a href="/research/zk/zksnarks.html">zk-SNARKs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/bridge/intro.html">Cross-chain Bridges</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/bridge/cosmos-ibc.html">Cosmos IBC</a></li>
+                    
+                    <li><a href="/research/bridge/harmony-horizon.html">Harmony Horizon</a></li>
+                    
+                    <li><a href="/research/bridge/isomorph.html">Isomorph</a></li>
+                    
+                    <li><a href="/research/bridge/near-rainbow.html">Near Rainbow Bridge</a></li>
+                    
+                    <li><a href="/research/bridge/polymerlabs.html">Polymer Labs</a></li>
+                    
+                    <li><a href="/research/bridge/snowbridge.html">Snowbridge</a></li>
+                    
+                    <li><a href="/research/bridge/succinct.html">Succinct Labs</a></li>
+                    
+                </ul>
+            </ul>
+            <ul>
+                <li><a href="/research/chains/intro.html">Layer 1 Platforms</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/chains/avalanche.html">Avalanche</a></li>
+                    
+                    <li><a href="/research/chains/binance.html">Binance Smart Chain</a></li>
+                    
+                    <li><a href="/research/chains/cosmos.html">Cosmos</a></li>
+                    
+                    <li><a href="/research/chains/ethereum-1-0.html">Ethereum 1.0</a></li>
+                    
+                    <li><a href="/research/chains/ethereum.html">Ethereum</a></li>
+                    
+                    <li><a href="/research/chains/harmony.html">Harmony</a></li>
+                    
+                    <li><a href="/research/chains/near.html">NEAR</a></li>
+                    
+                    <li><a href="/research/chains/polkadot.html">Polkadot</a></li>
+                    
+                    <li><a href="/research/chains/polygon.html">Polygon</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/defi/intro.html">Decentralized Finance</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <!-- <ul>
+                <li><a href="/research/gaming/intro.html">Gaming</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+            <ul>
+                <li><a href="/research/code/intro.html">Code Reviews</a></li>
+                <ul>
+                    
+                    
+                    <li><a href="/research/code/Horizon.html">Horizon Bridge</a></li>
+                    
+                    <li><a href="/research/code/ethereum-near.html">Ethereum Near Bridging</a></li>
+                    
+                    <li><a href="/research/code/ethereum.html">Ethereum</a></li>
+                    
+                </ul>
+            </ul>
+            <!-- <ul>
+                <li><a href="/research/misc/intro.html">Additional Research</a></li>
+                <ul>
+                    
+                    
+                </ul>
+            </ul> -->
+        </header>
+        <section>
+            <nav>
+    
+    <a href="/" >Home</a>
+    
+    <a href="/work.html" >My Work</a>
+    
+    <a href="/colleagues.html" >Colleagues</a>
+    
+    <a href="/posts.html" >Posts</a>
+    
+    <a href="/research.html" >Research</a>
+    
+</nav>
+            <style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
+            <h1>Signature Schemes in Consensus Protocols</h1>
+            <!-- <h6><h2 id="overview">Overview</h2>
+</h6> -->
+            <!-- <div>Feb 5th, 2023</div>
+            <div></div>
+            <div><i></i></div> --->
+            <h2 id="overview">Overview</h2>
+
+<p>Both sides of the bridge need to verify what happened on the other side. To do that, the verification logic is often encapsulated inside a light client, manifested as a smart contract on the chain which the verification needs to be executed. The light client needs to follow consensus and signature verification mechanisms based on the signing algorithm and the elliptical curve used on the other side. For example, if chain A has 21 validators signing each block using ECDSA algorithm on secp256k1 curves, then chain A’s light client, executed on chain B, must extract the signatures from the block headers presented to the light client, and follow the ECDSA signature verification algorithm to verify the content of the block header indeeds produces the 21 signatures contained in the block header, given the public keys of the 21 validators.</p>
+
+<p>Here, we present a reference table for these signature schemes and how they are used in the consensus protocols of different blockchains. We limit our initial scope to Ethereum, Polygon, Avalanche, BSC, Harmony, Cosmos, and Polkadot only (and their undelying technologies). Note that we are only looking at how signatures are used in consensus, not elsewhere in the blockchain stack, as all these protocols use ECDSA on secp256k1 for accounts in EVM interactions.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Curve</th>
+      <th>Protocol</th>
+      <th>Code</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ECDSA</td>
+      <td>secp256k1</td>
+      <td>Polygon</td>
+      <td><a href="https://github.com/maticnetwork/tendermint/tree/peppermint/crypto/secp256k1">lib</a></td>
+      <td><a href="https://wiki.polygon.technology/docs/pos/peppermint">Modified</a> Tendermint validator signature scheme</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>BSC</td>
+      <td><a href="https://github.com/bnb-chain/bsc/tree/master/crypto/secp256k1">lib</a> <a href="https://github.com/bnb-chain/bsc/blob/cb9e50bdf62c6b46a71724066d39f9851181a5af/consensus/parlia/parlia.go#L546">usage</a></td>
+      <td>Derived from <a href="https://eips.ethereum.org/EIPS/eip-225">Clique</a>, then <a href="https://github.com/bnb-chain/BEPs/pull/131">improved</a></td>
+    </tr>
+    <tr>
+      <td>BLS</td>
+      <td>BN254</td>
+      <td>Ethereum</td>
+      <td><a href="https://github.com/ethereum/go-ethereum/blob/b946b7a13b749c99979e312c83dce34cac8dd7b1/core/vm/contracts.go#L420">EVM</a></td>
+      <td>Added by <a href="https://eips.ethereum.org/EIPS/eip-196">EIP-196</a>,<a href="https://eips.ethereum.org/EIPS/eip-197">197</a>; Mainly for use in smart contracts, such as zk-snark verification. See <a href="https://hackmd.io/@liangcc/bls-solidity#BLS-Signatures-in-Solidity">explainer</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>BLS12-381</td>
+      <td>Ethereum</td>
+      <td><a href="https://github.com/prysmaticlabs/prysm/tree/develop/crypto/bls">prysm</a> <a href="https://github.com/sigp/lighthouse/tree/stable/crypto/bls">lighthouse</a></td>
+      <td>See <a href="https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/keys/">PoS design</a> and <a href="https://hackmd.io/@benjaminion/bls12-381">explainer</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Harmony</td>
+      <td><a href="https://github.com/harmony-one/bls/tree/master/ffi/go/bls">lib</a> <a href="https://github.com/harmony-one/harmony/tree/main/crypto/bls">usage</a></td>
+      <td>See <a href="https://docs.harmony.one/home/developers/harmony-specifics/harmony-stack#signatures-and-cryptography">design</a> and <a href="https://medium.com/harmony-one/2022-harmony-technical-review-88462efba368">protocol review</a></td>
+    </tr>
+    <tr>
+      <td>RSA</td>
+      <td>N/A</td>
+      <td>Avalanche</td>
+      <td><a href="https://github.com/ava-labs/avalanchego/blob/51c5edd85ccc7927443b945b427e64d91ff99f67/vms/proposervm/block/block.go#L119">verification</a> <a href="https://github.com/ava-labs/avalanchego/blob/51c5edd85ccc7927443b945b427e64d91ff99f67/staking/tls.go#L121">generation</a></td>
+      <td>Uses X.509 certificate which potentially allows many algorithms; Moving towards BLS12-381 and added implementations recently</td>
+    </tr>
+    <tr>
+      <td>EdDSA</td>
+      <td>Curve25519</td>
+      <td>IBC</td>
+      <td><a href="https://github.com/tendermint/tendermint/tree/main/crypto/ed25519">lib</a> <a href="https://github.com/tendermint/tendermint/blob/main/spec/core/encoding.md#public-key-cryptography">usage</a></td>
+      <td>Used by all chains in Cosmos network, including <a href="https://hub.cosmos.network/main/validators/overview.html">Cosmos Hub</a></td>
+    </tr>
+    <tr>
+      <td>Schnorr</td>
+      <td>Curve25519</td>
+      <td>Substrate</td>
+      <td><a href="https://github.com/paritytech/substrate/blob/master/primitives/application-crypto/src/sr25519.rs">lib</a></td>
+      <td>See also brief <a href="https://wiki.polkadot.network/docs/learn-cryptography#what-is-sr25519-and-where-did-it-come-from">intro</a> from Polkadot</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="resources">Resources</h2>
+
+<h3 id="algorithms">Algorithms</h3>
+
+<h4 id="ecdsa">ECDSA</h4>
+
+<ul>
+  <li><a href="https://www.wikiwand.com/en/Elliptic_Curve_Digital_Signature_Algorithm">Wikipedia</a></li>
+  <li>Standard: <a href="https://www.secg.org/sec2-v2.pdf">SEC 2: Recommended Elliptic Curve Domain Parameters</a></li>
+</ul>
+
+<h4 id="bls">BLS</h4>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/BLS_digital_signature">Wikipedia</a></li>
+  <li>Paper: <a href="https://www.iacr.org/archive/asiacrypt2001/22480516.pdf">Short Signatures from the Weil Pairing</a></li>
+  <li>Tutorial: <a href="https://medium.com/cryptoadvance/bls-signatures-better-than-schnorr-5a7fe30ea716">BLS signatures: better than Schnorr</a></li>
+  <li>Analysis: <a href="https://www.dash.org/blog/secret-sharing-and-threshold-signatures-with-bls/">Secret Sharing and Threshold Signatures with BLS</a></li>
+  <li>Deep dive: <a href="https://hackmd.io/@liangcc/bls-solidity">BLS Signatures in Solidity</a></li>
+</ul>
+
+<h4 id="eddsa">EdDSA</h4>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/EdDSA">Wikipedia</a></li>
+  <li><a href="https://pkg.go.dev/golang.org/x/crypto/ed25519">GoLang</a></li>
+</ul>
+
+<h3 id="curves">Curves</h3>
+
+<ul>
+  <li><a href="https://neuromancer.sk/std/">Curve database</a></li>
+</ul>
+
+<h4 id="secp256k1">secp256k1</h4>
+
+<ul>
+  <li><a href="https://en.bitcoin.it/wiki/Secp256k1">Bitcoin Wiki</a></li>
+  <li>Tutorial: <a href="https://medium.com/asecuritysite-when-bob-met-alice/a-bluffers-guide-to-secp256k1-404e423e612">A Bluffer’s Guide to secp256k1</a></li>
+</ul>
+
+<h4 id="bls12-381">BLS12-381</h4>
+
+<ul>
+  <li>Deep dive: <a href="https://hackmd.io/@benjaminion/bls12-381">BLS12-381 For The Rest Of Us</a></li>
+  <li>Intro: <a href="https://electriccoin.co/blog/new-snark-curve/">BLS12-381: New zk-SNARK Elliptic Curve Construction</a></li>
+  <li>Paper: <a href="https://tches.iacr.org/index.php/TCHES/article/view/8348/7697">Fast and simple constant-time hashing to the BLS12-381 elliptic curve</a></li>
+  <li>Benchmark: <a href="https://www.dash.org/blog/bls-is-it-really-that-slow/">BLS: Is it really that slow</a></li>
+  <li>EIP: <a href="https://eips.ethereum.org/EIPS/eip-2537">EIP-2537: Precompile for BLS12-381 curve operations</a></li>
+  <li>EVM launch: <a href="https://ethereum-magicians.org/t/eip-2537-bls12-precompile-discussion-thread/4187/16">Targeting Shanghai upgrade May 2023</a></li>
+</ul>
+
+<h4 id="bn254">BN254</h4>
+
+<ul>
+  <li><a href="https://neuromancer.sk/std/bn/bn254">Definition</a></li>
+  <li>Paper: <a href="https://eprint.iacr.org/2005/133.pdf">Pairing-Friendly Elliptic Curves of Prime Order</a></li>
+  <li>Deep Dive: <a href="https://hackmd.io/@liangcc/bls-solidity">BLS Signatures in Solidity</a></li>
+  <li>Speed Optimization: <a href="https://cryptojedi.org/papers/dclxvi-20100714.pdf">New software speed records for cryptographic pairings</a></li>
+</ul>
+
+<h3 id="usage-in-zkp">Usage in ZKP</h3>
+
+<ul>
+  <li><a href="https://eprint.iacr.org/2022/586.pdf">A survey of elliptic curves for proof systems</a></li>
+</ul>
+
+<!--Too many links below. Need conslidation and simplify-->
+
+<!--
+### Signing Implementations
+
+The [Standard Curve Database](https://neuromancer.sk/std/) is a good starting point for existing signing algorithms. Base implementations such as [golang crypto](https://pkg.go.dev/golang.org/x/crypto) and [rust crypto](https://docs.rs/rust-crypto/latest/crypto/) provide good reference codebases.
+
+* [bcrypt](https://www.usenix.org/legacy/event/usenix99/provos/provos.pdf)
+  * [cosmos-sdk bcrypt](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/bcrypt)
+* [bip-0039](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
+  * [lighthouse](https://github.com/sigp/lighthouse/tree/stable/crypto/eth2_wallet) (rust)
+* [bls](https://en.wikipedia.org/wiki/BLS_digital_signature)
+  * [ethereum-prysm](https://github.com/prysmaticlabs/prysm/tree/develop/crypto/bls)
+* [bls-12-381](https://hackmd.io/@benjaminion/bls12-381)
+  * [ethereum EIP-2537: Precompile for BLS12-381 curve operations](https://eips.ethereum.org/EIPS/eip-2537)
+  * [ethereum-go-ethereum](https://github.com/ethereum/go-ethereum/tree/master/crypto/bls12381) (go)
+  * [harmony bls](https://github.com/harmony-one/harmony/blob/main/crypto/bls/bls.go) (go): uses [harmony bls repository](https://github.com/harmony-one/bls/blob/master/readme.md)
+    * [bls Harmony](https://github.com/harmony-one/bls) forked from [herumi/bls_](https://github.com/herumi/bls_): written in C++, supports Go, Rust, WebAssembly (Node.js)
+  * [prysm](https://github.com/prysmaticlabs/prysm/tree/develop/crypto/bls) (go)
+  * [lighthouse](https://github.com/sigp/lighthouse/tree/stable/crypto/bls) (rust):  provides a wrapper around several BLS implementations to provide Lighthouse-specific functionality.
+  * [lighthouse](https://github.com/sigp/lighthouse/tree/stable/crypto/eth2_key_derivation) (rust): Provides path-based hierarchical BLS key derivation, as specified by [EIP-2333](https://eips.ethereum.org/EIPS/eip-2333).
+      * [Aurora Rainbow Bridge Implementation](https://github.com/aurora-is-near/lighthouse/tree/stable/crypto/bls/src/impls): Implementations
+          * [blst](https://github.com/aurora-is-near/lighthouse/blob/stable/crypto/bls/src/impls/blst.rs)
+          * [fake_crypto](https://github.com/aurora-is-near/lighthouse/blob/stable/crypto/bls/src/impls/fake_crypto.rs)
+          * [milagro](https://github.com/aurora-is-near/lighthouse/blob/stable/crypto/bls/src/impls/milagro.rs): support for [Apache Milagro](https://milagro.apache.org/docs/milagro-intro/)
+  * [lighthouse](https://github.com/sigp/lighthouse/tree/stable/crypto/eth2_keystore) (rust): Provides a JSON keystore for a BLS keypair, as specified by [EIP-2335](https://eips.ethereum.org/EIPS/eip-2335).
+  * [bsc bls12381](https://github.com/bnb-chain/bsc/tree/master/crypto/bls12381) (go)
+  * [blst](https://github.com/supranational/blst): blst (pronounced 'blast') is a BLS12-381 signature library focused on performance and security. It is written in C and assembly.
+* [bn256](https://cryptojedi.org/papers/dclxvi-20100714.pdf)
+  * [ethereum-go-ethereum](https://github.com/ethereum/go-ethereum/tree/master/crypto/bn256) (go)
+  * [bsc bn256](https://github.com/bnb-chain/bsc/tree/master/crypto/bn256) (go)
+* [ecdsa](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm)
+  * [bsc crypto](https://github.com/bnb-chain/bsc/blob/master/crypto/crypto.go#L169) (go): toECDSA creates a private key with the given D value. The strict parameter controls whether the key's length should be enforced at the curve size or it can also accept legacy encodings (0 prefixes).
+  * [paritytech ecdsa](https://github.com/paritytech/substrate/blob/master/primitives/application-crypto/src/ecdsa.rs) (rust)
+  * [cosmos-sdk ecdsa](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/internal/ecdsa)
+* [ed25519](https://ed25519.cr.yp.to/ed25519-20110926.pdf) [golang](https://pkg.go.dev/golang.org/x/crypto/ed25519)
+  * [tendermint ed25519](https://github.com/tendermint/tendermint/tree/main/crypto/ed25519) (go): GenPrivKey generates a new ed25519 private key. It uses OS randomness in conjunction with the current global random seed in tendermint/libs/common to generate the private key.
+  * [paritytech ed25519](https://github.com/paritytech/substrate/blob/master/primitives/application-crypto/src/ed25519.rs) (rust)
+  * [Ed25519](https://en.wikipedia.org/wiki/EdDSA): [Ed25519.sol](https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/eth/nearbridge/contracts/Ed25519.sol)
+  * [cosmos-sdk ed25519](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/ed25519)
+* [secp256k1](https://www.secg.org/sec2-v2.pdf)
+  * [ethereum-go-ethereum](https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1) (go)
+  * [prysm](https://github.com/prysmaticlabs/prysm/tree/develop/crypto/ecdsa) (go)
+  * [bsc secp256k1](https://github.com/bnb-chain/bsc/tree/master/crypto/secp256k1)
+  * [tendermint secp256k1](https://github.com/tendermint/tendermint/tree/main/crypto/secp256k1) (go): GenPrivKeySecp256k1 hashes the secret with SHA2, and uses that 32 byte output to create the private key.
+  * [cosmos-sdk secp256k1](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/secp256k1)
+  * [snowbridge secp256k1](https://github.com/Snowfork/snowbridge/tree/main/relayer/crypto/secp256k1)
+* [secp256r1](https://www.secg.org/sec2-v2.pdf)
+  * [cosmos-sdk secp256r1](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/secp256r1)
+* [sr25519](https://wiki.polkadot.network/docs/learn-cryptography#what-is-sr25519-and-where-did-it-come-from): schnorr over ristretto25519
+  * [chainsafe go-schnorrkel](https://github.com/ChainSafe/go-schnorrkel) (go): This repo contains the Go implementation of the sr25519 signature algorithm (schnorr over ristretto25519). The existing Rust implementation is here.
+  * [paritytech substrate-bip39](https://github.com/paritytech/substrate-bip39) (rust): his is a crate for deriving secret keys for Ristretto compressed Ed25519 (should be compatible with Ed25519 at this time) from BIP39 phrases.
+  * [paritytech sr25519](https://github.com/paritytech/substrate/blob/master/primitives/application-crypto/src/sr25519.rs) rust
+  * [tendermint sr25519](https://github.com/tendermint/tendermint/tree/main/crypto/sr25519) (go): GenPrivKeyFromSecret hashes the secret with SHA2, and uses that 32 byte output to create the private key.
+  * [snowbridge sr25519](https://github.com/Snowfork/snowbridge/tree/main/relayer/crypto/secp256k1)
+-->
+
+        </section>
+    </div>
+</body>
+
+</html>

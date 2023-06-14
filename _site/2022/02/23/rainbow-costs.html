@@ -38,22 +38,38 @@
             </ul>
             
             <ul>
+                <li><a href="/2022/02/23/rainbow-costs.html">Ethereum Bridging using Light Clients - Rainbow Costing</a></li>
+            </ul>
+            
+            <ul>
+                <li><a href="/2021/12/01/eave-defi.html">Draft EAVE Whitepaper</a></li>
+            </ul>
+            
+            <ul>
+                <li><a href="/2021/05/01/kanga.html">Kanga Protocol Whitepaper</a></li>
+            </ul>
+            
+            <ul>
+                <li><a href="/2021/04/01/eave-parachain.html">EAVE Parachain Design</a></li>
+            </ul>
+            
+            <ul>
                 <li><a href="/2019/10/16/devcon5.html">Lessons Learned from Devcon5</a></li>
             </ul>
             
             <ul>
-                <li><a href="/2022/02/23/rainbow-costs.html">Ethereum Bridging using Light Clients - Rainbow Costing</a></li>
+                <li><a href="/2018/07/17/projectx.html">Project-X Technical White Paper</a></li>
             </ul>
             
         </header>
         <section>
             <style>
-            sup {
-                font-size: 0.8rem;
-                position: relative;
-                top: -0.5rem;
-            }
-             </style>
+                sup {
+                    font-size: 0.8rem;
+                    position: relative;
+                    top: -0.5rem;
+                }
+            </style>
             <nav>
     
     <a href="/" >Home</a>
@@ -83,8 +99,7 @@
       <li><a href="#sample-transactionflow">Sample TransactionFlow</a></li>
     </ul>
   </li>
-  <li><a href="#bridging-resources-required">Bridging Resources Required</a></li>
-  <li><a href="#closing-remark">Closing Remark</a>
+  <li><a href="#bridging-resources-required">Bridging Resources Required</a>
     <ul>
       <li><a href="#references">References</a></li>
     </ul>
@@ -96,11 +111,13 @@
 <p>In this article we review the use of light clients and how they can improve trust and costing for bridges.</p>
 
 <h2 id="bridge-transaction-walk-through">Bridge Transaction Walk Through</h2>
+
 <p>Following is a walkthough of a funds transfer from Ethereum to a target chain (In this example Near), complete with light client updates, block propogation and proofs to ensure the transaction validity.</p>
 
 <p><img src="/assets/posts/2023-03-23-rainbow-costs/eth2NearFundsTransfer.jpg" alt="Ethereum to Near Funds Transfer" title="Ethereum to NEAR Funds Transfer" /></p>
 
 <h3 id="actors">Actors</h3>
+
 <p>From the diagram above you’ll notice that there are many actors involved, below is an overview of the actors and the operations they perform.</p>
 
 <ul>
@@ -167,6 +184,7 @@
 </ol>
 
 <p><strong>TODO</strong></p>
+
 <ul>
   <li>Find and review the source code for the <a href="https://nearblocks.io/txns/HnzBR7x5Sxnmcm4MfRt1ghhMjJNspDaygUUKeM9T27Li#execution">validator light client approval update</a>. <em>Note: the eth2_client has a <a href="https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs#L311">validate_light_client_update</a> which is <a href="https://github.com/aurora-is-near/rainbow-bridge/blob/master/contracts/near/eth2-client/src/lib.rs#L42">configurable</a> and is used for debugging purposes.</em></li>
 </ul>
@@ -209,52 +227,44 @@
 <p><strong>TODO</strong>
 Review the following data structure and elements and move into the table above commenting on any mandatory requirements and structures that can be improved.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pub struct Eth2Client {
-    /// If set, only light client updates by the trusted signer will be accepted
-    trusted_signer: Option&lt;AccountId&gt;,
-    /// Mask determining all paused functions
-    paused: Mask,
-    /// Whether the client validates the updates.
-    /// Should only be set to `false` for debugging, testing, and diagnostic purposes
-    validate_updates: bool,
-    /// Whether the client verifies BLS signatures.
-    verify_bls_signatures: bool,
-    /// We store the hashes of the blocks for the past `hashes_gc_threshold` headers.
-    /// Events that happen past this threshold cannot be verified by the client.
-    /// It is desirable that this number is larger than 7 days' worth of headers, which is roughly
-    /// 51k Ethereum blocks. So this number should be 51k in production.
-    hashes_gc_threshold: u64,
-    /// Network. e.g. mainnet, kiln
-    network: Network,
-    /// Hashes of the finalized execution blocks mapped to their numbers. Stores up to `hashes_gc_threshold` entries.
-    /// Execution block number -&gt; execution block hash
-    finalized_execution_blocks: LookupMap&lt;u64, H256&gt;,
-    /// All unfinalized execution blocks' headers hashes mapped to their `HeaderInfo`.
-    /// Execution block hash -&gt; ExecutionHeaderInfo object
-    unfinalized_headers: UnorderedMap&lt;H256, ExecutionHeaderInfo&gt;,
-    /// `AccountId`s mapped to their number of submitted headers.
-    /// Submitter account -&gt; Num of submitted headers
-    submitters: LookupMap&lt;AccountId, u32&gt;,
-    /// Max number of unfinalized blocks allowed to be stored by one submitter account
-    /// This value should be at least 32 blocks (1 epoch), but the recommended value is 1024 (32 epochs)
-    max_submitted_blocks_by_account: u32,
-    // The minimum balance that should be attached to register a new submitter account
-    min_storage_balance_for_submitter: Balance,
-    /// Light client state
-    finalized_beacon_header: ExtendedBeaconBlockHeader,
-    finalized_execution_header: LazyOption&lt;ExecutionHeaderInfo&gt;,
-    current_sync_committee: LazyOption&lt;SyncCommittee&gt;,
-    next_sync_committee: LazyOption&lt;SyncCommittee&gt;,
-}
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pub</span> <span class="k">struct</span> <span class="n">Eth2Client</span> <span class="p">{</span>
+    <span class="c">/// If set, only light client updates by the trusted signer will be accepted</span>
+    <span class="n">trusted_signer</span><span class="o">:</span> <span class="n">Option</span><span class="o">&lt;</span><span class="n">AccountId</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="c">/// Mask determining all paused functions</span>
+    <span class="n">paused</span><span class="o">:</span> <span class="n">Mask</span><span class="p">,</span>
+    <span class="c">/// Whether the client validates the updates.</span>
+    <span class="c">/// Should only be set to `false` for debugging, testing, and diagnostic purposes</span>
+    <span class="n">validate_updates</span><span class="o">:</span> <span class="kt">bool</span><span class="p">,</span>
+    <span class="c">/// Whether the client verifies BLS signatures.</span>
+    <span class="n">verify_bls_signatures</span><span class="o">:</span> <span class="kt">bool</span><span class="p">,</span>
+    <span class="c">/// We store the hashes of the blocks for the past `hashes_gc_threshold` headers.</span>
+    <span class="c">/// Events that happen past this threshold cannot be verified by the client.</span>
+    <span class="c">/// It is desirable that this number is larger than 7 days' worth of headers, which is roughly</span>
+    <span class="c">/// 51k Ethereum blocks. So this number should be 51k in production.</span>
+    <span class="n">hashes_gc_threshold</span><span class="o">:</span> <span class="n">u64</span><span class="p">,</span>
+    <span class="c">/// Network. e.g. mainnet, kiln</span>
+    <span class="n">network</span><span class="o">:</span> <span class="n">Network</span><span class="p">,</span>
+    <span class="c">/// Hashes of the finalized execution blocks mapped to their numbers. Stores up to `hashes_gc_threshold` entries.</span>
+    <span class="c">/// Execution block number -&gt; execution block hash</span>
+    <span class="n">finalized_execution_blocks</span><span class="o">:</span> <span class="n">LookupMap</span><span class="o">&lt;</span><span class="n">u64</span><span class="p">,</span> <span class="n">H256</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="c">/// All unfinalized execution blocks' headers hashes mapped to their `HeaderInfo`.</span>
+    <span class="c">/// Execution block hash -&gt; ExecutionHeaderInfo object</span>
+    <span class="n">unfinalized_headers</span><span class="o">:</span> <span class="n">UnorderedMap</span><span class="o">&lt;</span><span class="n">H256</span><span class="p">,</span> <span class="n">ExecutionHeaderInfo</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="c">/// `AccountId`s mapped to their number of submitted headers.</span>
+    <span class="c">/// Submitter account -&gt; Num of submitted headers</span>
+    <span class="n">submitters</span><span class="o">:</span> <span class="n">LookupMap</span><span class="o">&lt;</span><span class="n">AccountId</span><span class="p">,</span> <span class="n">u32</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="c">/// Max number of unfinalized blocks allowed to be stored by one submitter account</span>
+    <span class="c">/// This value should be at least 32 blocks (1 epoch), but the recommended value is 1024 (32 epochs)</span>
+    <span class="n">max_submitted_blocks_by_account</span><span class="o">:</span> <span class="n">u32</span><span class="p">,</span>
+    <span class="c">// The minimum balance that should be attached to register a new submitter account</span>
+    <span class="n">min_storage_balance_for_submitter</span><span class="o">:</span> <span class="n">Balance</span><span class="p">,</span>
+    <span class="c">/// Light client state</span>
+    <span class="n">finalized_beacon_header</span><span class="o">:</span> <span class="n">ExtendedBeaconBlockHeader</span><span class="p">,</span>
+    <span class="n">finalized_execution_header</span><span class="o">:</span> <span class="n">LazyOption</span><span class="o">&lt;</span><span class="n">ExecutionHeaderInfo</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">current_sync_committee</span><span class="o">:</span> <span class="n">LazyOption</span><span class="o">&lt;</span><span class="n">SyncCommittee</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">next_sync_committee</span><span class="o">:</span> <span class="n">LazyOption</span><span class="o">&lt;</span><span class="n">SyncCommittee</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="p">}</span>
 </code></pre></div></div>
-
-<h2 id="closing-remark">Closing Remark</h2>
-
-<p>Many technical problems mentioned here warrant a standalone deep-dive article for further discussion (and their relevance to ZKP). We will also write separate articles to discuss the approaches and algorithms we propose to make the trustless bridge work using ZKP and how we solve immediate problems today. If you are interested in working with us, please let us know at <a href="mailto: hello@isolab.gg">hello@isolab.gg</a></p>
-
-<hr />
-
-<p><em>If you’re interested in further discussions on this topic or working together on this subject, please reach out to us at hello@isolab.gg</em></p>
 
 <h3 id="references">References</h3>
 
