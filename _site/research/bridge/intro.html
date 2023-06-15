@@ -147,21 +147,32 @@
             </ul> -->
         </header>
         <section>
-            <nav>
-    
-    <a href="/" >Home</a>
-    
-    <a href="/about.html" >About John</a>
-    
-    <a href="/work.html" >Resume/CV</a>
-    
-    <a href="/colleagues.html" >References</a>
-    
-    <a href="/posts.html" >Writing</a>
-    
-    <a href="/research.html" >Research</a>
-    
-</nav>
+            <!-- <nav> -->
+<table>
+    <tr>
+        
+        <th>
+            <a href="/" >Home</a>
+            
+        <th>
+            <a href="/about.html" >About John</a>
+            
+        <th>
+            <a href="/work.html" >Resume/CV</a>
+            
+        <th>
+            <a href="/colleagues.html" >References</a>
+            
+        <th>
+            <a href="/posts.html" >Writing</a>
+            
+        <th>
+            <a href="/research.html" >Research</a>
+            
+        </th>
+    </tr>
+</table>
+<!-- </nav> -->
             <style>
                 sup {
                     font-size: 0.8rem;
@@ -396,13 +407,11 @@
       <th>Design/Docs</th>
       <th>Implementation</th>
       <th>Frontend</th>
-      <th> </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>rollup-to-rollup</td>
-      <td> </td>
       <td> </td>
       <td><a href="https://hop.exchange/whitepaper.pdf">Hop Protocol</a>, <a href="https://docs.hop.exchange/basics/a-short-explainer">docs</a></td>
       <td><a href="https://github.com/hop-protocol/contracts">contracts</a></td>
@@ -411,14 +420,12 @@
     <tr>
       <td>mesh-network</td>
       <td> </td>
-      <td> </td>
       <td><a href="https://docs.routerprotocol.com/whitepaper/introducing-router-protocol/architecture">Router Protocol</a>, <a href="https://dev.routerprotocol.com/">docs</a></td>
       <td><a href="https://github.com/orgs/router-protocol/repositories">Router Protocol</a></td>
       <td><a href="https://app.thevoyager.io/swap">https://app.thevoyager.io/swap</a></td>
     </tr>
     <tr>
       <td>Bridge Components</td>
-      <td> </td>
       <td> </td>
       <td><a href="https://github.com/paritytech/parity-bridges-common#high-level-architecture">Parity Bridges Common</a></td>
       <td><a href="https://github.com/paritytech/parity-bridges-common">parity-bridges-common</a></td>
@@ -520,10 +527,11 @@
   </ol>
 
   <p>The vulnerability that made the attack possible was a failure to perform proper signature verification in the VAA creation process.  The role of signature verification is delegated several times from post_vaa to verify_signatures to Secp256k1.</p>
-  <ul>
-    <li><a href="https://halborn.com/explained-the-ronin-hack-march-2022/">EXPLAINED: THE RONIN HACK (MARCH 2022)</a></li>
-  </ul>
 </blockquote>
+
+<ul>
+  <li><a href="https://halborn.com/explained-the-ronin-hack-march-2022/">EXPLAINED: THE RONIN HACK (MARCH 2022)</a></li>
+</ul>
 
 <blockquote>
   <p>The Ronin Network attack was extremely stealthy.  In fact, the hack wasn’t noticed until six days after it occurred when the project team was notified by a user that they couldn’t withdraw about 5k ETH from the project’s bridge.  Further investigation discovered the largest hack in DeFi history to date.</p>
