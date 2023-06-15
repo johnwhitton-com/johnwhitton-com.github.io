@@ -9,6 +9,10 @@ rm -rf ./_work/*
 cp -rf ../research-web/_work/* ./_work/.
 rm -rf ./_layouts/*
 cp -rf ../research-web/_layouts/* ./_layouts/.
+rm -rf ./_sass/*
+cp -rf ../research-web/_sass/* ./_sass/.
+rm -rf ./_includes/*
+cp -rf ../research-web/_includes/* ./_includes/.
 
 rm -rf ./_posts/*
 cp -rf ../research-web/_posts/* _posts
