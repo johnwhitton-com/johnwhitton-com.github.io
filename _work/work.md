@@ -2,6 +2,8 @@
 title: RESUME/CV
 ---
 
+**One page resume can be downloaded [here](../assets/images/john.pdf)**
+
 ## Professional Summary
 
 Highly motivated research/engineer, technical leader and entrepreneur currently working at the intersection of blockchain infrastrucuture (consensus, zero knowledge, cryptographic primitives, bridges) and DeFi protocols (identity, DeFi, NFT's). Track record of tackling tough technical challenges, driving projects from conception to completion, identifying research gaps and providing solutions. Proven leader of engineering teams with the ability to develop novel technologies and applications through interdisciplinary collaborations.
