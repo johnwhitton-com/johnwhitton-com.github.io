@@ -20,4 +20,6 @@ Here is a video highlighting the strengths of the Harmony Team that I was fortun
     </iframe>
 </div>
 
-**Below are some quotes from some of the greatest people you'll ever get to work with**
+**[Here](./../assets/images/johnImpact.png) are some quotes from some of the greatest people you'll ever get to work with**
+
+<!-- ![John Whitton Harmony](./../assets/images/johnImpact.png "John Whitton Harmony") -->
