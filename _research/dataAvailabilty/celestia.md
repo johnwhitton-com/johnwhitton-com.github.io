@@ -56,7 +56,6 @@ date: 2023-06-19
 ## References
 
 - [Learn Modular](https://celestia.org/learn/)
--
 - [Fraud and Data Availability Proofs](https://arxiv.org/pdf/1809.09044.pdf): Maximising Light Client Security and Scaling Blockchains with Dishonest Majorities
 - [Celestia App Specifications](https://celestiaorg.github.io/celestia-app/index.html)
 - [Celestia App Architecture](https://github.com/celestiaorg/celestia-app/tree/main/docs/architecture)

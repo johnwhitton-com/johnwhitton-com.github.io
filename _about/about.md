@@ -2,9 +2,11 @@
 title: About Me
 ---
 
-![John Whitton Work History]( ./../assets/images/JohnWhittonWorkHistory.png "John Whitton Work History")
+![John Whitton Work History](./../assets/images/JohnWhittonWorkHistory.png "John Whitton Work History")
 
-I am currently researching zero knowledge proofs, cryptographic primitives and consensus protocols.  I also consult as a research engineer providing strategy, research, design and building out DeFi infrastructure including trustless bridging, web3 identity and wallets. Deployments have been on EVM compatible chains including [Ethereum](https://ethereum.org/en/) and [Harmony](https://www.harmony.one/).
+I am currently working as an Engineering Manager at [Eco](https://eco.com) building a payment focused intent protocol on a dedicated L3 rollup.
+
+Previous work includes researching zero knowledge proofs, cryptographic primitives and consensus protocols. I also consult as a research engineer providing strategy, research, design and building out DeFi infrastructure including trustless bridging, web3 identity and wallets. Deployments have been on EVM compatible chains including [Ethereum](https://ethereum.org/en/) and [Harmony](https://www.harmony.one/).
 
 I prototyped the DEX [Kanga Finance](https://github.com/kangafinance) (inspired by [Sushi](https://github.com/sushiswap)) and a DeFi parachain [eave.network](https://github.com/eavenetwork) (inspired by [Acala](https://github.com/acalanetwork)). Deployments on [Harmony](https://www.harmony.one/) and [Polkadot](https://polkadot.network/). As founder for these projects, I was responsible for writing whitepapers, reviewing legal infrastructure, and fundraising. Although projects had investor interest and were awarded [hackathon prizes](https://docs.google.com/presentation/d/1ZGrbKSaAdtzvMzVh0EVFBfUvA4SqiAeYVXGhJN7Orbs/edit#slide=id.g48989ac23a_0_0) the projects did not move forward due to a combination of team commitment, market fit and crypto market conditions.
 
