@@ -35,14 +35,15 @@ Below are some of links to projects I have designed and built or contributed to.
 
 ### Founder / Research Engineer
 
-#### [Eco](https://eco.com): Aug 2024 - Present, Silicon Valley
+#### [Eco](https://eco.com): Aug 2023 - Present, Silicon Valley
 
-Universal payments on a dedicated rollup using intents and account abstraction
+A protocol for stablecoins on a dedicated roll-up using intents and account abstraction
 
-- Leading a team of 8 engineers
-- L3 Rollup design and implementation of the ECO chain
-- Developing Intent Protocol and cross-chain proving mechanisms
-- Manage development of [bend.eco](https://bend.eco) - fast cheap stablecoin payments
+- Lead a team of 8 engineers up until August 2024
+- Senior Protocol Engineer from April 2024 to present
+- L3 roll-up design and implementation of the ECO chain, read the [docs](https://docs.eco.com/)
+- Developing Intent Protocol and cross-chain proving mechanisms, see the open sourced version of the code at [Cross-L2-Actions](https://github.com/ecoinc/Cross-L2-Actions)
+- Manage development of [bend.eco](https://bend.eco) - fast cheap stable coin payments
 - Lead the [Eco Association](https://github.com/eco-association) - [Currency 1.5 upgrade](https://github.com/eco-association/currency-1.5)
 
 #### [johnwhitton](https://johnwhitton.com): July 2018 - Aug 2023, Silicon Valley

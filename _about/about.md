@@ -4,7 +4,8 @@ title: About Me
 
 ![John Whitton Work History](./../assets/images/JohnWhittonWorkHistory.png "John Whitton Work History")
 
-I am currently working as an Engineering Manager at [Eco](https://eco.com) building a payment focused intent protocol on a dedicated L3 rollup.
+I am currently working as a Senior Protocol Engineer, previously Engineering Manager at [Eco](https://eco.com) building a payment focused intent protocol on a dedicated L3 rollup.
+Read the docs [here](https://docs.eco.com/) and the code [here](https://github.com/ecoinc/Cross-L2-Actions).
 
 Previous work includes researching zero knowledge proofs, cryptographic primitives and consensus protocols. I also consult as a research engineer providing strategy, research, design and building out DeFi infrastructure including trustless bridging, web3 identity and wallets. Deployments have been on EVM compatible chains including [Ethereum](https://ethereum.org/en/) and [Harmony](https://www.harmony.one/).
 
