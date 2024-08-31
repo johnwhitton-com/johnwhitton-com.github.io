@@ -12,17 +12,18 @@ Research/engineer, technical leader and entrepreneur currently working at the in
 
 #### Research and Engineering
 
+- Researching, designing and buiding a protocol for stablecoins on a dedicated L3 roll-up at [eco](https://eco.com) ([docs](https://docs.eco.com/), [Cross-L2-Actions codebase](https://github.com/ecoinc/Cross-L2-Actions))
 - Wrote multiple DeFi whitepapers.
 - Researched consensus, bridging, cryptographic primitives and zero knowledge proofs.
 - Built Layer 1 platforms, DeFi protocols, non-custodial wallets, web3 identity, wallet infrastructure and NFT contracts for gaming character token sales.
 
 #### Building Great Technical Teams
 
-- Grew Harmony from 6 to 20 Engineers, managed 7 engineers at LOYYAL and founded an enterprise consulting startup onboarding a team of 5.
+- Lead a team of 8 Engineers at ECO, Grew Harmony from 6 to 20 Engineers, managed 7 engineers at LOYYAL and founded an enterprise consulting startup onboarding a team of 5.
 
 #### Successful Product Launches
 
-- 5 blockchain launches and multiple ecosystem releases, Gama Space Station NFT Launch, dot-country web3 identity and web2 backend launch.
+- 6 blockchain launches and multiple ecosystem releases, [eco](https://eco.com), Gama Space Station NFT Launch, dot-country web3 identity and web2 backend launch.
 
 #### Founder
 
@@ -31,7 +32,7 @@ Research/engineer, technical leader and entrepreneur currently working at the in
 
 ## Projects
 
-Below are some of links to projects I have designed and built or contributed to.
+Below are links to projects I have designed and built or contributed to.
 
 ### Founder / Research Engineer
 
